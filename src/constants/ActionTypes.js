@@ -1,0 +1,2 @@
+export const REQUEST_VIDEO_ID = 'REQUEST_VIDEO_ID';
+export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
