@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const TopNavStyle = {
     height: "55px",
@@ -48,7 +49,7 @@ const TopNav = () => {
       <img style={imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" />
       <div style={searchForm}>
         <input type="text" style={inputStyle} />
-        <button style={buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" style={searchIcon} /></button>
+        <Link to="/results"><button style={buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" style={searchIcon} /></button></Link>
       </div>
       <a style={linkStyle}><p>Sign In</p></a>
     </div>
