@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Video = () => {
+const Watch = () => {
   return (
     <div>
       hello from video
@@ -8,4 +8,4 @@ const Video = () => {
   );
 }
 
-export default Video;
+export default Watch;
