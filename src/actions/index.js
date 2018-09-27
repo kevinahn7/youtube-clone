@@ -10,7 +10,6 @@ export function fetchSearchResult(searchQuery) {
       ).then(function(json) {
         let searchResults = json.items;
         dispatch(receiveSearch(searchResults));
-        console.log(searchResults)
       })
   }
 }

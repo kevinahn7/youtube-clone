@@ -60,7 +60,6 @@ const TopNav = ({history, dispatch}) => {
     event.preventDefault();
     history.push('/results');
     const searchQuery = event.target.elements.searchBar.value.trim();
-    event.target.elements.searchBar.value = "";
     dispatch(fetchSearchResult(searchQuery));
   }
 
