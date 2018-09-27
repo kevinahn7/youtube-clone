@@ -51,15 +51,14 @@ const linkStyle = {
     color: "#2793e6"
 }
 
-const TopNav = ({props, dispatch }) => {
+const TopNav = ({history, dispatch}) => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    props.history.push('/results');
+    history.push('/results');
     const searchQuery = event.target.elements.searchBar.value.trim();
     event.target.elements.searchBar.value = "";
     dispatch(fetchSearchResult(searchQuery));
-    console.log(searchQuery);
   }
 
   return (
