@@ -1,7 +1,7 @@
 import constants from './../constants';
 const { initialState, types } = constants;
 
-const currentVideoReducer = ( state = initialState, action ) => {
+const currentVideoId = ( state = initialState, action ) => {
 
   switch(action.type) {
     default:
@@ -9,4 +9,4 @@ const currentVideoReducer = ( state = initialState, action ) => {
   }
 }
 
-export default currentVideoReducer;
+export default currentVideoId;
