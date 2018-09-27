@@ -7,7 +7,7 @@ import middlewareLogger from './middleware/middleware-logger';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route, HashRouter } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const TopNavStyle = {
     height: "55px",
@@ -41,7 +41,6 @@ const buttonStyle = {
     boxSizing: "content-box",
     height: "27px",
     width: "51px",
-    border: "none",
     backgroundColor: "#f8f8f8",
     border: "lightgray 1px solid"
 }
@@ -50,17 +49,27 @@ const linkStyle = {
     color: "#2793e6"
 }
 
-const TopNav = () => {
+const TopNav = (props) => {
+
+  const handleSearch = (event) => {
+    console.log("sdfdsfasdasdas");
+    event.preventDefault();
+    console.log("sdfds");
+    props.history.push('/results')
+    // const searchQuery = event.target.elements.searchBar.value.trim();
+    // console.log(searchQuery);
+  }
+
   return (
     <div style={TopNavStyle}>
-      <img style={imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" />
-      <div style={searchForm}>
-        <input type="text" style={inputStyle} placeholder="Search"/>
-        <Link to="/results"><button style={buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" style={searchIcon} /></button></Link>
-      </div>
+      <img style={imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" alt="The YoutTUbe logo"/>
+      <form style={searchForm} onSubmit={handleSearch}>
+        <input name="searchBar" type="text" style={inputStyle} placeholder="Search"/>
+        <button type="submit" style={buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" alt="Search logo" style={searchIcon} /></button>
+      </form>
       <a style={linkStyle}><p>Sign In</p></a>
     </div>
   )
 }
 
-export default TopNav;
+export default withRouter(TopNav);
