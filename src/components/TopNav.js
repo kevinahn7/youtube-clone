@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSearchResult } from './../actions';
 
@@ -12,7 +12,9 @@ const TopNavStyle = {
 }
 
 const imageStyle = {
-    height: "40px"
+    height: "40px",
+    marginTop: "7px",
+    marginLeft: "10px"
 }
 
 const searchForm = {
@@ -36,7 +38,7 @@ const inputStyle = {
     border: "lightgray 1px solid",
     borderRight: "none",
     fontSize: "16px",
-    paddingLeft: "8px"
+    paddingLeft: "9px"
 }
 
 const buttonStyle = {
@@ -44,7 +46,8 @@ const buttonStyle = {
     height: "27px",
     width: "51px",
     backgroundColor: "#f8f8f8",
-    border: "lightgray 1px solid"
+    border: "lightgray 1px solid",
+    cursor: "pointer"
 }
 
 const linkStyle = {
@@ -63,7 +66,7 @@ const TopNav = ({history, dispatch}) => {
 
   return (
     <div style={TopNavStyle}>
-      <img style={imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" alt="The YoutTUbe logo"/>
+      <Link to="/"><img style={imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" alt="The YoutTUbe logo"/></Link>
       <form style={searchForm} onSubmit={handleSearch}>
         <input name="searchBar" type="text" style={inputStyle} placeholder="Search"/>
         <button type="submit" style={buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" alt="Search logo" style={searchIcon} /></button>

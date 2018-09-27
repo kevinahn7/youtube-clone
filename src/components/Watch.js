@@ -3,7 +3,7 @@ import React from 'react';
 const Watch = () => {
   return (
     <div>
-      hello from video
+      hello from watch
     </div>
   );
 }
