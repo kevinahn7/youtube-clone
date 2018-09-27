@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Home extends Component {
-  render() {
-    return (
-      <div>
-        <Link to="/video">Video</Link>
-      </div>
-    );
-  }
+const Home = () => {
+  return (
+    <div>
+      <Link to="/video">Video</Link>
+    </div>
+  );
 }
 
 export default Home;
