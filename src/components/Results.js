@@ -1,15 +1,27 @@
 import React from 'react';
 import Thumbnail from './Thumbnail';
+import { connect } from 'react-redux';
 
-const Results = () => {
-  return (
-    <div>
-      hello from results
-      <Thumbnail />
-    </div>
-  );
+class Results extends React.Component {
+  render() {
+    const { searchResults } = this.props;
+
+    const show = () => {
+      console.log(searchResults)
+    }
+
+    return (
+      <div>
+        <p onClick={show}>hello</p>
+      </div>
+    )
+  }
 }
 
+const mapStateToProps = state => {
+  return {
+    searchResults: state.currentSearch.searchResults
+  };
+}
 
-
-export default Results;
+export default connect(mapStateToProps)(Results);

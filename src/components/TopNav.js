@@ -55,12 +55,11 @@ const linkStyle = {
 }
 
 const TopNav = ({history, dispatch}) => {
-
   const handleSearch = (event) => {
     event.preventDefault();
-    history.push('/results');
     const searchQuery = event.target.elements.searchBar.value.trim();
     dispatch(fetchSearchResult(searchQuery));
+    history.push('/results');
   }
 
   return (
