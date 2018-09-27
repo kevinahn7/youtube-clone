@@ -15,28 +15,35 @@ const imageStyle = {
 
 const searchForm = {
     width: "40%",
-    maxWidth: "600px",
     margin: " 0 auto",
     display: "flex",
     alignItems: "center"
-
 }
 
 const searchIcon = {
-    height: "20px"
+    height: "15px",
+    paddingTop: "2px",
+    opacity: "0.5"
 }
 
 const inputStyle = {
-    height: "25px",
+    height: "30px",
     width: "80%",
-    maxWidth: "575px"
+    maxWidth: "575px",
+    padding: "0",
+    border: "lightgray 1px solid",
+    borderRight: "none",
+    fontSize: "16px",
+    paddingLeft: "8px"
 }
 
 const buttonStyle = {
     boxSizing: "content-box",
-    height: "29px",
+    height: "27px",
     width: "51px",
-    border: "none"
+    border: "none",
+    backgroundColor: "#f8f8f8",
+    border: "lightgray 1px solid"
 }
 
 const linkStyle = {
@@ -48,7 +55,7 @@ const TopNav = () => {
     <div style={TopNavStyle}>
       <img style={imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" />
       <div style={searchForm}>
-        <input type="text" style={inputStyle} />
+        <input type="text" style={inputStyle} placeholder="Search"/>
         <Link to="/results"><button style={buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" style={searchIcon} /></button></Link>
       </div>
       <a style={linkStyle}><p>Sign In</p></a>
