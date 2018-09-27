@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Results() {
+const Results = () => {
   return (
     <div>
       hello from results

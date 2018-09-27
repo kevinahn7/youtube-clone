@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Video() {
+const Video = () => {
   return (
     <div>
       hello from video
