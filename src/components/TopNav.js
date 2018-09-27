@@ -14,7 +14,7 @@ const imageStyle = {
 }
 
 const searchForm = {
-    width: "40%",
+    width: "53%",
     margin: " 0 auto",
     display: "flex",
     alignItems: "center"
@@ -28,7 +28,7 @@ const searchIcon = {
 
 const inputStyle = {
     height: "30px",
-    width: "80%",
+    width: "100%",
     maxWidth: "575px",
     padding: "0",
     border: "lightgray 1px solid",
