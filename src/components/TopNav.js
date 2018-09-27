@@ -1,5 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchSearchResult } from './../actions';
 
 const TopNavStyle = {
     height: "55px",
@@ -49,15 +51,15 @@ const linkStyle = {
     color: "#2793e6"
 }
 
-const TopNav = (props) => {
+const TopNav = ({props, dispatch }) => {
 
   const handleSearch = (event) => {
-    console.log("sdfdsfasdasdas");
     event.preventDefault();
-    console.log("sdfds");
-    props.history.push('/results')
-    // const searchQuery = event.target.elements.searchBar.value.trim();
-    // console.log(searchQuery);
+    props.history.push('/results');
+    const searchQuery = event.target.elements.searchBar.value.trim();
+    event.target.elements.searchBar.value = "";
+    dispatch(fetchSearchResult(searchQuery));
+    console.log(searchQuery);
   }
 
   return (
@@ -72,4 +74,4 @@ const TopNav = (props) => {
   )
 }
 
-export default withRouter(TopNav);
+export default withRouter(connect()(TopNav));
