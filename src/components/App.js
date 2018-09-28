@@ -3,7 +3,7 @@ import Home from './Home';
 import TopNav from './TopNav';
 import Results from './Results';
 import Watch from './Watch';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class App extends React.Component {
@@ -14,8 +14,10 @@ class App extends React.Component {
 				<TopNav/>
 				<Switch>
 					<Route exact path='/' component={Home} />
-					<Route exact path='/results' render={()=><Results searchResults={this.props.searchResults} />} />
 					<Route exact path='/watch' component={Watch} />
+					{ this.props.searchResults && 
+						<Route exact path='/results' render={()=><Results searchResults={this.props.searchResults} />} />
+					}
 				</Switch>
 			</div>
 		);

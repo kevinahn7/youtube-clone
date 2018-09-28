@@ -3,11 +3,16 @@ import Thumbnail from './Thumbnail';
 import PropTypes from 'prop-types';
 
 function Results(props){
+
+	function logIndex(index) {
+		console.log(index)
+	}
+
   return (
     <div>
       <hr/>
       {Object.keys(props.searchResults).map(function(index) {
-        return <p key={index}>{props.searchResults[index].snippet.title}</p>
+        return <p key={index} onClick={() => logIndex(index)}>{props.searchResults[index].snippet.title}</p>
       })}
     </div>
   );
