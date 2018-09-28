@@ -5,10 +5,11 @@ import { fetchSearchResult } from './../actions';
 
 const TopNavStyle = {
     height: "55px",
-    borderBottom: "1px solid lightgray",
     padding:"0 16px",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "white",
+    boxShadow: "0 1px #eee"
 }
 
 const imageStyle = {

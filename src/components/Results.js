@@ -3,14 +3,20 @@ import VideoThumbnail from './VideoThumbnail';
 import ChannelThumbnail from './ChannelThumbnail';
 import PropTypes from 'prop-types';
 
-function Results({searchResults}){
+const resultsStyle = {
+	maxWidth: "1280px",
+	width: "100%",
+	margin: "0 auto"
+}
+
+const Results = ({searchResults}) => {
 
 	function logIndex(index) {
 		console.log(index)
 	}
 
   return (
-		<div>
+		<div style={resultsStyle}>
 			{Object.keys(searchResults).map(function(index) {
 				if (searchResults[index].id.kind === "youtube#video") {
 					return <VideoThumbnail

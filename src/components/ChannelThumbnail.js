@@ -11,7 +11,7 @@ const ChannelThumbnail = (props) => {
     return (
         <div>
             <img style={imageStyle} src={props.image} />
-            <p>{props.channelTitle}</p>
+            <h3>{props.channelTitle}</h3>
         </div>
     );
 }
@@ -20,8 +20,7 @@ ChannelThumbnail.propTypes = {
     channelTitle: PropTypes.string,
     channelDescription: PropTypes.string,
     channelId: PropTypes.string,
-    image: PropTypes.string,
-    publishedAt: PropTypes.datetime
+    image: PropTypes.string
 };
 
 export default connect()(ChannelThumbnail);
