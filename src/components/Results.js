@@ -1,25 +1,35 @@
 import React from 'react';
-import Thumbnail from './Thumbnail';
+import VideoThumbnail from './VideoThumbnail';
+import ChannelThumbnail from './ChannelThumbnail';
 import PropTypes from 'prop-types';
 
-function Results(props){
+function Results({searchResults}){
 
 	function logIndex(index) {
 		console.log(index)
 	}
 
   return (
-    <div>
-      <hr/>
-      {Object.keys(props.searchResults).map(function(index) {
-        return <p key={index} onClick={() => logIndex(index)}>{props.searchResults[index].snippet.title}</p>
-      })}
-    </div>
-  );
-}
+		<div>
+			{Object.keys(searchResults).map(function(index) {
+				if (searchResults[index].id.kind === "youtube#video") {
+					return <VideoThumbnail
+						key={index}
+						title={searchResults[index].snippet.channelTitle}
+						onClick={() => logIndex(index)} />
+				} else {
+					return <ChannelThumbnail
+						key={index}
+						 />
+				}
+
+			})}
+		</div>
+	);
+	}
 
 Results.propTypes = {
-  searchResults: PropTypes.array
+ 	searchResults: PropTypes.array
 };
 
 export default Results;
