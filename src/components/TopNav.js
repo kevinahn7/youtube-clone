@@ -43,7 +43,7 @@ const inputStyle = {
 
 const buttonStyle = {
     boxSizing: "content-box",
-    height: "27px",
+    height: "28px",
     width: "51px",
     backgroundColor: "#f8f8f8",
     border: "lightgray 1px solid",
