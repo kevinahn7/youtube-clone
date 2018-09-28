@@ -4,18 +4,28 @@ import TopNav from './TopNav';
 import Results from './Results';
 import Watch from './Watch';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const App = () => {
-	return (
-		<div>
-			<TopNav/>
-			<Switch>
-				<Route exact path='/' component={Home} />
-				<Route exact path='/results' component={Results} />
-				<Route exact path='/watch' component={Watch} />
-			</Switch>
-		</div>
-	);
+class App extends React.Component {
+
+	render() {
+		return (
+			<div>
+				<TopNav/>
+				<Switch>
+					<Route exact path='/' component={Home} />
+					<Route exact path='/results' render={()=><Results searchResults={this.props.searchResults} />} />
+					<Route exact path='/watch' component={Watch} />
+				</Switch>
+			</div>
+		);
+	}
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+	  searchResults: state.currentSearch.searchResults
+	};
+  }
+
+export default connect(mapStateToProps)(App);

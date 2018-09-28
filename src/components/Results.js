@@ -1,27 +1,20 @@
 import React from 'react';
 import Thumbnail from './Thumbnail';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-class Results extends React.Component {
-	render() {
-		const { searchResults } = this.props;
-
-		const show = () => {
-		console.log(searchResults)
-		}
-
-		return (
-		<div>
-			<p onClick={show}>hello</p>
-		</div>
-		)
-	}
+function Results(props){
+  return (
+    <div>
+      <hr/>
+      {Object.keys(props.searchResults).map(function(index) {
+        return <p key={index}>{props.searchResults[index].snippet.title}</p>
+      })}
+    </div>
+  );
 }
 
-const mapStateToProps = state => {
-  return {
-    searchResults: state.currentSearch.searchResults
-  };
-}
+Results.propTypes = {
+  searchResults: PropTypes.array
+};
 
-export default connect(mapStateToProps)(Results);
+export default Results;
