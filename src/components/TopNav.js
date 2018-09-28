@@ -22,7 +22,7 @@ const searchForm = {
     width: "53%",
     margin: " 0 auto",
     display: "flex",
-    alignItems: "center"
+    justifyContent: "center"
 }
 
 const searchIcon = {
