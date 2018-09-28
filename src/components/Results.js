@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 
 const resultsStyle = {
 	maxWidth: "1280px",
+	boxSizing: "border-box",
 	width: "100%",
-	margin: "0 auto"
+	margin: "0 auto",
+	padding: "16px 24px"
 }
 
 const Results = ({searchResults}) => {
