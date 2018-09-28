@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 const ChannelThumbnail = (props) => {
     return (
         <div>
-            {props.channelTitle}
+            <img src={props.image} />
+            <p>{props.channelTitle}</p>
         </div>
     );
 }

@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 const VideoThumbnail = (props) => {
     return (
         <div>
-            {props.videoTitle}
+            <img src={props.image} />
+            <p>{props.videoTitle}</p>
         </div>
     );
 }
