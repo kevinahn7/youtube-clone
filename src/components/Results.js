@@ -19,6 +19,7 @@ const Results = ({searchResults}) => {
 
   return (
 		<div style={resultsStyle}>
+			<div>Filter</div>
 			{Object.keys(searchResults).map(function(index) {
 				if (searchResults[index].id.kind === "youtube#video") {
 					return <VideoThumbnail

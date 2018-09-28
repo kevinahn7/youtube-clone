@@ -9,10 +9,14 @@ import { connect } from 'react-redux';
 class App extends React.Component {
 
 	render() {
+		const topMargin = {
+			height: "55px"
+		}
 		return (
 			<BrowserRouter>
 				<div>
 					<TopNav/>
+					<div style={topMargin}></div>
 					<Switch>
 						<Route exact path='/' component={Home} />
 						<Route exact path='/watch' component={Watch} />

@@ -25,7 +25,8 @@ const infoStyle = {
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    padding: "0 16px"
 }
 
 const channelTitleStyle = {
@@ -44,7 +45,14 @@ const channelDescriptionStyle = {
     fontSize: "0.8rem"
 }
 
+
+
 const ChannelThumbnail = (props) => {
+    function getDescription() {
+        let description = props.channelDescription;
+        if (description.length < 130) return description
+        else return (description.substring(0, 130) + "...")
+    }
     return (
         <div style={channelThumbnailStyle}>
             <span style={imageContainerStyle}>
@@ -53,7 +61,7 @@ const ChannelThumbnail = (props) => {
             <div style={infoStyle}>
                 <span style={channelTitleStyle}>{props.channelTitle}</span>
                 <p style={channelInfoStyle}>123,123 subscribers · 49 videos</p> 
-                <p style={channelDescriptionStyle}>{props.channelDescription}</p>
+                <p style={channelDescriptionStyle}>{getDescription()}</p>
             </div>
         </div>
     );

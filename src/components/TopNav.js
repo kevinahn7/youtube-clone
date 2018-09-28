@@ -9,7 +9,10 @@ const TopNavStyle = {
     display: "flex",
     alignItems: "center",
     backgroundColor: "white",
-    boxShadow: "0 1px #eee"
+    boxShadow: "0 1px #eee",
+    width: "100%",
+    boxSizing: "border-box",
+    position: "fixed"
 }
 
 const imageStyle = {
