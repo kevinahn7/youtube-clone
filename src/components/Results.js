@@ -7,7 +7,7 @@ class Results extends React.Component {
 		const { searchResults } = this.props;
 
 		const show = () => {
-			console.log(searchResults)
+		console.log(searchResults)
 		}
 
 		return (
@@ -19,9 +19,9 @@ class Results extends React.Component {
 }
 
 const mapStateToProps = state => {
-	return {
-		searchResults: state.currentSearch.searchResults
-	};
+  return {
+    searchResults: state.currentSearch.searchResults
+  };
 }
 
 export default connect(mapStateToProps)(Results);
