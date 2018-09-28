@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+const imageStyle = {
+    width: "136px",
+    borderRadius: "50%"
+}
+
 const ChannelThumbnail = (props) => {
     return (
         <div>
-            <img src={props.image} />
+            <img style={imageStyle} src={props.image} />
             <p>{props.channelTitle}</p>
         </div>
     );

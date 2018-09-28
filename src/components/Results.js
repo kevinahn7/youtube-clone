@@ -19,7 +19,7 @@ function Results({searchResults}){
 						videoDescription={searchResults[index].snippet.description}
 						channelId={searchResults[index].snippet.channelId}
 						channelTitle={searchResults[index].snippet.channelTitle}
-						image={searchResults[index].snippet.thumbnails.high.url}
+						image={searchResults[index].snippet.thumbnails.medium.url}
 						publishedAt={searchResults[index].snippet.publishedAt}
 						
 						onClick={() => logIndex(index)} />
