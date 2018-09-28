@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const VideoThumbnail = () => {
     return (
@@ -8,4 +9,4 @@ const VideoThumbnail = () => {
     );
 }
 
-export default VideoThumbnail;
+export default connect()(VideoThumbnail);
