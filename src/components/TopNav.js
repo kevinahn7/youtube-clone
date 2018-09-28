@@ -58,20 +58,22 @@ const TopNav = ({history, dispatch}) => {
   const handleSearch = (event) => {
     event.preventDefault();
     const searchQuery = event.target.elements.searchBar.value.trim();
-    dispatch(fetchSearchResult(searchQuery));
-    history.push('/results');
+    if (searchQuery) {
+        dispatch(fetchSearchResult(searchQuery));
+        history.push('/results');
+    }
   }
 
-  return (
-    <div style={TopNavStyle}>
-      <Link to="/"><img style={imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" alt="The YoutTUbe logo"/></Link>
-      <form style={searchForm} onSubmit={handleSearch}>
-        <input name="searchBar" type="text" style={inputStyle} placeholder="Search"/>
-        <button type="submit" style={buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" alt="Search logo" style={searchIcon} /></button>
-      </form>
-      <a style={linkStyle}><p>Sign In</p></a>
-    </div>
-  )
+    return (
+        <div style={TopNavStyle}>
+            <Link to="/"><img style={imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" alt="The YoutTUbe logo"/></Link>
+            <form style={searchForm} onSubmit={handleSearch}>
+                <input name="searchBar" type="text" style={inputStyle} placeholder="Search"/>
+                <button type="submit" style={buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" alt="Search logo" style={searchIcon} /></button>
+            </form>
+            <a style={linkStyle}><p>Sign In</p></a>
+        </div>
+    )
 }
 
 export default withRouter(connect()(TopNav));
