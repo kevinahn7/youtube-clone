@@ -55,14 +55,14 @@ const linkStyle = {
 }
 
 const TopNav = ({history, dispatch}) => {
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const searchQuery = event.target.elements.searchBar.value.trim();
-    if (searchQuery) {
-        dispatch(fetchSearchResult(searchQuery));
-        history.push('/results');
+    const handleSearch = (event) => {
+        event.preventDefault();
+        const searchQuery = event.target.elements.searchBar.value.trim();
+        if (searchQuery) {
+            dispatch(fetchSearchResult(searchQuery));
+            history.push('/results');
+        }
     }
-  }
 
     return (
         <div style={TopNavStyle}>

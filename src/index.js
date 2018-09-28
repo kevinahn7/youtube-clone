@@ -13,14 +13,14 @@ require('dotenv').config();
 const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
 const render = (Component) => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <Router>
-        <Component />
-      </Router>
-    </Provider>,
-    document.getElementById('root')
-  );
+	ReactDOM.render(
+		<Provider store={store}>
+			<Router>
+				<Component />
+			</Router>
+		</Provider>,
+		document.getElementById('root')
+	);
 }
 
 render(App);

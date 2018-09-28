@@ -23,9 +23,9 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-	return {
-	  searchResults: state.currentSearch.searchResults
-	};
-  }
+		return {
+			searchResults: state.currentSearch.searchResults
+		};
+	}
 
 export default connect(mapStateToProps)(App);
