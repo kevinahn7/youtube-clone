@@ -5,8 +5,9 @@ const Watch = ({currentVideo}) => {
 
 	return (
 		<div>
-			{currentVideo.player.embedHtml}
-			{/* need to turn html string into dom element */}
+			{/* {console.log(currentVideo)} */}
+			<iframe width="480" height="270" src="//www.youtube.com/embed/cQ_i5tYJ2_k" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+			{/* Add the video id to the url */}
 		</div>
 	);
 }
