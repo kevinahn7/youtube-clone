@@ -27,13 +27,15 @@ const videoTitleStyle = {
     fontSize: "1.1rem",
     fontWeight: "400",
     lineHeight: "2.4rem",
-    height: "30px"
+    height: "30px",
+    color: "black"
 }
 
 const videoInfoStyle = {
     color: "hsla(0, 0%, 7%, 0.6)",
     fontSize: "0.83rem",
-    margin: "0"
+    margin: "0",
+    textDecoration: "none"
 }
 
 const videoDescriptionStyle = {
