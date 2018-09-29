@@ -44,12 +44,12 @@ const videoDescriptionStyle = {
 }
 
 const VideoThumbnail = (props) => {
-    function logChannelId(channelId) {
-		console.log(channelId)
+    function logChannelId(videoId) {
+		console.log(videoId)
     }
     
     return (
-        <div style={videoThumbnailStyle} onClick={() => logChannelId(props.channelId)}>
+        <div style={videoThumbnailStyle} onClick={() => logChannelId(props.videoId)}>
             <img style={imageStyle} src={props.image} />
             <div style={infoStyle}>
                 <span style={videoTitleStyle}>{props.videoTitle}</span>
@@ -63,6 +63,7 @@ const VideoThumbnail = (props) => {
 VideoThumbnail.propTypes = {
     videoTitle: PropTypes.string,
     videoDescription: PropTypes.string,
+    videoId: PropTypes.string,
     channelId: PropTypes.string,
     channelTitle: PropTypes.string,
     image: PropTypes.string,

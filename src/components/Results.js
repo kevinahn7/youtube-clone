@@ -45,6 +45,7 @@ const Results = ({searchResults}) => {
 							key={index}
 							videoTitle={searchResults[index].snippet.title}
 							videoDescription={searchResults[index].snippet.description}
+							videoId={searchResults[index].id.videoId}
 							channelId={searchResults[index].snippet.channelId}
 							channelTitle={searchResults[index].snippet.channelTitle}
 							image={searchResults[index].snippet.thumbnails.medium.url}
