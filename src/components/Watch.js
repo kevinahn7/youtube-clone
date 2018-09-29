@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Watch = ({currentVideo}) => {
+
 	return (
 		<div>
-			{currentVideo.id}
+			{currentVideo.player.embedHtml}
+			{/* need to turn html string into dom element */}
 		</div>
 	);
 }
