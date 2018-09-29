@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const channelThumbnailStyle = {
-    margin: "20px auto",
+    margin: "0 auto",
     display: "grid",
-    gridTemplateColumns: "286px auto",
-    gridTemplateRows: "152px"
+    gridTemplateColumns: "246px auto",
+    gridTemplateRows: "152px",
+    cursor: "pointer",
+    minWidth: "100%"
+    // overflow: "hidden" to fix sizing issue when srhunk, just limit the words in the description
 }
 
 const imageStyle = {
@@ -45,16 +48,17 @@ const channelDescriptionStyle = {
     fontSize: "0.8rem"
 }
 
-
-
 const ChannelThumbnail = (props) => {
     function getDescription() {
         let description = props.channelDescription;
         if (description.length < 130) return description
         else return (description.substring(0, 130) + "...")
     }
+    function logChannelId(channelId) {
+		console.log(channelId)
+	}
     return (
-        <div style={channelThumbnailStyle}>
+        <div style={channelThumbnailStyle} onClick={() => logChannelId(props.channelId)}>
             <span style={imageContainerStyle}>
                 <img style={imageStyle} src={props.image} />
             </span>

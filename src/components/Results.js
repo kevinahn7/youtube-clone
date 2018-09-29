@@ -11,41 +11,58 @@ const resultsStyle = {
 	padding: "16px 24px"
 }
 
+const filterContainerStyle = {
+	boxShadow: "0 1px #eee",
+	height: "44px",
+	color: "hsl(0, 0%, 30%)",
+	display: "flex",
+	alignItems: "center"
+}
+
+const filterStyle = {
+	margin: "0",
+	padding: "10px 16px",
+	fontSize: ".9rem"
+}
+
+const resultItemsStyle = {
+	display: "grid",
+	gridTemplateColumns: "1fr",
+	gridGap: "10px"
+}
+
 const Results = ({searchResults}) => {
 
-	function logIndex(index) {
-		console.log(index)
-	}
-
-  return (
+  	return (
 		<div style={resultsStyle}>
-			<div>Filter</div>
-			{Object.keys(searchResults).map(function(index) {
-				if (searchResults[index].id.kind === "youtube#video") {
-					return <VideoThumbnail
-						key={index}
-						videoTitle={searchResults[index].snippet.title}
-						videoDescription={searchResults[index].snippet.description}
-						channelId={searchResults[index].snippet.channelId}
-						channelTitle={searchResults[index].snippet.channelTitle}
-						image={searchResults[index].snippet.thumbnails.medium.url}
-						publishedAt={searchResults[index].snippet.publishedAt}
-						
-						onClick={() => logIndex(index)} />
-				} else {
-					return <ChannelThumbnail
-						key={index}
-						channelTitle={searchResults[index].snippet.title}
-						channelDescription={searchResults[index].snippet.description}
-						channelId={searchResults[index].snippet.channelId}
-						image={searchResults[index].snippet.thumbnails.high.url}
-						onClick={() => logIndex(index)} />
-				}
+			<div style={filterContainerStyle}>
+				<p style={filterStyle}>FILTER</p>
+			</div>
+			<div style={resultItemsStyle}>
+				{Object.keys(searchResults).map(function(index) {
+					if (searchResults[index].id.kind === "youtube#video") {
+						return <VideoThumbnail
+							key={index}
+							videoTitle={searchResults[index].snippet.title}
+							videoDescription={searchResults[index].snippet.description}
+							channelId={searchResults[index].snippet.channelId}
+							channelTitle={searchResults[index].snippet.channelTitle}
+							image={searchResults[index].snippet.thumbnails.medium.url}
+							publishedAt={searchResults[index].snippet.publishedAt} />
+					} else {
+						return <ChannelThumbnail
+							key={index}
+							channelTitle={searchResults[index].snippet.title}
+							channelDescription={searchResults[index].snippet.description}
+							channelId={searchResults[index].snippet.channelId}
+							image={searchResults[index].snippet.thumbnails.high.url} />
+					}
 
-			})}
+				})}
+			</div>
 		</div>
 	);
-	}
+}
 
 Results.propTypes = {
  	searchResults: PropTypes.array
