@@ -19,7 +19,9 @@ class App extends React.Component {
 					<div style={topMargin}></div>
 					<Switch>
 						<Route exact path='/' component={Home} />
-						<Route exact path='/watch' component={Watch} />
+						{ this.props.currentVideo &&
+							<Route exact path='/watch' render={()=><Watch currentVideo={this.props.currentVideo} />} />
+						}
 						{ this.props.searchResults && 
 							<Route exact path='/results' render={()=><Results searchResults={this.props.searchResults} />} />
 						}
@@ -33,7 +35,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
 		return {
-			searchResults: state.currentSearch.searchResults
+			searchResults: state.currentSearch.searchResults,
+			currentVideo: state.currentVideo.currentVideo
 		};
 	}
 

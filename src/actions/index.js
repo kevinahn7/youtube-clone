@@ -33,7 +33,6 @@ export function fetchVideo(videoId) {
 				error => console.log('An error occured.', error)
 			).then(function(json) {
 				let currentVideo = json.items[0];
-				console.log(currentVideo)
 				dispatch(receiveVideo(currentVideo));
 			})
 	}

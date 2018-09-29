@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Watch = () => {
+const Watch = ({currentVideo}) => {
 	return (
 		<div>
-			hello from watch
+			{currentVideo.id}
 		</div>
 	);
 }
+
+Watch.propTypes = {
+	currentVideo: PropTypes.object
+};
 
 export default Watch;
