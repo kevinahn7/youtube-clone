@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import currentSearchReducer from './currentSearch';
-import currentVideoId from './currentVideoId';
+import currentVideo from './currentVideo';
 
 const rootReducer = combineReducers({
   currentSearch: currentSearchReducer,
-  currentVideoId: currentVideoId
+  currentVideo: currentVideo
 });
 
 export default rootReducer;

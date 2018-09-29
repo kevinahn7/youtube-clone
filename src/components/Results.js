@@ -58,7 +58,6 @@ const Results = ({searchResults}) => {
 							channelId={searchResults[index].snippet.channelId}
 							image={searchResults[index].snippet.thumbnails.high.url} />
 					}
-
 				})}
 			</div>
 		</div>

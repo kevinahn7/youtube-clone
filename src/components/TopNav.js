@@ -59,6 +59,7 @@ const linkStyle = {
 }
 
 const TopNav = ({history, dispatch}) => {
+    
     const handleSearch = (event) => {
         event.preventDefault();
         const searchQuery = event.target.elements.searchBar.value.trim();

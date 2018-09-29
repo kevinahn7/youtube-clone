@@ -51,6 +51,7 @@ const channelDescriptionStyle = {
 }
 
 const ChannelThumbnail = (props) => {
+    
     function getDescription() {
         let description = props.channelDescription;
         if (description.length < 130) return description

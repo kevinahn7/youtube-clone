@@ -2,7 +2,7 @@ import constants from './../constants';
 const { initialState, types } = constants;
 
 const currentSearchReducer = ( state = initialState, action ) => {
-  let newState
+  let newState;
   switch(action.type) {
     case types.REQUEST_SEARCH:
       newState = Object.assign({}, state, {
