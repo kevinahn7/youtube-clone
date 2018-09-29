@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const channelThumbnailStyle = {
-    margin: "0 auto",
     display: "grid",
     gridTemplateColumns: "246px auto",
     gridTemplateRows: "152px",
     cursor: "pointer",
     minWidth: "100%"
     // overflow: "hidden" to fix sizing issue when srhunk, just limit the words in the description
+}
+
+const imageContainerStyle = {
+    width: "100%",
+    textAlign: "center"
 }
 
 const imageStyle = {
@@ -19,14 +23,8 @@ const imageStyle = {
     marginRight: "15px"
 }
 
-const imageContainerStyle = {
-    width: "100%",
-    textAlign: "center"
-}
-
 const infoStyle = {
     display: "flex",
-    alignItems: "flex-start",
     justifyContent: "center",
     flexDirection: "column",
     padding: "0 16px"
@@ -39,13 +37,17 @@ const channelTitleStyle = {
 }
 
 const channelInfoStyle = {
-    fontSize: "0.8rem",
+    color: "hsla(0, 0%, 7%, 0.6)",
+    fontSize: "0.83rem",
     margin: "0"
 }
 
 const channelDescriptionStyle = {
     color: "hsla(0, 0%, 7%, 0.6)",
-    fontSize: "0.8rem"
+    fontSize: "0.83rem",
+    marginTop: "7px",
+    marginBottom: "10px",
+    lineHeight: "1.1rem"
 }
 
 const ChannelThumbnail = (props) => {
@@ -54,9 +56,11 @@ const ChannelThumbnail = (props) => {
         if (description.length < 130) return description
         else return (description.substring(0, 130) + "...")
     }
+
     function logChannelId(channelId) {
 		console.log(channelId)
-	}
+    }
+    
     return (
         <div style={channelThumbnailStyle} onClick={() => logChannelId(props.channelId)}>
             <span style={imageContainerStyle}>

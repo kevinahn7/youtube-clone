@@ -4,7 +4,7 @@ import ChannelThumbnail from './ChannelThumbnail';
 import PropTypes from 'prop-types';
 
 const resultsStyle = {
-	maxWidth: "1280px",
+	maxWidth: "1328px",
 	boxSizing: "border-box",
 	width: "100%",
 	margin: "0 auto",
@@ -14,7 +14,6 @@ const resultsStyle = {
 const filterContainerStyle = {
 	boxShadow: "0 1px #eee",
 	height: "44px",
-	color: "hsl(0, 0%, 30%)",
 	display: "flex",
 	alignItems: "center"
 }
@@ -22,13 +21,14 @@ const filterContainerStyle = {
 const filterStyle = {
 	margin: "0",
 	padding: "10px 16px",
-	fontSize: ".9rem"
+	fontSize: ".9rem",
+	color: "black"
 }
 
 const resultItemsStyle = {
 	display: "grid",
 	gridTemplateColumns: "1fr",
-	gridGap: "10px"
+	gridGap: "15px"
 }
 
 const Results = ({searchResults}) => {
