@@ -5,7 +5,7 @@ const Home = () => {
 	
 	return (
 		<div>
-			<Link to="/watch">Watch</Link>
+			<h1>Home page with video recommendations</h1>
 		</div>
 	);
 

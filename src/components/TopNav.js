@@ -9,8 +9,6 @@ class TopNav extends React.Component {
         super(props)
     }
 
-
-        
     TopNavStyle = {
         height: "55px",
         padding:"0 16px",
