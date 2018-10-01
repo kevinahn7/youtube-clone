@@ -27,7 +27,7 @@ export const receiveSearch = (searchResults) => ({
 export function fetchVideo(videoId) {
 	return function(dispatch) {
 		dispatch(requestVideo(videoId));
-		return fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,player&id=' + videoId + '&key=' + process.env.REACT_APP_API_KEY)
+		return fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,player&id=' + videoId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
 			.then(
 				response => response.json(),
 				error => console.log('An error occured.', error)
