@@ -52,16 +52,6 @@ class Watch extends React.Component {
 		}
 	}
 
-	// componentDidUpdate() {
-	// 	console.log("didupdate")
-	// 	window.onpopstate  = (e) => {
-	// 		let pathName = this.props.location.pathname;
-	// 		if (pathName.substring(1,6) === "watch") {
-	// 			this.props.dispatch(fetchVideo(pathName.slice(7, pathName.length)))
-	// 		}
-	// 	}
-	// }
-
 	render() {
 		{this.aspectRatioStyle = {
 			position: "relative",
