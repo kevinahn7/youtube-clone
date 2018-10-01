@@ -51,7 +51,6 @@ const VideoThumbnail = (props) => {
 
     const handleVideoClick = (videoId) => {
         props.dispatch(fetchVideo(videoId));
-        // history.push('/watch/' + videoId);
     }
     
     return (
