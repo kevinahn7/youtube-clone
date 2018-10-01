@@ -50,14 +50,14 @@ const Results = ({searchResults}) => {
 							channelTitle={searchResults[index].snippet.channelTitle}
 							image={searchResults[index].snippet.thumbnails.medium.url}
 							publishedAt={searchResults[index].snippet.publishedAt} />
-					} else {
+					} else if (searchResults[index].id.kind === "youtube#channel"){
 						return <ChannelThumbnail
 							key={index}
 							channelTitle={searchResults[index].snippet.title}
 							channelDescription={searchResults[index].snippet.description}
 							channelId={searchResults[index].snippet.channelId}
 							image={searchResults[index].snippet.thumbnails.high.url} />
-					}
+					} //Add youtube playlist conditional
 				})}
 			</div>
 		</div>

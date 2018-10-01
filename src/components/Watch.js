@@ -1,72 +1,108 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchSearchResult, fetchVideo } from './../actions';
 
-const recommendationsStyle = {
-	width: "402px"
-}
+class Watch extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+	width = this.props.currentVideo.player.embedWidth;
+	height = this.props.currentVideo.player.embedHeight;
+	ratio = this.height/this.width*100;
 
-const watchStyle = {
-	display: "grid",
-	gridTemplateColumns: "auto 400px",
-	gridGap: "24px",
-	maxWidth: "1754px",
-	margin: "0 auto",
-	padding: "24px",
-	boxSizing: "border-box"
-}
-
-const playerStyle = {
-	position: "absolute",
-	width: "100%",
-	height: "100%",
-	left: "0",
-	top: "0"
-}
-
-const Watch = ({currentVideo}) => {
-	const width = currentVideo.player.embedWidth;
-	const height = currentVideo.player.embedHeight;
-	const ratio = height/width*100;
-
-	const aspectRatioStyle = {
+	aspectRatioStyle = {
 		position: "relative",
 		width: "100%",
 		height: "0",
-		paddingBottom: '' + ratio +'%'
+		paddingBottom: '' + this.ratio +'%'
 	}
 
-	const formatViews = (viewCount) => {
+	formatViews = (viewCount) => {
 		return viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
-	return (
-		<div style={watchStyle}>
-			<div>
-				<div style={aspectRatioStyle}>
-					<iframe width="480" height="270" style={playerStyle} src={"\/\/www.youtube.com/embed/" + currentVideo.id} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-				</div>
+	recommendationsStyle = {
+		width: "402px"
+	}
+
+	watchStyle = {
+		display: "grid",
+		gridTemplateColumns: "auto 400px",
+		gridGap: "24px",
+		maxWidth: "1754px",
+		margin: "0 auto",
+		padding: "24px",
+		boxSizing: "border-box"
+	}
+
+	playerStyle = {
+		position: "absolute",
+		width: "100%",
+		height: "100%",
+		left: "0",
+		top: "0"
+	}
+
+	componentDidMount() {
+		let pathName = this.props.location.pathname;
+		if (pathName.substring(1,6) === "watch") {
+			this.props.dispatch(fetchVideo(pathName.slice(7, pathName.length)))
+		}
+	}
+
+	// componentDidUpdate() {
+	// 	console.log("didupdate")
+	// 	window.onpopstate  = (e) => {
+	// 		let pathName = this.props.location.pathname;
+	// 		if (pathName.substring(1,6) === "watch") {
+	// 			this.props.dispatch(fetchVideo(pathName.slice(7, pathName.length)))
+	// 		}
+	// 	}
+	// }
+
+	render() {
+		{this.aspectRatioStyle = {
+			position: "relative",
+			width: "100%",
+			height: "0",
+			paddingBottom: '' + this.props.currentVideo.player.embedHeight/this.props.currentVideo.player.embedWidth*100 +'%'
+		}}
+		return (
+			<div style={this.watchStyle}>
 				<div>
-					{console.log(currentVideo)}
-					<h1>{currentVideo.snippet.title}</h1>
-					<div id="videoInfo">
-						<span>{formatViews(currentVideo.statistics.viewCount)} views</span>
-						<div id="videoOptions">
-							<span>Likes: {currentVideo.statistics.likeCount}</span>
-							<span>Dislikes: {currentVideo.statistics.dislikeCount}</span>
-							<span>SHARE</span>
-							<span>SAVE</span>
+					<div style={this.aspectRatioStyle}>
+						<iframe style={this.playerStyle} src={"\/\/www.youtube.com/embed/" + this.props.currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+					</div>
+					<div>
+						<h1>{this.props.currentVideo.snippet.title}</h1>
+						{this.props.currentVideo.id}
+						<div id="videoInfo">
+							<span>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
+							<div id="videoOptions">
+								<span>Likes: {this.props.currentVideo.statistics.likeCount}</span>
+								<span>Dislikes: {this.props.currentVideo.statistics.dislikeCount}</span>
+								<span>SHARE</span>
+								<span>SAVE</span>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div style={recommendationsStyle}>Recommendations</div>
-		</div>
-	);
+				<div style={this.recommendationsStyle}>Recommendations</div>
+			</div>
+		);
+	}
+
 }
 
 Watch.propTypes = {
 	currentVideo: PropTypes.object
 };
 
-export default Watch;
+export default withRouter(connect()(Watch));
+
+
+
+//Gonna start chagning to class now

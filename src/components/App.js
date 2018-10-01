@@ -22,7 +22,7 @@ class App extends React.Component {
 						{ this.props.currentVideo &&
 							<Route exact path='/watch/:videoId' render={()=><Watch currentVideo={this.props.currentVideo} />} />
 						}
-						{ this.props.searchResults && 
+						{ this.props.searchResults &&
 							<Route exact path='/results/:searchQuery' render={()=><Results searchResults={this.props.searchResults} />}  rel="stylesheet" href="/style.css"/>
 						}
 					</Switch>

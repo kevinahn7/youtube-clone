@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchSearchResult } from './../actions';
+import { fetchSearchResult, fetchVideo } from './../actions';
 
 
 class TopNav extends React.Component {
@@ -63,7 +63,7 @@ class TopNav extends React.Component {
     linkStyle = {
         color: "#2793e6"
     }
-        
+
     handleSearch = (event) => {
         event.preventDefault();
         const searchQuery = event.target.elements.searchBar.value.trim();
@@ -76,7 +76,9 @@ class TopNav extends React.Component {
     componentDidUpdate() {
         window.onpopstate  = (e) => {
             let pathName = this.props.location.pathname;
-            this.props.dispatch(fetchSearchResult(pathName.slice(9, pathName.length)));
+            if (pathName.substring(1,8) === "results") {
+              this.props.dispatch(fetchSearchResult(pathName.slice(9, pathName.length)));
+            }
         }
     }
 
