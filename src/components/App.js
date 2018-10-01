@@ -15,15 +15,15 @@ class App extends React.Component {
 		return (
 			<BrowserRouter>
 				<div>
-					<TopNav/>
+					<TopNav searchResults={this.props.searchResults}/>
 					<div style={topMargin}></div>
 					<Switch>
 						<Route exact path='/' component={Home} />
 						{ this.props.currentVideo &&
-							<Route exact path='/watch' render={()=><Watch currentVideo={this.props.currentVideo} />} />
+							<Route exact path='/watch/:videoId' render={()=><Watch currentVideo={this.props.currentVideo} />} />
 						}
 						{ this.props.searchResults && 
-							<Route exact path='/results' render={()=><Results searchResults={this.props.searchResults} />} />
+							<Route path='/results/:searchQuery' render={()=><Results searchResults={this.props.searchResults} />}  rel="stylesheet" href="/style.css"/>
 						}
 					</Switch>
 				</div>

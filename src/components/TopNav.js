@@ -65,9 +65,11 @@ const TopNav = ({history, dispatch}) => {
         const searchQuery = event.target.elements.searchBar.value.trim();
         if (searchQuery) {
             dispatch(fetchSearchResult(searchQuery));
-            history.push('/results');
+            history.push('/results/' + searchQuery);
         }
     }
+    
+    
 
     return (
         <div style={TopNavStyle}>

@@ -51,10 +51,11 @@ const VideoThumbnail = (props) => {
 
     const handleVideoClick = (videoId) => {
         props.dispatch(fetchVideo(videoId));
+        // history.push('/watch/' + videoId);
     }
     
     return (
-        <Link to="/watch">
+        <Link to={`/watch/${props.videoId}`}>
             <div style={videoThumbnailStyle} onClick={() => handleVideoClick(props.videoId)}>
                 <img style={imageStyle} src={props.image} />
                 <div style={infoStyle}>
