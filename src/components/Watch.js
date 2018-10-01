@@ -23,6 +23,15 @@ class Watch extends React.Component {
 		return viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
+	getAspectRatio = () => {
+		return {
+			position: "relative",
+			width: "100%",
+			height: "0",
+			paddingBottom: '' + this.props.currentVideo.player.embedHeight/this.props.currentVideo.player.embedWidth*100 +'%'
+		}
+	}
+
 	recommendationsStyle = {
 		width: "402px"
 	}
@@ -60,11 +69,12 @@ class Watch extends React.Component {
 		display: "flex",
 		justifyContent: "space-between",
 		height: "40px",
-		alignItems: "center"
+		alignItems: "center",
+		color: "hsla(0, 0%, 7%, 0.6)"
 	}
 
 	viewCountStyle = {
-		color: "hsla(0, 0%, 7%, 0.6)"
+
 	}
 
 	componentDidMount() {
@@ -75,12 +85,7 @@ class Watch extends React.Component {
 	}
 
 	render() {
-		{this.aspectRatioStyle = {
-			position: "relative",
-			width: "100%",
-			height: "0",
-			paddingBottom: '' + this.props.currentVideo.player.embedHeight/this.props.currentVideo.player.embedWidth*100 +'%'
-		}}
+		{this.aspectRatioStyle = this.getAspectRatio()}
 		return (
 			<div style={this.watchStyle}>
 				<div>

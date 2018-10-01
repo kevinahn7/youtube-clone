@@ -2,7 +2,8 @@ import React from 'react'
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSearchResult, fetchVideo } from './../actions';
-
+import youtubeLogo from '../assets/youtube-logo.png';
+import search from '../assets/search.png';
 
 class TopNav extends React.Component {
     constructor(props) {
@@ -85,10 +86,10 @@ class TopNav extends React.Component {
     render() {
         return (
             <div style={this.TopNavStyle}>
-                <Link to="/"><img style={this.imageStyle} src="https://mbtskoudsalg.com/images/like-png-youtube-2.png" alt="The YoutTUbe logo"/></Link>
+                <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
                 <form style={this.searchForm} onSubmit={this.handleSearch}>
                     <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
-                    <button type="submit" style={this.buttonStyle}><img src="https://cdn0.iconfinder.com/data/icons/education-volume-1-3/48/14-512.png" alt="Search logo" style={this.searchIcon} /></button>
+                    <button type="submit" style={this.buttonStyle}><img src={search} alt="Search logo" style={this.searchIcon} /></button>
                 </form>
                 <a style={this.linkStyle}><p>Sign In</p></a>
             </div>
