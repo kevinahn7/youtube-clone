@@ -45,6 +45,28 @@ class Watch extends React.Component {
 		top: "0"
 	}
 
+	videoInfoStyle = {
+		padding: "20px 0 8px 0",
+		borderBottom: " 1px solid hsl(0, 0%, 93%)"
+	}
+
+	videoTitleStyle = {
+		fontSize: "1.13rem",
+		fontWeight: "400",
+		margin: "0"
+	}
+
+	videoInfoStatsStyle = {
+		display: "flex",
+		justifyContent: "space-between",
+		height: "40px",
+		alignItems: "center"
+	}
+
+	viewCountStyle = {
+		color: "hsla(0, 0%, 7%, 0.6)"
+	}
+
 	componentDidMount() {
 		let pathName = this.props.location.pathname;
 		if (pathName.substring(1,6) === "watch") {
@@ -65,26 +87,23 @@ class Watch extends React.Component {
 					<div style={this.aspectRatioStyle}>
 						<iframe style={this.playerStyle} src={"\/\/www.youtube.com/embed/" + this.props.currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 					</div>
-					<div>
-						<h1>{this.props.currentVideo.snippet.title}</h1>
-						{this.props.currentVideo.id}
-						<div id="videoInfo">
-							<span>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
-							<div id="videoOptions">
+					<div style={this.videoInfoStyle}>
+						<h1 style={this.videoTitleStyle}>{this.props.currentVideo.snippet.title}</h1>
+						<div style={this.videoInfoStatsStyle}>
+							<span style={this.viewCountStyle}>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
+							<span id="videoOptions">
 								<span>Likes: {this.props.currentVideo.statistics.likeCount}</span>
 								<span>Dislikes: {this.props.currentVideo.statistics.dislikeCount}</span>
 								<span>SHARE</span>
 								<span>SAVE</span>
-							</div>
+							</span>
 						</div>
 					</div>
 				</div>
-
 				<div style={this.recommendationsStyle}>Recommendations</div>
 			</div>
 		);
 	}
-
 }
 
 Watch.propTypes = {
@@ -92,7 +111,3 @@ Watch.propTypes = {
 };
 
 export default withRouter(connect()(Watch));
-
-
-
-//Gonna start chagning to class now
