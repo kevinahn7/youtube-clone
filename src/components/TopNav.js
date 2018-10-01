@@ -68,8 +68,6 @@ const TopNav = ({history, dispatch}) => {
             history.push('/results/' + searchQuery);
         }
     }
-    
-    
 
     return (
         <div style={TopNavStyle}>
