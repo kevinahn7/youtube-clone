@@ -7,7 +7,12 @@ const recommendationsStyle = {
 
 const watchStyle = {
 	display: "grid",
-	gridTemplateColumns: "auto 400px"
+	gridTemplateColumns: "auto 400px",
+	gridGap: "24px",
+	maxWidth: "1754px",
+	margin: "0 auto",
+	padding: "24px",
+	boxSizing: "border-box"
 }
 
 const playerStyle = {
@@ -30,12 +35,31 @@ const Watch = ({currentVideo}) => {
 		paddingBottom: '' + ratio +'%'
 	}
 
+	const formatViews = (viewCount) => {
+		return viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
 	return (
 		<div style={watchStyle}>
-			{console.log(currentVideo)}
-			<div style={aspectRatioStyle}>
-				<iframe width="480" height="270" style={playerStyle} src={"\/\/www.youtube.com/embed/" + currentVideo.id} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+			<div>
+				<div style={aspectRatioStyle}>
+					<iframe width="480" height="270" style={playerStyle} src={"\/\/www.youtube.com/embed/" + currentVideo.id} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+				</div>
+				<div>
+					{console.log(currentVideo)}
+					<h1>{currentVideo.snippet.title}</h1>
+					<div id="videoInfo">
+						<span>{formatViews(currentVideo.statistics.viewCount)} views</span>
+						<div id="videoOptions">
+							<span>Likes: {currentVideo.statistics.likeCount}</span>
+							<span>Dislikes: {currentVideo.statistics.dislikeCount}</span>
+							<span>SHARE</span>
+							<span>SAVE</span>
+						</div>
+					</div>
+				</div>
 			</div>
+
 			<div style={recommendationsStyle}>Recommendations</div>
 		</div>
 	);
