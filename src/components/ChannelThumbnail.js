@@ -52,14 +52,14 @@ const channelDescriptionStyle = {
 
 const ChannelThumbnail = (props) => {
 
-    function getDescription() {
+    const getDescription = () => {
       let description = props.channelDescription;
       if (description.length < 130) return description
       else return (description.substring(0, 130) + "...")
     }
 
-    function logChannelId(channelId) {
-		console.log(channelId)
+    const logChannelId = (channelId) => {
+		    console.log(channelId)
     }
 
     return (
@@ -69,7 +69,7 @@ const ChannelThumbnail = (props) => {
             </span>
             <div style={infoStyle}>
                 <span style={channelTitleStyle}>{props.channelTitle}</span>
-                <p style={channelInfoStyle}>123,123 subscribers · 49 videos</p>
+                <p style={channelInfoStyle}>123,123 subscribers • 49 videos</p>
                 <p style={channelDescriptionStyle}>{getDescription()}</p>
             </div>
         </div>

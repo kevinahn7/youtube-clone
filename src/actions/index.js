@@ -57,7 +57,6 @@ export function fetchChannelInfo(channelId) {
 			response => response.json(),
 			error => console.log('An error occured.', error)
 		).then(function(json) {
-			console.log(json)
 			let channelInfo = json.items[0];
 			dispatch(receiveChannelInfo(channelInfo))
 		})

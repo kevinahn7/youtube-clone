@@ -220,7 +220,6 @@ class Watch extends React.Component {
 
 	render() {
 		{this.aspectRatioStyle = this.getAspectRatio()}
-		{console.log(this.props.channelInfo)}
 		return (
 			<div style={this.watchStyle}>
 				<div>
