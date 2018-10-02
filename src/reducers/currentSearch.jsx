@@ -13,7 +13,15 @@ const currentSearchReducer = ( state = initialState, action ) => {
     case types.RECEIVE_SEARCH:
       newState = Object.assign({}, state, {
         isFetching: false,
-        searchResults: action.searchResults
+        searchResults: action.searchResults,
+        pageToken: action.pageToken
+      })
+
+      return newState;
+    case types.RECEIVE_MORE_SEARCH:
+      newState = Object.assign({}, state, {
+        searchResults: state.searchResults.concat(action.moreSearchResults),
+        pageToken: action.morePageToken
       })
       return newState;
     default:

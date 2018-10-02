@@ -9,7 +9,8 @@ export function fetchSearchResult(searchQuery) {
 				error => console.log('An error occured.', error)
 			).then(function(json) {
 				let searchResults = json.items;
-				dispatch(receiveSearch(searchResults));
+				let pageToken = json.nextPageToken;
+				dispatch(receiveSearch(searchResults, pageToken));
 			})
 	}
 }
@@ -19,9 +20,10 @@ export const requestSearch = (searchQuery) => ({
 	searchQuery
 });
 
-export const receiveSearch = (searchResults) => ({
+export const receiveSearch = (searchResults, pageToken) => ({
 	type: types.RECEIVE_SEARCH,
-	searchResults
+	searchResults,
+	pageToken
 });
 
 export function fetchVideo(videoId) {
@@ -46,4 +48,26 @@ export const requestVideo = (videoId) => ({
 export const receiveVideo = (currentVideo) => ({
 	type: types.RECEIVE_VIDEO,
 	currentVideo
+});
+
+export function fetchMoreSearchResults(searchQuery, pageToken) {
+	console.log(pageToken)
+	return function(dispatch) {
+		return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchQuery + '&maxResults=20&pageToken=' + pageToken + '&key=' + process.env.REACT_APP_API_KEY)
+			.then(
+				response => response.json(),
+				error => console.log('An error occured.', error)
+			).then(function(json) {
+				console.log(json)
+				let moreSearchResults = json.items;
+				let morePageToken = json.nextPageToken;
+				dispatch(receiveMoreSearch(moreSearchResults, morePageToken));
+			})
+	}
+};
+
+export const receiveMoreSearch = (moreSearchResults, morePageToken) => ({
+	type: types.RECEIVE_MORE_SEARCH,
+	moreSearchResults,
+	morePageToken
 });

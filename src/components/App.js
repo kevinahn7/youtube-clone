@@ -15,15 +15,15 @@ class App extends React.Component {
 		return (
 			<BrowserRouter>
 				<div>
-					<TopNav searchResults={this.props.searchResults}/>
+					<TopNav />
 					<div style={topMargin}></div>
 					<Switch>
 						<Route exact path='/' component={Home} />
 						{ this.props.currentVideo &&
 							<Route exact path='/watch/:videoId' render={()=><Watch currentVideo={this.props.currentVideo} />} />
 						}
-						{ this.props.searchResults &&
-							<Route exact path='/results/:searchQuery' render={()=><Results searchResults={this.props.searchResults} />}  rel="stylesheet" href="/style.css"/>
+						{ this.props.currentSearch &&
+							<Route exact path='/results/:searchQuery' render={()=><Results currentSearch={this.props.currentSearch} />}  rel="stylesheet" href="/style.css"/>
 						}
 					</Switch>
 				</div>
@@ -35,7 +35,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
 		return {
-			searchResults: state.currentSearch.searchResults,
+			currentSearch: state.currentSearch,
 			currentVideo: state.currentVideo.currentVideo
 		};
 	}
