@@ -23,6 +23,12 @@ class Watch extends React.Component {
 		return viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
+	formatLikesDislikes = (number) => {
+		if (number > 999999) return (Math.trunc(number/1000000) + "M")
+		else if (number > 999) return (Math.trunc(number/1000) + "K");
+		else return number
+	}
+
 	getAspectRatio = () => {
 		return {
 			position: "relative",
@@ -97,8 +103,8 @@ class Watch extends React.Component {
 						<div style={this.videoInfoStatsStyle}>
 							<span style={this.viewCountStyle}>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
 							<span id="videoOptions">
-								<span>Likes: {this.props.currentVideo.statistics.likeCount}</span>
-								<span>Dislikes: {this.props.currentVideo.statistics.dislikeCount}</span>
+								<span>Likes: {this.formatLikesDislikes(this.props.currentVideo.statistics.likeCount)}</span>
+								<span>Dislikes: {this.formatLikesDislikes(this.props.currentVideo.statistics.dislikeCount)}</span>
 								<span>SHARE</span>
 								<span>SAVE</span>
 							</span>
