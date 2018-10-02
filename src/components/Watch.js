@@ -68,7 +68,8 @@ class Watch extends React.Component {
 	videoTitleStyle = {
 		fontSize: "1.13rem",
 		fontWeight: "400",
-		margin: "0"
+		margin: "0",
+		paddingBottom: "3px"
 	}
 
 	videoInfoStatsStyle = {
