@@ -155,7 +155,7 @@ class Watch extends React.Component {
 					</div>
 					<div>
 						<div>
-							<img src={this.props.currentVideo.snippet.thumbnails.default.url}/>
+							<img src={this.props.channelInfo.snippet.thumbnails.default.url}/>
 							<span>{this.props.currentVideo.snippet.channelTitle}</span>
 							<span>{this.convertDate()}</span>
 						</div>
@@ -170,7 +170,8 @@ class Watch extends React.Component {
 }
 
 Watch.propTypes = {
-	currentVideo: PropTypes.object
+	currentVideo: PropTypes.object,
+	channelInfo: PropTypes.object
 };
 
 export default withRouter(connect()(Watch));

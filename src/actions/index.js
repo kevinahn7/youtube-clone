@@ -28,7 +28,7 @@ export const receiveSearch = (searchResults, pageToken) => ({
 
 export function fetchVideo(videoId) {
 	return function(dispatch) {
-		dispatch(requestVideo(videoId));
+		dispatch(requestVideo());
 		return fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,player&id=' + videoId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
 			.then(
 				response => response.json(),
@@ -40,14 +40,37 @@ export function fetchVideo(videoId) {
 	}
 }
 
-export const requestVideo = (videoId) => ({
-	type: types.REQUEST_VIDEO,
-	videoId
+export const requestVideo = () => ({
+	type: types.REQUEST_VIDEO
 });
 
 export const receiveVideo = (currentVideo) => ({
 	type: types.RECEIVE_VIDEO,
 	currentVideo
+});
+
+export function fetchChannelThumbnail(channelId) {
+	return function(dispatch) {
+		dispatch(requestChannelThumbnail())
+		return fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&id=' + channelId + '&key=' + process.env.REACT_APP_API_KEY)
+		.then(
+			response => response.json(),
+			error => console.log('An error occured.', error)
+		).then(function(json) {
+			let channelInfo = json.items[0];
+			console.log(channelInfo)
+			dispatch(receiveChannelThumbnail(channelInfo))
+		})
+	}
+}
+
+export const requestChannelThumbnail = () => ({
+	type: types.REQUEST_CHANNEL_THUMBNAIL
+});
+
+export const receiveChannelThumbnail = (channel) => ({
+	type: types.RECEIVE_CHANNEL_THUMBNAIL,
+	channel
 });
 
 export function fetchMoreSearchResults(searchQuery, pageToken) {

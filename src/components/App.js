@@ -20,7 +20,7 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path='/' component={Home} />
 						{ this.props.currentVideo &&
-							<Route exact path='/watch/:videoId' render={()=><Watch currentVideo={this.props.currentVideo} />} />
+							<Route exact path='/watch/:videoId' render={()=><Watch currentVideo={this.props.currentVideo} channelInfo={this.props.channelInfo}/>} />
 						}
 						{ this.props.currentSearch &&
 							<Route exact path='/results/:searchQuery' render={()=><Results currentSearch={this.props.currentSearch} />}  rel="stylesheet" href="/style.css"/>
@@ -36,7 +36,8 @@ class App extends React.Component {
 const mapStateToProps = state => {
 		return {
 			currentSearch: state.currentSearch,
-			currentVideo: state.currentVideo.currentVideo
+			currentVideo: state.currentVideo.currentVideo,
+			channelInfo: state.currentVideo.channelInfo
 		};
 	}
 
