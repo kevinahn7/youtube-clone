@@ -6,6 +6,7 @@ import { fetchSearchResult, fetchVideo, fetchChannelInfo, fetchChannelId } from 
 import thumbsUp from '../assets/thumbsUp.svg';
 import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
+import dots from '../assets/dots.svg';
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -107,20 +108,34 @@ class Watch extends React.Component {
 		padding: "8px"
 	}
 
+	dotsStyle = {
+		opacity: "0.4",
+		width: "24px",
+		padding: "8px",
+		height: "24px"
+	}
+
+	dotsContainerStyle = {
+		height: "40px"
+	}
+
 	shareOptionStyle = {
 		padding: "0 8px",
-		fontSize: "0.9rem",
+		fontSize: "0.8rem",
 		height: "22px",
 		display: "flex",
-		alignItems: "center"
+		alignItems: "center",
+		fontWeight: "1000",
+		color: "hsla(0, 0%, 6.7%, 0.4)"
 	}
 
 	saveOptionStyle = {
 		padding: "0 8px",
-		fontSize: "0.9rem",
+		fontSize: "0.8rem",
 		height: "22px",
 		display: "flex",
-		alignItems: "center"
+		alignItems: "center",
+		color: "hsla(0, 0%, 6.7%, 0.4)"
 	}
 
 	channelThumbnailStyle = {
@@ -221,6 +236,7 @@ class Watch extends React.Component {
 								<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.dislikeCount)}</span>
 								<span style={this.shareOptionStyle}><img src={share} style={this.shareStyle} />SHARE</span>
 								<span style={this.saveOptionStyle}>SAVE</span>
+								<span style={this.dotsContainerStyle} ><img src={dots} style={this.dotsStyle} /></span>
 							</span>
 						</div>
 					</div>
