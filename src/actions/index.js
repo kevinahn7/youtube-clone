@@ -51,14 +51,12 @@ export const receiveVideo = (currentVideo) => ({
 });
 
 export function fetchMoreSearchResults(searchQuery, pageToken) {
-	console.log(pageToken)
 	return function(dispatch) {
 		return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchQuery + '&maxResults=20&pageToken=' + pageToken + '&key=' + process.env.REACT_APP_API_KEY)
 			.then(
 				response => response.json(),
 				error => console.log('An error occured.', error)
 			).then(function(json) {
-				console.log(json)
 				let moreSearchResults = json.items;
 				let morePageToken = json.nextPageToken;
 				dispatch(receiveMoreSearch(moreSearchResults, morePageToken));

@@ -116,6 +116,16 @@ class Watch extends React.Component {
 		alignItems: "center"
 	}
 
+	convertDate() {
+		const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		let theDate = this.props.currentVideo.snippet.publishedAt;
+		let monthInt = parseInt(theDate.substring(5, 7));
+		let monthString = monthNames[monthInt-1]
+		let day = parseInt(theDate.substring(8, 10));
+		let year = theDate.substring(0, 4)
+		return ("Published on " + monthString + " " + day + ", " + year)
+	}
+
 	componentDidMount() {
 		let pathName = this.props.location.pathname;
 		if (pathName.substring(1,6) === "watch") {
@@ -143,8 +153,17 @@ class Watch extends React.Component {
 							</span>
 						</div>
 					</div>
+					<div>
+						<div>
+							<img src={this.props.currentVideo.snippet.thumbnails.default.url}/>
+							<span>{this.props.currentVideo.snippet.channelTitle}</span>
+							<span>{this.convertDate()}</span>
+						</div>
+					</div>
 				</div>
-				<div style={this.recommendationsStyle}>Recommendations</div>
+				<div style={this.recommendationsStyle}>
+					Recommendations
+				</div>
 			</div>
 		);
 	}
