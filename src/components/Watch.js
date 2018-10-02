@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchSearchResult, fetchVideo, fetchChannelInfo, fetchChannelId } from './../actions';
 import thumbsUp from '../assets/thumbsUp.svg';
 import thumbsDown from '../assets/thumbsDown.svg';
+import share from '../assets/share.svg';
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -46,7 +47,7 @@ class Watch extends React.Component {
 
 	watchStyle = {
 		display: "grid",
-		gridTemplateColumns: "auto 400px",
+		gridTemplateColumns: "auto 384px",
 		gridGap: "24px",
 		maxWidth: "1754px",
 		margin: "0 auto",
@@ -98,6 +99,12 @@ class Watch extends React.Component {
 		opacity: "0.4",
 		width: "23px",
 		paddingRight: "8px"
+	}
+
+	shareStyle = {
+		opacity: "0.4",
+		width: "20px",
+		padding: "8px"
 	}
 
 	shareOptionStyle = {
@@ -212,7 +219,7 @@ class Watch extends React.Component {
 							<span style={this.videoOptionsStyle}>
 								<span style={this.likeDislikeStyle}><img src={thumbsUp} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.likeCount)}</span>
 								<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.dislikeCount)}</span>
-								<span style={this.shareOptionStyle}>SHARE</span>
+								<span style={this.shareOptionStyle}><img src={share} style={this.shareStyle} />SHARE</span>
 								<span style={this.saveOptionStyle}>SAVE</span>
 							</span>
 						</div>
