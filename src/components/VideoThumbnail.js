@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchVideo, fetchChannelThumbnail } from './../actions';
+import { fetchVideo, fetchChannelInfo } from './../actions';
 
 const videoThumbnailStyle = {
     display: "grid",
@@ -51,7 +51,7 @@ const VideoThumbnail = (props) => {
 
     const handleVideoClick = (videoId, channelId) => {
         props.dispatch(fetchVideo(videoId));
-        props.dispatch(fetchChannelThumbnail(channelId));
+        props.dispatch(fetchChannelInfo(channelId));
     }
 
     return (

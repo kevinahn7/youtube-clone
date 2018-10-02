@@ -49,27 +49,27 @@ export const receiveVideo = (currentVideo) => ({
 	currentVideo
 });
 
-export function fetchChannelThumbnail(channelId) {
-	console.log(channelId)
+export function fetchChannelInfo(channelId) {
 	return function(dispatch) {
-		dispatch(requestChannelThumbnail())
-		return fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&id=' + channelId + '&key=' + process.env.REACT_APP_API_KEY)
+		dispatch(requestChannelInfo())
+		return fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=' + channelId + '&key=' + process.env.REACT_APP_API_KEY)
 		.then(
 			response => response.json(),
 			error => console.log('An error occured.', error)
 		).then(function(json) {
+			console.log(json)
 			let channelInfo = json.items[0];
-			dispatch(receiveChannelThumbnail(channelInfo))
+			dispatch(receiveChannelInfo(channelInfo))
 		})
 	}
 }
 
-export const requestChannelThumbnail = () => ({
-	type: types.REQUEST_CHANNEL_THUMBNAIL
+export const requestChannelInfo = () => ({
+	type: types.REQUEST_CHANNEL_INFO
 });
 
-export const receiveChannelThumbnail = (channel) => ({
-	type: types.RECEIVE_CHANNEL_THUMBNAIL,
+export const receiveChannelInfo = (channel) => ({
+	type: types.RECEIVE_CHANNEL_INFO,
 	channel
 });
 
