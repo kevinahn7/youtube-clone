@@ -3,7 +3,7 @@ import * as types from './../constants/ActionTypes';
 export function fetchSearchResult(searchQuery) {
 	return function(dispatch) {
 		dispatch(requestSearch(searchQuery));
-		return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchQuery + '&maxResults=50&key=' + process.env.REACT_APP_API_KEY)
+		return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchQuery + '&maxResults=20&key=' + process.env.REACT_APP_API_KEY)
 			.then(
 				response => response.json(),
 				error => console.log('An error occured.', error)

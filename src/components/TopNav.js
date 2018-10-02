@@ -19,7 +19,8 @@ class TopNav extends React.Component {
         boxShadow: "0 1px #eee",
         width: "100%",
         boxSizing: "border-box",
-        position: "fixed"
+        position: "fixed",
+        zIndex: "4"
     }
 
     imageStyle = {
