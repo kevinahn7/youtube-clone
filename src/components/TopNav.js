@@ -68,6 +68,7 @@ class TopNav extends React.Component {
 
     handleSearch = (event) => {
         event.preventDefault();
+        window.scrollTo(0, 0);
         const searchQuery = event.target.elements.searchBar.value.trim();
         if (searchQuery) {
             this.props.dispatch(fetchSearchResult(searchQuery));
