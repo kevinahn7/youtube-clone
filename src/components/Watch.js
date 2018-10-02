@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSearchResult, fetchVideo } from './../actions';
+import thumbsUp from '../assets/thumbsUp.svg';
+import thumbsDown from '../assets/thumbsDown.svg';
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -80,8 +82,38 @@ class Watch extends React.Component {
 		color: "hsla(0, 0%, 7%, 0.6)"
 	}
 
-	viewCountStyle = {
+	videoOptionsStyle = {
+		display: "flex",
+		alignItems: "center"
+	}
 
+	likeDislikeStyle = {
+		display: "flex",
+		alignItems: "center",
+		padding: "0 8px",
+		fontSize: "0.8rem"
+	}
+
+	thumbsStyle = {
+		opacity: "0.4",
+		width: "23px",
+		paddingRight: "8px"
+	}
+
+	shareOptionStyle = {
+		padding: "0 8px",
+		fontSize: "0.9rem",
+		height: "22px",
+		display: "flex",
+		alignItems: "center"
+	}
+
+	saveOptionStyle = {
+		padding: "0 8px",
+		fontSize: "0.9rem",
+		height: "22px",
+		display: "flex",
+		alignItems: "center"
 	}
 
 	componentDidMount() {
@@ -102,12 +134,12 @@ class Watch extends React.Component {
 					<div style={this.videoInfoStyle}>
 						<h1 style={this.videoTitleStyle}>{this.props.currentVideo.snippet.title}</h1>
 						<div style={this.videoInfoStatsStyle}>
-							<span style={this.viewCountStyle}>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
-							<span id="videoOptions">
-								<span>Likes: {this.formatLikesDislikes(this.props.currentVideo.statistics.likeCount)}</span>
-								<span>Dislikes: {this.formatLikesDislikes(this.props.currentVideo.statistics.dislikeCount)}</span>
-								<span>SHARE</span>
-								<span>SAVE</span>
+							<span>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
+							<span style={this.videoOptionsStyle}>
+								<span style={this.likeDislikeStyle}><img src={thumbsUp} style={this.thumbsStyle} /> {this.formatLikesDislikes(this.props.currentVideo.statistics.likeCount)}</span>
+								<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatLikesDislikes(this.props.currentVideo.statistics.dislikeCount)}</span>
+								<span style={this.shareOptionStyle}>SHARE</span>
+								<span style={this.saveOptionStyle}>SAVE</span>
 							</span>
 						</div>
 					</div>
