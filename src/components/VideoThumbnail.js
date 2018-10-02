@@ -28,7 +28,8 @@ const videoTitleStyle = {
     fontWeight: "400",
     lineHeight: "2.4rem",
     height: "30px",
-    color: "black"
+    color: "black",
+    marginBottom: "2px"
 }
 
 const videoInfoStyle = {

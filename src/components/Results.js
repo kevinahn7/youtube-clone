@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 class Results extends React.Component {
 	constructor(props) {
 		super(props)
-		this.handleScroll = this.handleScroll.bind(this);
 	}
 
 	loadMore = (searchQuery, pageToken) => {
