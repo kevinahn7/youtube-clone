@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchSearchResult, fetchVideo } from './../actions';
+import { fetchSearchResult, fetchVideo, fetchChannelThumbnail, fetchChannelId } from './../actions';
 import thumbsUp from '../assets/thumbsUp.svg';
 import thumbsDown from '../assets/thumbsDown.svg';
 
@@ -130,6 +130,8 @@ class Watch extends React.Component {
 		let pathName = this.props.location.pathname;
 		if (pathName.substring(1,6) === "watch") {
 			this.props.dispatch(fetchVideo(pathName.slice(7, pathName.length)))
+			let getChannelByVideoId=fetchChannelId(pathName.slice(7, pathName.length))
+			getChannelByVideoId().then((json)=>{this.props.dispatch(fetchChannelThumbnail(json.items[0].snippet.channelId))})
 		}
 	}
 

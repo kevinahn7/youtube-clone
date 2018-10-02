@@ -21,7 +21,6 @@ const currentVideo = ( state = initialState, action ) => {
 			})
 			return newState
 		case types.RECEIVE_CHANNEL_THUMBNAIL:
-			console.log(action.channel)
 			newState = Object.assign({}, state, {
 				isFetching: false,
 				channelInfo: action.channel

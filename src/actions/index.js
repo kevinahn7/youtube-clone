@@ -50,6 +50,7 @@ export const receiveVideo = (currentVideo) => ({
 });
 
 export function fetchChannelThumbnail(channelId) {
+	console.log(channelId)
 	return function(dispatch) {
 		dispatch(requestChannelThumbnail())
 		return fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&id=' + channelId + '&key=' + process.env.REACT_APP_API_KEY)
@@ -58,7 +59,6 @@ export function fetchChannelThumbnail(channelId) {
 			error => console.log('An error occured.', error)
 		).then(function(json) {
 			let channelInfo = json.items[0];
-			console.log(channelInfo)
 			dispatch(receiveChannelThumbnail(channelInfo))
 		})
 	}
@@ -72,6 +72,16 @@ export const receiveChannelThumbnail = (channel) => ({
 	type: types.RECEIVE_CHANNEL_THUMBNAIL,
 	channel
 });
+
+export function fetchChannelId(videoId) {
+	return function(dispatch) {
+		return fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,player&id=' + videoId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
+		.then(
+			response => response.json(),
+			error => console.log('An error occured.', error)
+		)
+	}
+}
 
 export function fetchMoreSearchResults(searchQuery, pageToken) {
 	return function(dispatch) {
