@@ -9,6 +9,7 @@ import _ from 'lodash';
 class Results extends React.Component {
 	constructor(props) {
 		super(props)
+		this.throttledFunction = _.throttle(this.handleScroll, 1000);
 	}
 
 	loadMore = (searchQuery, pageToken) => {
@@ -49,11 +50,11 @@ class Results extends React.Component {
 	}
 
 	componentDidMount() {
-		window.addEventListener('scroll', _.throttle(this.handleScroll, 1000))
+		window.addEventListener('scroll', this.throttledFunction);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleScroll);
+		window.removeEventListener('scroll', this.throttledFunction); //this is not getting removed
 	}
 
 	render() {
