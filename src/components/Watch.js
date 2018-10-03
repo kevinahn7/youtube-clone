@@ -43,8 +43,14 @@ class Watch extends React.Component {
 		}
 	}
 
+	videoSideStyle = {
+		backgroundColor: "white",
+		padding: "24px"
+	}
+
 	recommendationsStyle = {
-		width: "402px"
+		width: "402px",
+		padding: "24px"
 	}
 
 	watchStyle = {
@@ -53,7 +59,7 @@ class Watch extends React.Component {
 		gridGap: "24px",
 		maxWidth: "1754px",
 		margin: "0 auto",
-		padding: "24px",
+
 		boxSizing: "border-box"
 	}
 
@@ -230,7 +236,7 @@ class Watch extends React.Component {
 			<div>
 				{(this.props.channelInfo && this.props.currentVideo) ?
 					<div style={this.watchStyle}>
-						<div>
+						<div style={this.videoSideStyle}>
 							<div style={this.aspectRatioStyle}>
 								<iframe style={this.playerStyle} src={"\/\/www.youtube.com/embed/" + this.props.currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 							</div>
