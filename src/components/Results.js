@@ -2,22 +2,23 @@ import React from 'react';
 import VideoThumbnail from './VideoThumbnail';
 import ChannelThumbnail from './ChannelThumbnail';
 import PropTypes from 'prop-types';
-import InfiniteScroll from 'react-infinite-scroller';
 import { fetchMoreSearchResults } from './../actions';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class Results extends React.Component {
 	constructor(props) {
 		super(props)
+		this.throttledFunction = _.throttle(this.handleScroll, 1000);
 	}
 
 	loadMore = (searchQuery, pageToken) => {
 		this.props.dispatch(fetchMoreSearchResults(searchQuery, pageToken))
 	}
 
-	handleScroll = (searchQuery, pageToken) => {
+	handleScroll = () => {
 		let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
-		if (distanceFromBottom < 300) this.loadMore(searchQuery, pageToken)
+		if (distanceFromBottom < 300) this.loadMore(this.props.currentSearch.searchQuery, this.props.currentSearch.pageToken);
 	}
 
 	resultsStyle = {
@@ -49,11 +50,11 @@ class Results extends React.Component {
 	}
 
 	componentDidMount() {
-		window.addEventListener('scroll',() => { this.handleScroll(this.props.currentSearch.searchQuery, this.props.currentSearch.pageToken) })
+		window.addEventListener('scroll', this.throttledFunction);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleScroll);
+		window.removeEventListener('scroll', this.throttledFunction);
 	}
 
 	render() {
