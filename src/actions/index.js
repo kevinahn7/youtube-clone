@@ -111,7 +111,6 @@ export function fetchVideoComments(videoId) {
 			error => console.log('An error occured.', error)
 		).then(function(json) {
 			let comments = json;
-			console.log(comments)
 			dispatch(receiveVideoComments(comments))
 		})
 	}

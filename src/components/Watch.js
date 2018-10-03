@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchSearchResult, fetchVideo, fetchChannelInfo, fetchChannelId } from './../actions';
+import { fetchSearchResult, fetchVideo, fetchChannelInfo, fetchChannelId, fetchVideoComments } from './../actions';
 import thumbsUp from '../assets/thumbsUp.svg';
 import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
@@ -269,9 +269,10 @@ class Watch extends React.Component {
 	componentDidMount() {
 		let pathName = this.props.location.pathname;
 		if (pathName.substring(1,6) === "watch") {
-			this.props.dispatch(fetchVideo(pathName.slice(7, pathName.length)))
-			let getChannelByVideoId=fetchChannelId(pathName.slice(7, pathName.length))
-			getChannelByVideoId().then((json)=>{this.props.dispatch(fetchChannelInfo(json.items[0].snippet.channelId))})
+			this.props.dispatch(fetchVideo(pathName.slice(7, pathName.length)));
+			let getChannelByVideoId=fetchChannelId(pathName.slice(7, pathName.length));
+			getChannelByVideoId().then((json)=>{this.props.dispatch(fetchChannelInfo(json.items[0].snippet.channelId))});
+			this.props.dispatch(fetchVideoComments(pathName.slice(7, pathName.length)));
 		}
 	}
 
@@ -322,7 +323,7 @@ class Watch extends React.Component {
 							<div id="commentSection">
 								<div id="comentsAndSortAndAddForm" style={this.preCommentStyle}>
 									<div id="commentsAndSort" style={this.commentNumberAndSortStyle}>
-										<span style={this.commentNumberStyle}>201 Comments</span>
+										<span style={this.commentNumberStyle}>{this.formatViews(currentVideo.statistics.commentCount)} Comments</span>
 										<span style={this.sortByStyle}>SORT BY</span>
 									</div>
 									<div style={this.inputCommentFormStyle}>
@@ -331,7 +332,7 @@ class Watch extends React.Component {
 									</div>
 								</div>
 								<div id="comments">
-									{console.log(currentVideoComments)}
+									{currentVideoComments.items.length}
 
 
 									<Comment />

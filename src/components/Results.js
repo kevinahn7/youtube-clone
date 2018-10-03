@@ -64,7 +64,7 @@ class Results extends React.Component {
 	}
 
 	render() {
-		let currentSearch = this.props.currentSearch
+		let currentSearch = this.props.currentSearch;
 		let searchResults = currentSearch.searchResults;
 		return (
 			<div style={this.resultsStyle}>
