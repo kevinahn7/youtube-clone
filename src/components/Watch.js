@@ -8,6 +8,7 @@ import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
 import dots from '../assets/dots.svg';
 import loading from '../assets/loading.gif';
+import avatar from '../assets/avatar.png';
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -49,8 +50,8 @@ class Watch extends React.Component {
 	}
 
 	recommendationsStyle = {
-		width: "402px",
-		padding: "24px"
+		padding: "24px",
+		boxSizing: "border-box"
 	}
 
 	watchStyle = {
@@ -59,7 +60,6 @@ class Watch extends React.Component {
 		gridGap: "24px",
 		maxWidth: "1754px",
 		margin: "0 auto",
-
 		boxSizing: "border-box"
 	}
 
@@ -169,7 +169,7 @@ class Watch extends React.Component {
 	}
 
 	allDescriptionStyle = {
-		borderBottom: " 1px solid hsl(0, 0%, 93%)",
+		borderBottom: "1px solid hsl(0, 0%, 93%)",
 		marginBottom: "24px",
 		paddingBottom: "16px"
 	}
@@ -209,6 +209,50 @@ class Watch extends React.Component {
 	loadingStyle = {
 		display: "block",
 		margin: "20% auto"
+	}
+
+	preCommentStyle = {
+		margin: "24px 0 32px 0"
+	}
+
+	commentNumberAndSortStyle = {
+		marginBottom: "24px"
+	}
+
+	commentNumberStyle = {
+		marginRight: "30px"
+	}
+
+	sortByStyle = {
+		color: "hsla(0, 0%, 7%, 0.6)",
+		fontSize: "0.88rem",
+		fontWeight: "1000"
+	}
+
+	inputCommentFormStyle = {
+		display: "grid",
+		gridTemplateColumns: "56px auto"
+	}
+
+	avatarStyle = {
+		width: "40px",
+		borderRadius: "50%",
+		marginRight: "8px"
+	}
+
+	inputCommentStyle = {
+		width: "100%",
+		display: "block"
+	}
+
+	inputStyle = {
+		width: "100%",
+		border: "none",
+		outline: "none",
+		fontSize: "0.9rem",
+		borderBottom: "1px solid hsl(0, 0%, 93%)",
+		height: "21px",
+		paddingBottom: "4px"
 	}
 
 	convertDate() {
@@ -268,7 +312,34 @@ class Watch extends React.Component {
 									<span>{this.props.currentVideo.snippet.description}</span>
 								</div>
 							</div>
+
+
+							<div id="commentSection">
+								<div id="comentsAndSortAndAddForm" style={this.preCommentStyle}>
+									<div id="commentsAndSort" style={this.commentNumberAndSortStyle}>
+										<span style={this.commentNumberStyle}>201 Comments</span>
+										<span style={this.sortByStyle}>SORT BY</span>
+									</div>
+									<div style={this.inputCommentFormStyle}>
+										<img src={avatar} style={this.avatarStyle} />
+										<span style={this.inputCommentStyle}><input style={this.inputStyle} type="text" placeholder="Add a public comment..."/></span>
+									</div>
+								</div>
+								<div id="comments">
+
+									<h1>test</h1>
+
+
+
+
+								</div>
+
+							</div>
 						</div>
+
+
+
+
 						<div style={this.recommendationsStyle}>
 							Recommendations
 						</div>
