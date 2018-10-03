@@ -54,7 +54,7 @@ class Results extends React.Component {
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.throttledFunction); //this is not getting removed
+		window.removeEventListener('scroll', this.throttledFunction);
 	}
 
 	render() {
