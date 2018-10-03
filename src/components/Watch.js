@@ -46,7 +46,8 @@ class Watch extends React.Component {
 	}
 
 	videoSideStyle = {
-		padding: "24px"
+		padding: "24px",
+		minWidth: "640px"
 	}
 
 	recommendationsStyle = {
@@ -214,7 +215,8 @@ class Watch extends React.Component {
 	descriptionStyle = {
 		fontFamily: "Roboto, Arial, sans-serif",
 		fontSize: "0.9rem",
-		lineHeight: "1.3rem"
+		lineHeight: "1.3rem",
+		width: "100%"
 	}
 
 	loadingStyle = {
@@ -342,22 +344,24 @@ class Watch extends React.Component {
 									</div>
 								</div>
 								<div id="comments">
-									{currentVideoComments.items.length}
-
-
-									<Comment />
-
-
+									{Object.keys(currentVideoComments.items).map(function(index) {
+										return<Comment
+											key={index}
+											channelName={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorDisplayName}
+											channelId={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorChannelId.value}
+											channelImage={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorProfileImageUrl}
+											publishedDate={currentVideoComments.items[index].snippet.topLevelComment.snippet.publishedAt}
+											commentId={currentVideoComments.items[index].id}
+											commentText={currentVideoComments.items[index].snippet.topLevelComment.snippet.textDisplay}
+											commentLikes={currentVideoComments.items[index].snippet.topLevelComment.snippet.likeCount}
+											commentReplies={currentVideoComments.items[index].replies} />
+									})}
 								</div>
-
 							</div>
 						</div>
 
-
-
-
 						<div style={this.recommendationsStyle}>
-							Recommendations
+							Up next
 						</div>
 					</div> : <img src={loading} style={this.loadingStyle} />}
 			</div>
