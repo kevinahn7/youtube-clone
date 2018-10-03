@@ -46,22 +46,26 @@ class Watch extends React.Component {
 	}
 
 	videoSideStyle = {
-		backgroundColor: "white",
 		padding: "24px"
 	}
 
 	recommendationsStyle = {
-		padding: "24px",
+		padding: "24px 24px 0 0",
 		boxSizing: "border-box"
 	}
 
 	watchStyle = {
 		display: "grid",
-		gridTemplateColumns: "auto 384px",
-		gridGap: "24px",
+		gridTemplateColumns: "auto 426px",
 		maxWidth: "1754px",
 		margin: "0 auto",
-		boxSizing: "border-box"
+		boxSizing: "border-box",
+		backgroundColor: "white"
+	}
+
+	watchContainerStyle = {
+		maxWidth: "1528px",
+		margin: "0 auto"
 	}
 
 	playerStyle = {
@@ -207,6 +211,12 @@ class Watch extends React.Component {
 		paddingLeft: "64px"
 	}
 
+	descriptionStyle = {
+		fontFamily: "Roboto, Arial, sans-serif",
+		fontSize: "0.9rem",
+		lineHeight: "1.3rem"
+	}
+
 	loadingStyle = {
 		display: "block",
 		margin: "20% auto"
@@ -283,7 +293,7 @@ class Watch extends React.Component {
 
 		{this.aspectRatioStyle = this.getAspectRatio()}
 		return (
-			<div>
+			<div style={this.watchContainerStyle}>
 				{(channelInfo && currentVideo && currentVideoComments) ?
 					<div style={this.watchStyle}>
 						<div style={this.videoSideStyle}>
@@ -315,7 +325,7 @@ class Watch extends React.Component {
 									</div>
 								</div>
 								<div style={this.descriptionContainerStyle}>
-									<span>{currentVideo.snippet.description}</span>
+									<pre style={this.descriptionStyle}>{currentVideo.snippet.description}</pre>
 								</div>
 							</div>
 
