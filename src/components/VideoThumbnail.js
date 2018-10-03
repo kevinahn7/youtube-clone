@@ -108,7 +108,7 @@ const VideoThumbnail = (props) => {
           } else {
             if (minutesSincePost > 1) {
               return (minutesSincePost + " minutes ago");
-            } else if (minutesSincePost == 1) {
+            } else if (minutesSincePost === 1) {
               return "1 minute ago";
             } else {
               return "Less than a minute ago";

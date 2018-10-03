@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { fetchMoreSearchResults } from './../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import loading from '../assets/loading.gif';
 
 class Results extends React.Component {
 	constructor(props) {
@@ -49,6 +50,11 @@ class Results extends React.Component {
 		gridGap: "15px"
 	}
 
+	loadingStyle = {
+		display: "block",
+		margin: "20% auto"
+	}
+
 	componentDidMount() {
 		window.addEventListener('scroll', this.throttledFunction);
 	}
@@ -65,28 +71,30 @@ class Results extends React.Component {
 				<div style={this.filterContainerStyle}>
 					<p style={this.filterStyle}>FILTER</p>
 				</div>
-				<div style={this.resultItemsStyle}>
-					{Object.keys(searchResults).map(function(index) {
-						if (searchResults[index].id.kind === "youtube#video") {
-							return <VideoThumbnail
-								key={index}
-								videoTitle={searchResults[index].snippet.title}
-								videoDescription={searchResults[index].snippet.description}
-								videoId={searchResults[index].id.videoId}
-								channelId={searchResults[index].snippet.channelId}
-								channelTitle={searchResults[index].snippet.channelTitle}
-								image={searchResults[index].snippet.thumbnails.medium.url}
-								publishedAt={searchResults[index].snippet.publishedAt} />
-						} else if (searchResults[index].id.kind === "youtube#channel"){
-							return <ChannelThumbnail
-								key={index}
-								channelTitle={searchResults[index].snippet.title}
-								channelDescription={searchResults[index].snippet.description}
-								channelId={searchResults[index].snippet.channelId}
-								image={searchResults[index].snippet.thumbnails.high.url} />
-						} //Add youtube playlist conditional
-					})}
-				</div>
+
+				{(searchResults) ?
+					<div style={this.resultItemsStyle}>
+						{Object.keys(searchResults).map(function(index) {
+							if (searchResults[index].id.kind === "youtube#video") {
+								return <VideoThumbnail
+									key={index}
+									videoTitle={searchResults[index].snippet.title}
+									videoDescription={searchResults[index].snippet.description}
+									videoId={searchResults[index].id.videoId}
+									channelId={searchResults[index].snippet.channelId}
+									channelTitle={searchResults[index].snippet.channelTitle}
+									image={searchResults[index].snippet.thumbnails.medium.url}
+									publishedAt={searchResults[index].snippet.publishedAt} />
+							} else if (searchResults[index].id.kind === "youtube#channel"){
+								return <ChannelThumbnail
+									key={index}
+									channelTitle={searchResults[index].snippet.title}
+									channelDescription={searchResults[index].snippet.description}
+									channelId={searchResults[index].snippet.channelId}
+									image={searchResults[index].snippet.thumbnails.high.url} />
+							} //Add youtube playlist conditional
+						})}
+					</div> : <img src={loading} style={this.loadingStyle} />}
 			</div>
 		);
 	}

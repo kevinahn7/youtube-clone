@@ -7,6 +7,7 @@ import thumbsUp from '../assets/thumbsUp.svg';
 import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
 import dots from '../assets/dots.svg';
+import loading from '../assets/loading.gif';
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -199,6 +200,11 @@ class Watch extends React.Component {
 		paddingLeft: "64px"
 	}
 
+	loadingStyle = {
+		display: "block",
+		margin: "20% auto"
+	}
+
 	convertDate() {
 		const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		let theDate = this.props.currentVideo.snippet.publishedAt;
@@ -221,43 +227,46 @@ class Watch extends React.Component {
 	render() {
 		{this.aspectRatioStyle = this.getAspectRatio()}
 		return (
-			<div style={this.watchStyle}>
-				<div>
-					<div style={this.aspectRatioStyle}>
-						<iframe style={this.playerStyle} src={"\/\/www.youtube.com/embed/" + this.props.currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-					</div>
-					<div style={this.videoInfoStyle}>
-						<h1 style={this.videoTitleStyle}>{this.props.currentVideo.snippet.title}</h1>
-						<div style={this.videoInfoStatsStyle}>
-							<span>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
-							<span style={this.videoOptionsStyle}>
-								<span style={this.likeDislikeStyle}><img src={thumbsUp} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.likeCount)}</span>
-								<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.dislikeCount)}</span>
-								<span style={this.shareOptionStyle}><img src={share} style={this.shareStyle} />SHARE</span>
-								<span style={this.saveOptionStyle}>SAVE</span>
-								<span style={this.dotsContainerStyle} ><img src={dots} style={this.dotsStyle} /></span>
-							</span>
-						</div>
-					</div>
-					<div style={this.allDescriptionStyle}>
-						<div style={this.descriptionInfoStyle}>
-							<img src={this.props.channelInfo.snippet.thumbnails.default.url} style={this.channelThumbnailStyle}/>
-							<div style={this.channelTitleAndDateStyle}>
-								<span style={this.channelTitleStyle}>{this.props.currentVideo.snippet.channelTitle}</span>
-								<span style={this.dateStyle}>{this.convertDate()}</span>
+			<div>
+				{(this.props.channelInfo && this.props.currentVideo) ?
+					<div style={this.watchStyle}>
+						<div>
+							<div style={this.aspectRatioStyle}>
+								<iframe style={this.playerStyle} src={"\/\/www.youtube.com/embed/" + this.props.currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 							</div>
-							<div style={this.subscribeContainerStyle}>
-								<button style={this.subscribeStyle}><span style={this.subscribeTextStyle}>SUBSCRIBE {this.formatNumber(this.props.channelInfo.statistics.subscriberCount)}</span></button>
+							<div style={this.videoInfoStyle}>
+								<h1 style={this.videoTitleStyle}>{this.props.currentVideo.snippet.title}</h1>
+								<div style={this.videoInfoStatsStyle}>
+									<span>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
+									<span style={this.videoOptionsStyle}>
+										<span style={this.likeDislikeStyle}><img src={thumbsUp} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.likeCount)}</span>
+										<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.dislikeCount)}</span>
+										<span style={this.shareOptionStyle}><img src={share} style={this.shareStyle} />SHARE</span>
+										<span style={this.saveOptionStyle}>SAVE</span>
+										<span style={this.dotsContainerStyle} ><img src={dots} style={this.dotsStyle} /></span>
+									</span>
+								</div>
+							</div>
+							<div style={this.allDescriptionStyle}>
+								<div style={this.descriptionInfoStyle}>
+									<img src={this.props.channelInfo.snippet.thumbnails.default.url} style={this.channelThumbnailStyle}/>
+									<div style={this.channelTitleAndDateStyle}>
+										<span style={this.channelTitleStyle}>{this.props.currentVideo.snippet.channelTitle}</span>
+										<span style={this.dateStyle}>{this.convertDate()}</span>
+									</div>
+									<div style={this.subscribeContainerStyle}>
+										<button style={this.subscribeStyle}><span style={this.subscribeTextStyle}>SUBSCRIBE {this.formatNumber(this.props.channelInfo.statistics.subscriberCount)}</span></button>
+									</div>
+								</div>
+								<div style={this.descriptionContainerStyle}>
+									<span>{this.props.currentVideo.snippet.description}</span>
+								</div>
 							</div>
 						</div>
-						<div style={this.descriptionContainerStyle}>
-							<span>{this.props.currentVideo.snippet.description}</span>
+						<div style={this.recommendationsStyle}>
+							Recommendations
 						</div>
-					</div>
-				</div>
-				<div style={this.recommendationsStyle}>
-					Recommendations
-				</div>
+					</div> : <img src={loading} style={this.loadingStyle} />}
 			</div>
 		);
 	}
