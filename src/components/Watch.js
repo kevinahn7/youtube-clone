@@ -327,9 +327,9 @@ class Watch extends React.Component {
 								</div>
 								<div id="comments">
 
-									<h1>test</h1>
 
 
+									{console.log(this.props.currentVideoComments)}
 
 
 								</div>
@@ -351,7 +351,8 @@ class Watch extends React.Component {
 
 Watch.propTypes = {
 	currentVideo: PropTypes.object,
-	channelInfo: PropTypes.object
+	channelInfo: PropTypes.object,
+	currentVideoComments: PropTypes.object
 };
 
 export default withRouter(connect()(Watch));

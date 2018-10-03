@@ -26,6 +26,17 @@ const currentVideo = ( state = initialState, action ) => {
 				channelInfo: action.channel
 			})
 			return newState;
+		case types.REQUEST_VIDEO_COMMENTS:
+			newState = Object.assign({}, state, {
+				isFetching: true
+			})
+			return newState;
+		case types.RECEIVE_VIDEO_COMMENTS:
+			newState = Object.assign({}, state, {
+				isFetching: false,
+				comments: action.comments
+			})
+			return newState;
 		default:
 			return state;
 	}

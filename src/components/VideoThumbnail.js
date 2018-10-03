@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchVideo, fetchChannelInfo } from './../actions';
+import { fetchVideo, fetchChannelInfo, fetchVideoComments } from './../actions';
 
 const videoThumbnailStyle = {
   display: "grid",
@@ -54,6 +54,7 @@ const VideoThumbnail = (props) => {
     window.scrollTo(0, 0);
     props.dispatch(fetchVideo(videoId));
     props.dispatch(fetchChannelInfo(channelId));
+    props.dispatch(fetchVideoComments(videoId));
   }
 
   const convertDate = () => {

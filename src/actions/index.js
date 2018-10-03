@@ -51,7 +51,7 @@ export const receiveVideo = (currentVideo) => ({
 
 export function fetchChannelInfo(channelId) {
 	return function(dispatch) {
-		dispatch(requestChannelInfo())
+		dispatch(requestChannelInfo());
 		return fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=' + channelId + '&key=' + process.env.REACT_APP_API_KEY)
 		.then(
 			response => response.json(),
@@ -100,4 +100,28 @@ export const receiveMoreSearch = (moreSearchResults, morePageToken) => ({
 	type: types.RECEIVE_MORE_SEARCH,
 	moreSearchResults,
 	morePageToken
+});
+
+export function fetchVideoComments(videoId) {
+	return function(dispatch) {
+		dispatch(requestVideoComments());
+		return fetch('https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=' + videoId + '&key=' + process.env.REACT_APP_API_KEY)
+		.then(
+			response => response.json(),
+			error => console.log('An error occured.', error)
+		).then(function(json) {
+			let comments = json;
+			console.log(comments)
+			dispatch(receiveVideoComments(comments))
+		})
+	}
+}
+
+export const requestVideoComments = () => ({
+	type: types.REQUEST_VIDEO_COMMENTS
+});
+
+export const receiveVideoComments = (comments) => ({
+	type: types.RECEIVE_VIDEO_COMMENTS,
+	comments
 });
