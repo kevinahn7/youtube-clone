@@ -8,6 +8,7 @@ import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
 import dots from '../assets/dots.svg';
 import loading from '../assets/loading.gif';
+import commentLoading from '../assets/commentLoading.gif';
 import avatar from '../assets/avatar.png';
 import Comment from './Comment';
 
@@ -268,6 +269,12 @@ class Watch extends React.Component {
 		paddingBottom: "4px"
 	}
 
+	commentLoadingStyle = {
+		width: "50px",
+		display: "block",
+		margin: "0 auto"
+	}
+
 	convertDate() {
 		const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		let theDate = this.props.currentVideo.snippet.publishedAt;
@@ -356,6 +363,7 @@ class Watch extends React.Component {
 											commentLikes={currentVideoComments.items[index].snippet.topLevelComment.snippet.likeCount}
 											commentReplies={currentVideoComments.items[index].replies} />
 									})}
+									<img src={commentLoading} style={this.commentLoadingStyle} />
 								</div>
 							</div>
 						</div>
