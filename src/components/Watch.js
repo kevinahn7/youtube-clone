@@ -276,22 +276,26 @@ class Watch extends React.Component {
 	}
 
 	render() {
+		let currentVideo = this.props.currentVideo;
+		let channelInfo = this.props.channelInfo;
+		let currentVideoComments = this.props.currentVideoComments;
+
 		{this.aspectRatioStyle = this.getAspectRatio()}
 		return (
 			<div>
-				{(this.props.channelInfo && this.props.currentVideo) ?
+				{(channelInfo && currentVideo && currentVideoComments) ?
 					<div style={this.watchStyle}>
 						<div style={this.videoSideStyle}>
 							<div style={this.aspectRatioStyle}>
-								<iframe style={this.playerStyle} src={"\/\/www.youtube.com/embed/" + this.props.currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+								<iframe style={this.playerStyle} src={"\/\/www.youtube.com/embed/" + currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 							</div>
 							<div style={this.videoInfoStyle}>
-								<h1 style={this.videoTitleStyle}>{this.props.currentVideo.snippet.title}</h1>
+								<h1 style={this.videoTitleStyle}>{currentVideo.snippet.title}</h1>
 								<div style={this.videoInfoStatsStyle}>
-									<span>{this.formatViews(this.props.currentVideo.statistics.viewCount)} views</span>
+									<span>{this.formatViews(currentVideo.statistics.viewCount)} views</span>
 									<span style={this.videoOptionsStyle}>
-										<span style={this.likeDislikeStyle}><img src={thumbsUp} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.likeCount)}</span>
-										<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatNumber(this.props.currentVideo.statistics.dislikeCount)}</span>
+										<span style={this.likeDislikeStyle}><img src={thumbsUp} style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.likeCount)}</span>
+										<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.dislikeCount)}</span>
 										<span style={this.shareOptionStyle}><img src={share} style={this.shareStyle} />SHARE</span>
 										<span style={this.saveOptionStyle}>SAVE</span>
 										<span style={this.dotsContainerStyle} ><img src={dots} style={this.dotsStyle} /></span>
@@ -300,17 +304,17 @@ class Watch extends React.Component {
 							</div>
 							<div style={this.allDescriptionStyle}>
 								<div style={this.descriptionInfoStyle}>
-									<img src={this.props.channelInfo.snippet.thumbnails.default.url} style={this.channelThumbnailStyle}/>
+									<img src={channelInfo.snippet.thumbnails.default.url} style={this.channelThumbnailStyle}/>
 									<div style={this.channelTitleAndDateStyle}>
-										<span style={this.channelTitleStyle}>{this.props.currentVideo.snippet.channelTitle}</span>
+										<span style={this.channelTitleStyle}>{currentVideo.snippet.channelTitle}</span>
 										<span style={this.dateStyle}>{this.convertDate()}</span>
 									</div>
 									<div style={this.subscribeContainerStyle}>
-										<button style={this.subscribeStyle}><span style={this.subscribeTextStyle}>SUBSCRIBE {this.formatNumber(this.props.channelInfo.statistics.subscriberCount)}</span></button>
+										<button style={this.subscribeStyle}><span style={this.subscribeTextStyle}>SUBSCRIBE {this.formatNumber(channelInfo.statistics.subscriberCount)}</span></button>
 									</div>
 								</div>
 								<div style={this.descriptionContainerStyle}>
-									<span>{this.props.currentVideo.snippet.description}</span>
+									<span>{currentVideo.snippet.description}</span>
 								</div>
 							</div>
 
@@ -327,7 +331,7 @@ class Watch extends React.Component {
 									</div>
 								</div>
 								<div id="comments">
-
+									{console.log(currentVideoComments)}
 
 
 									<Comment />
