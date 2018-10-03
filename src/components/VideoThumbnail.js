@@ -63,9 +63,9 @@ const VideoThumbnail = (props) => {
       <div style={videoThumbnailStyle} onClick={() => handleVideoClick(props.videoId, props.channelId)}>
         <img style={imageStyle} src={props.image} />
         <div style={infoStyle}>
-            <span style={videoTitleStyle}>{props.videoTitle}</span>
-            <p style={videoInfoStyle}>{props.channelTitle} 10K views • {convertDate(props.publishedAt)}</p>
-            <p style={videoDescriptionStyle}>{props.videoDescription}</p>
+          <span style={videoTitleStyle}>{props.videoTitle}</span>
+          <p style={videoInfoStyle}>{props.channelTitle} 10K views • {convertDate(props.publishedAt)}</p>
+          <p style={videoDescriptionStyle}>{props.videoDescription}</p>
         </div>
       </div>
     </Link>

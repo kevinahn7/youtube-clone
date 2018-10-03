@@ -16,7 +16,6 @@ const currentSearchReducer = ( state = initialState, action ) => {
         searchResults: action.searchResults,
         pageToken: action.pageToken
       })
-
       return newState;
     case types.RECEIVE_MORE_SEARCH:
       newState = Object.assign({}, state, {
