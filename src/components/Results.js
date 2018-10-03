@@ -4,6 +4,7 @@ import ChannelThumbnail from './ChannelThumbnail';
 import PropTypes from 'prop-types';
 import { fetchMoreSearchResults } from './../actions';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class Results extends React.Component {
 	constructor(props) {
@@ -14,9 +15,9 @@ class Results extends React.Component {
 		this.props.dispatch(fetchMoreSearchResults(searchQuery, pageToken))
 	}
 
-	handleScroll = (searchQuery, pageToken) => {
+	handleScroll = () => {
 		let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
-		if (distanceFromBottom < 300) this.loadMore(searchQuery, pageToken);
+		if (distanceFromBottom < 300) this.loadMore(this.props.currentSearch.searchQuery, this.props.currentSearch.pageToken);
 	}
 
 	resultsStyle = {
@@ -48,7 +49,7 @@ class Results extends React.Component {
 	}
 
 	componentDidMount() {
-		window.addEventListener('scroll',() => { this.handleScroll(this.props.currentSearch.searchQuery, this.props.currentSearch.pageToken) })
+		window.addEventListener('scroll', _.throttle(this.handleScroll, 1000))
 	}
 
 	componentWillUnmount() {
@@ -66,7 +67,6 @@ class Results extends React.Component {
 				<div style={this.resultItemsStyle}>
 					{Object.keys(searchResults).map(function(index) {
 						if (searchResults[index].id.kind === "youtube#video") {
-
 							return <VideoThumbnail
 								key={index}
 								videoTitle={searchResults[index].snippet.title}
