@@ -9,6 +9,7 @@ import share from '../assets/share.svg';
 import dots from '../assets/dots.svg';
 import loading from '../assets/loading.gif';
 import avatar from '../assets/avatar.png';
+import Comment from './Comment';
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -329,7 +330,7 @@ class Watch extends React.Component {
 
 
 
-									{console.log(this.props.currentVideoComments)}
+									<Comment />
 
 
 								</div>
