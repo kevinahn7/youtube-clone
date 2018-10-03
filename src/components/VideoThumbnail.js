@@ -51,6 +51,7 @@ const videoDescriptionStyle = {
 const VideoThumbnail = (props) => {
 
     const handleVideoClick = (videoId, channelId) => {
+        window.scrollTo(0, 0);
         props.dispatch(fetchVideo(videoId));
         props.dispatch(fetchChannelInfo(channelId));
     }
@@ -116,7 +117,6 @@ const VideoThumbnail = (props) => {
           }
         }
       }
-
     }
 
     return (
@@ -130,7 +130,6 @@ const VideoThumbnail = (props) => {
                 </div>
             </div>
         </Link>
-
     );
 }
 

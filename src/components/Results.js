@@ -2,7 +2,6 @@ import React from 'react';
 import VideoThumbnail from './VideoThumbnail';
 import ChannelThumbnail from './ChannelThumbnail';
 import PropTypes from 'prop-types';
-import InfiniteScroll from 'react-infinite-scroller';
 import { fetchMoreSearchResults } from './../actions';
 import { connect } from 'react-redux';
 
@@ -17,7 +16,7 @@ class Results extends React.Component {
 
 	handleScroll = (searchQuery, pageToken) => {
 		let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
-		if (distanceFromBottom < 300) this.loadMore(searchQuery, pageToken)
+		if (distanceFromBottom < 300) this.loadMore(searchQuery, pageToken);
 	}
 
 	resultsStyle = {
@@ -67,6 +66,7 @@ class Results extends React.Component {
 				<div style={this.resultItemsStyle}>
 					{Object.keys(searchResults).map(function(index) {
 						if (searchResults[index].id.kind === "youtube#video") {
+
 							return <VideoThumbnail
 								key={index}
 								videoTitle={searchResults[index].snippet.title}

@@ -83,6 +83,7 @@ export function fetchChannelId(videoId) {
 }
 
 export function fetchMoreSearchResults(searchQuery, pageToken) {
+	console.log("more")
 	return function(dispatch) {
 		return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchQuery + '&maxResults=20&pageToken=' + pageToken + '&key=' + process.env.REACT_APP_API_KEY)
 			.then(
