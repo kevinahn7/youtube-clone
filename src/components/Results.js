@@ -35,7 +35,8 @@ class Results extends React.Component {
 		height: "44px",
 		display: "flex",
 		alignItems: "center",
-		marginBottom: "18px"
+		marginBottom: "17px",
+		marginTop: "1px"
 	}
 
 	filterStyle = {
