@@ -19,7 +19,6 @@ const imageStyle = {
 
 const infoStyle = {
   display: "flex",
-  flexDirection: "column",
   padding: "0 16px",
   width: "600px"
 }
