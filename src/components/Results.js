@@ -34,7 +34,8 @@ class Results extends React.Component {
 		boxShadow: "0 1px #eee",
 		height: "44px",
 		display: "flex",
-		alignItems: "center"
+		alignItems: "center",
+		marginBottom: "18px"
 	}
 
 	filterStyle = {
