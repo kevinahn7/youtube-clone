@@ -363,7 +363,6 @@ class Watch extends React.Component {
 											commentLikes={currentVideoComments.items[index].snippet.topLevelComment.snippet.likeCount}
 											commentReplies={currentVideoComments.items[index].replies} />
 									})}
-									<img src={commentLoading} style={this.commentLoadingStyle} />
 								</div>
 							</div>
 						</div>
