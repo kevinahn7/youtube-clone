@@ -48,8 +48,7 @@ class Results extends React.Component {
 
 	resultItemsStyle = {
 		display: "grid",
-		gridTemplateColumns: "1fr",
-		gridGap: "15px"
+		gridTemplateColumns: "1fr"
 	}
 
 	loadingStyle = {

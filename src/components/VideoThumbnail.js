@@ -9,7 +9,8 @@ const videoThumbnailStyle = {
   display: "grid",
   gridTemplateColumns: "246px auto",
   gridTemplateRows: "138px",
-  minWidth: "100%"
+  minWidth: "100%",
+  marginBottom: "16px"
 }
 
 const imageStyle = {
@@ -20,7 +21,8 @@ const imageStyle = {
 const infoStyle = {
   display: "flex",
   padding: "0 16px",
-  width: "600px"
+  width: "600px",
+  marginTop: "-7px"
 }
 
 const videoTitleStyle = {

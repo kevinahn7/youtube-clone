@@ -19,15 +19,15 @@ const imageContainerStyle = {
 const imageStyle = {
     width: "136px",
     borderRadius: "50%",
-    marginTop: "16px",
-    marginRight: "15px"
+    marginRight: "17px"
 }
 
 const infoStyle = {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    padding: "0 16px"
+    padding: "0 16px",
+    paddingBottom: "30px"
 }
 
 const channelTitleStyle = {
