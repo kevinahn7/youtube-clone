@@ -307,7 +307,7 @@ class Watch extends React.Component {
 					<div style={this.watchStyle}>
 						<div style={this.videoSideStyle}>
 							<div style={this.aspectRatioStyle}>
-								<iframe style={this.playerStyle} src={"\/\/www.youtube.com/embed/" + currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+								<iframe style={this.playerStyle} src={"//www.youtube.com/embed/" + currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 							</div>
 							<div style={this.videoInfoStyle}>
 								<h1 style={this.videoTitleStyle}>{currentVideo.snippet.title}</h1>
