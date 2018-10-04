@@ -11,7 +11,7 @@ class TopNav extends React.Component {
     }
 
     TopNavStyle = {
-        height: "55px",
+        height: "56px",
         padding:"0 16px",
         display: "flex",
         alignItems: "center",

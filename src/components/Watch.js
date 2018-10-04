@@ -66,7 +66,7 @@ class Watch extends React.Component {
 	}
 
 	watchContainerStyle = {
-		maxWidth: "1528px",
+		maxWidth: "1754px",
 		margin: "0 auto"
 	}
 
