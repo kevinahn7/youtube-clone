@@ -9,7 +9,6 @@ const videoThumbnailStyle = {
   display: "grid",
   gridTemplateColumns: "246px auto",
   gridTemplateRows: "138px",
-  cursor: "pointer",
   minWidth: "100%"
 }
 
@@ -21,7 +20,8 @@ const imageStyle = {
 const infoStyle = {
   display: "flex",
   flexDirection: "column",
-  padding: "0 16px"
+  padding: "0 16px",
+  width: "600px"
 }
 
 const videoTitleStyle = {
@@ -59,16 +59,18 @@ const VideoThumbnail = (props) => {
   }
 
   return (
-    <Link to={`/watch/${props.videoId}`}>
-      <div style={videoThumbnailStyle} onClick={() => handleVideoClick(props.videoId, props.channelId)}>
-        <img style={imageStyle} src={props.image} />
+      <div style={videoThumbnailStyle}>
+        <Link to={`/watch/${props.videoId}`}>
+          <img style={imageStyle} src={props.image} />
+        </Link>
         <div style={infoStyle}>
-          <span style={videoTitleStyle}>{props.videoTitle}</span>
-          <p style={videoInfoStyle}>{props.channelTitle} 10K views • {convertDate(props.publishedAt)}</p>
-          <p style={videoDescriptionStyle}>{props.videoDescription}</p>
+          <Link to={`/watch/${props.videoId}`}>
+            <span style={videoTitleStyle}>{props.videoTitle}</span>
+            <p style={videoInfoStyle}>{props.channelTitle} 10K views • {convertDate(props.publishedAt)}</p>
+            <p style={videoDescriptionStyle}>{props.videoDescription}</p>
+          </Link>
         </div>
       </div>
-    </Link>
   );
 }
 
