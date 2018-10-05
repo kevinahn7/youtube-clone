@@ -286,6 +286,7 @@ class Watch extends React.Component {
 	}
 
 	componentDidMount() {
+		window.scrollTo(0, 0);
 		let pathName = this.props.location.pathname;
 		if (pathName.substring(1,6) === "watch") {
 			this.props.dispatch(fetchVideo(pathName.slice(7, pathName.length)));

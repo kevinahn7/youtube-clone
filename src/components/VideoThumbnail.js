@@ -52,13 +52,6 @@ const videoDescriptionStyle = {
 
 const VideoThumbnail = (props) => {
 
-  const handleVideoClick = (videoId, channelId) => {
-    window.scrollTo(0, 0);
-    props.dispatch(fetchVideo(videoId));
-    props.dispatch(fetchChannelInfo(channelId));
-    props.dispatch(fetchVideoComments(videoId));
-  }
-
   return (
       <div style={videoThumbnailStyle}>
         <Link to={`/watch/${props.videoId}`}>
