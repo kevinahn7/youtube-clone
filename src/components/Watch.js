@@ -16,22 +16,30 @@ class Watch extends React.Component {
 	constructor(props) {
 		super(props)
 	}
-	width = this.props.currentVideo.player.embedWidth;
-	height = this.props.currentVideo.player.embedHeight;
-	ratio = this.height/this.width*100;
+	// width = this.props.currentVideo.player.embedWidth;
+	// height = this.props.currentVideo.player.embedHeight;
+	// ratio = this.height/this.width*100;
 
-	aspectRatioStyle = {
-		position: "relative",
-		width: "100%",
-		height: "0",
-		paddingBottom: '' + this.ratio +'%'
-	}
+	// likePercentage = (parseInt(this.props.currentVideo.statistics.likeCount)/(parseInt(this.props.currentVideo.statistics.dislikeCount) + parseInt(this.props.currentVideo.statistics.likeCount)))*100;
+
+	// aspectRatioStyle = {
+	// 	position: "relative",
+	// 	width: "100%",
+	// 	height: "0",
+	// 	paddingBottom: '' + this.ratio +'%'
+	// }
 
 	formatViews = (viewCount) => {
 		return viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
 	formatNumber = (number) => {
+		if (number > 999999) return (Math.trunc(number/100000)/10 + "M")
+		else if (number > 999) return (Math.trunc(number/100)/10 + "K");
+		else return number
+	}
+
+	formatSubscriptionNumber = (number) => {
 		if (number > 999999) return (Math.trunc(number/1000000) + "M")
 		else if (number > 999) return (Math.trunc(number/1000) + "K");
 		else return number
@@ -43,6 +51,17 @@ class Watch extends React.Component {
 			width: "100%",
 			height: "0",
 			paddingBottom: '' + this.props.currentVideo.player.embedHeight/this.props.currentVideo.player.embedWidth*100 +'%'
+		}
+	}
+
+	getLikePercentage = () => {
+		return {
+			width: '' + (parseInt(this.props.currentVideo.statistics.likeCount)/(parseInt(this.props.currentVideo.statistics.dislikeCount) + parseInt(this.props.currentVideo.statistics.likeCount)))*100 +'%',
+			position: "absolute",
+			backgroundColor: "hsla(0, 0%, 56%, 1)",
+			height: "2px",
+			marginTop: "27px",
+			zIndex: "4"
 		}
 	}
 
@@ -97,6 +116,28 @@ class Watch extends React.Component {
 		alignItems: "center",
 		color: "hsla(0, 0%, 7%, 0.6)"
 	}
+
+	likeBarContainerStyle = {
+		width: "140px",
+		position: "absolute"
+	}
+
+	likeBarBaseStyle = {
+		width: "140px",
+		position: "absolute",
+		backgroundColor: "hsla(0, 0%, 80%, 1)",
+		height: "2px",
+		marginTop: "27px"
+	}
+
+	// likeBarLikesStyle = {
+	// 	width: '' + this.likePercentage +'%',
+	// 	position: "absolute",
+	// 	backgroundColor: "black",
+	// 	height: "2px",
+	// 	marginTop: "27px",
+	// 	zIndex: "4"
+	// }
 
 	videoOptionsStyle = {
 		display: "flex",
@@ -196,12 +237,12 @@ class Watch extends React.Component {
 	}
 
 	subscribeStyle = {
-		width: "99%",
+		width: "100%",
 		height: "80%",
-		padding: "8px 13px",
+		padding: "8px 5px",
 		color: "white",
 		backgroundColor: "#ff0000",
-		fontSize: "0.82rem",
+		fontSize: "0.8rem",
 		letterSpacing: "0.4px"
 	}
 
@@ -302,6 +343,7 @@ class Watch extends React.Component {
 		let currentVideoComments = this.props.currentVideoComments;
 
 		{this.aspectRatioStyle = this.getAspectRatio()}
+		{this.likeBarLikesStyle = this.getLikePercentage()}
 		return (
 			<div style={this.watchContainerStyle}>
 				{(channelInfo && currentVideo && currentVideoComments) ?
@@ -317,11 +359,17 @@ class Watch extends React.Component {
 									<span style={this.videoOptionsStyle}>
 										<span style={this.likeDislikeStyle}><img src={thumbsUp} style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.likeCount)}</span>
 										<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.dislikeCount)}</span>
+										<div style={this.likeBarContainerStyle}>
+											<div style={this.likeBarBaseStyle}></div>
+											<div style={this.likeBarLikesStyle}></div>
+										</div>
 										<span style={this.shareOptionStyle}><img src={share} style={this.shareStyle} />SHARE</span>
 										<span style={this.saveOptionStyle}>SAVE</span>
 										<span style={this.dotsContainerStyle} ><img src={dots} style={this.dotsStyle} /></span>
 									</span>
+
 								</div>
+
 							</div>
 							<div style={this.allDescriptionStyle}>
 								<div style={this.descriptionInfoStyle}>
@@ -331,7 +379,7 @@ class Watch extends React.Component {
 										<span style={this.dateStyle}>{this.convertDate()}</span>
 									</div>
 									<div style={this.subscribeContainerStyle}>
-										<button style={this.subscribeStyle}><span style={this.subscribeTextStyle}>SUBSCRIBE {this.formatNumber(channelInfo.statistics.subscriberCount)}</span></button>
+										<button style={this.subscribeStyle}><span style={this.subscribeTextStyle}>SUBSCRIBE {this.formatSubscriptionNumber(channelInfo.statistics.subscriberCount)}</span></button>
 									</div>
 								</div>
 								<div style={this.descriptionContainerStyle}>
