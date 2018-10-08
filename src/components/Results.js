@@ -22,12 +22,18 @@ class Results extends React.Component {
 		if (distanceFromBottom < 300) this.loadMore(this.props.currentSearch.searchQuery, this.props.currentSearch.pageToken);
 	}
 
-	resultsStyle = {
-		maxWidth: "1328px",
+	resultsContainerStyle = {
 		boxSizing: "border-box",
 		width: "100%",
 		margin: "0 auto",
-		padding: "16px 24px"
+		padding: "16px 24px",
+		backgroundColor: "hsla(0, 0%, 98%, 1)"
+	}
+
+	resultsStyle = {
+		maxWidth: "1280px",
+		width: "100%",
+		margin: "0 auto"
 	}
 
 	filterContainerStyle = {
@@ -68,34 +74,35 @@ class Results extends React.Component {
 		let currentSearch = this.props.currentSearch;
 		let searchResults = currentSearch.searchResults;
 		return (
-			<div style={this.resultsStyle}>
-				<div style={this.filterContainerStyle}>
-					<p style={this.filterStyle}>FILTER</p>
+			<div style={this.resultsContainerStyle}>
+				<div style={this.resultsStyle}>
+					<div style={this.filterContainerStyle}>
+						<p style={this.filterStyle}>FILTER</p>
+					</div>
+					{(searchResults) ?
+						<div style={this.resultItemsStyle}>
+							{Object.keys(searchResults).map(function(index) {
+								if (searchResults[index].id.kind === "youtube#video") {
+									return <VideoThumbnail
+										key={index}
+										videoTitle={searchResults[index].snippet.title}
+										videoDescription={searchResults[index].snippet.description}
+										videoId={searchResults[index].id.videoId}
+										channelId={searchResults[index].snippet.channelId}
+										channelTitle={searchResults[index].snippet.channelTitle}
+										image={searchResults[index].snippet.thumbnails.medium.url}
+										publishedAt={searchResults[index].snippet.publishedAt} />
+								} else if (searchResults[index].id.kind === "youtube#channel"){
+									return <ChannelThumbnail
+										key={index}
+										channelTitle={searchResults[index].snippet.title}
+										channelDescription={searchResults[index].snippet.description}
+										channelId={searchResults[index].snippet.channelId}
+										image={searchResults[index].snippet.thumbnails.high.url} />
+								} //Add youtube playlist conditional
+							})}
+						</div> : <img src={loading} style={this.loadingStyle} />}
 				</div>
-
-				{(searchResults) ?
-					<div style={this.resultItemsStyle}>
-						{Object.keys(searchResults).map(function(index) {
-							if (searchResults[index].id.kind === "youtube#video") {
-								return <VideoThumbnail
-									key={index}
-									videoTitle={searchResults[index].snippet.title}
-									videoDescription={searchResults[index].snippet.description}
-									videoId={searchResults[index].id.videoId}
-									channelId={searchResults[index].snippet.channelId}
-									channelTitle={searchResults[index].snippet.channelTitle}
-									image={searchResults[index].snippet.thumbnails.medium.url}
-									publishedAt={searchResults[index].snippet.publishedAt} />
-							} else if (searchResults[index].id.kind === "youtube#channel"){
-								return <ChannelThumbnail
-									key={index}
-									channelTitle={searchResults[index].snippet.title}
-									channelDescription={searchResults[index].snippet.description}
-									channelId={searchResults[index].snippet.channelId}
-									image={searchResults[index].snippet.thumbnails.high.url} />
-							} //Add youtube playlist conditional
-						})}
-					</div> : <img src={loading} style={this.loadingStyle} />}
 			</div>
 		);
 	}

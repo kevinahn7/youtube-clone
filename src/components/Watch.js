@@ -86,7 +86,8 @@ class Watch extends React.Component {
 
 	watchContainerStyle = {
 		maxWidth: "1754px",
-		margin: "0 auto"
+		margin: "0 auto",
+		paddingTop: "1px"
 	}
 
 	playerStyle = {

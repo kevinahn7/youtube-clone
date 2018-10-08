@@ -19,7 +19,7 @@ const imageContainerStyle = {
 const imageStyle = {
     width: "136px",
     borderRadius: "50%",
-    marginRight: "17px"
+    marginRight: "16px"
 }
 
 const infoStyle = {
