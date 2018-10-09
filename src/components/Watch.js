@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchVideo, fetchChannelInfo, fetchChannelId, fetchVideoComments } from './../actions';
+import { fetchVideo, fetchChannelInfo, fetchChannelId, fetchVideoComments, fetchMoreVideoComments } from './../actions';
 import thumbsUp from '../assets/thumbsUp.svg';
 import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
@@ -11,10 +11,22 @@ import loading from '../assets/loading.gif';
 import commentLoading from '../assets/commentLoading.gif';
 import avatar from '../assets/avatar.png';
 import Comment from './Comment';
+import _ from 'lodash';
 
 class Watch extends React.Component {
 	constructor(props) {
 		super(props)
+		this.throttledFunction = _.throttle(this.handleScroll, 1000);
+	}
+
+	handleScroll = () => {
+		let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+		if (distanceFromBottom < 300) this.loadMore(this.props.currentVideo.id, this.props.currentVideoComments.nextPageToken);
+	}
+	
+	loadMore = (videoId, pageToken) => {
+		// this.props.dispatch(fetchMoreVideoComments(videoId, pageToken))
+		console.log("placeholder")
 	}
 
 	formatViews = (viewCount) => {
@@ -39,6 +51,7 @@ class Watch extends React.Component {
 			width: "100%",
 			height: "0",
 			paddingBottom: '' + this.props.currentVideo.player.embedHeight/this.props.currentVideo.player.embedWidth*100 +'%'
+			//maxWidth is dependant on the aspect ratio on YouTube
 		}
 	}
 
@@ -308,6 +321,7 @@ class Watch extends React.Component {
 
 	componentDidMount() {
 		window.scrollTo(0, 0);
+		window.addEventListener('scroll', this.throttledFunction);
 		let pathName = this.props.location.pathname;
 		if (pathName.substring(1,6) === "watch") {
 			this.props.dispatch(fetchVideo(pathName.slice(7, pathName.length)));
@@ -317,12 +331,15 @@ class Watch extends React.Component {
 		}
 	}
 
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.throttledFunction);
+	}
+
 	render() {
 		let currentVideo = this.props.currentVideo;
 		let channelInfo = this.props.channelInfo;
 		let currentVideoComments = this.props.currentVideoComments;
 		let pathName = this.props.location.pathname;
-
 		{this.aspectRatioStyle = this.getAspectRatio()}
 		{this.likeBarLikesStyle = this.getLikePercentage()}
 		return (
@@ -348,9 +365,7 @@ class Watch extends React.Component {
 										<span style={this.saveOptionStyle}>SAVE</span>
 										<span style={this.dotsContainerStyle} ><img src={dots} style={this.dotsStyle} /></span>
 									</span>
-
 								</div>
-
 							</div>
 							<div style={this.allDescriptionStyle}>
 								<div style={this.descriptionInfoStyle}>
@@ -367,8 +382,6 @@ class Watch extends React.Component {
 									<pre style={this.descriptionStyle}>{currentVideo.snippet.description}</pre>
 								</div>
 							</div>
-
-
 							<div id="commentSection">
 								<div id="comentsAndSortAndAddForm" style={this.preCommentStyle}>
 									<div id="commentsAndSort" style={this.commentNumberAndSortStyle}>
@@ -380,20 +393,21 @@ class Watch extends React.Component {
 										<span style={this.inputCommentStyle}><input style={this.inputStyle} type="text" placeholder="Add a public comment..."/></span>
 									</div>
 								</div>
-								<div id="comments">
-									{Object.keys(currentVideoComments.items).map(function(index) {
-										return<Comment
-											key={index}
-											channelName={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorDisplayName}
-											channelId={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorChannelId.value}
-											channelImage={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorProfileImageUrl}
-											publishedDate={currentVideoComments.items[index].snippet.topLevelComment.snippet.publishedAt}
-											commentId={currentVideoComments.items[index].id}
-											commentText={currentVideoComments.items[index].snippet.topLevelComment.snippet.textDisplay}
-											commentLikes={currentVideoComments.items[index].snippet.topLevelComment.snippet.likeCount}
-											commentReplies={currentVideoComments.items[index].replies} />
-									})}
-								</div>
+								{(currentVideoComments.items) ? 
+									<div id="comments">
+										{Object.keys(currentVideoComments.items).map(function(index) {
+											return<Comment
+												key={index}
+												channelName={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorDisplayName}
+												channelId={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorChannelId.value}
+												channelImage={currentVideoComments.items[index].snippet.topLevelComment.snippet.authorProfileImageUrl}
+												publishedDate={currentVideoComments.items[index].snippet.topLevelComment.snippet.publishedAt}
+												commentId={currentVideoComments.items[index].id}
+												commentText={currentVideoComments.items[index].snippet.topLevelComment.snippet.textDisplay}
+												commentLikes={currentVideoComments.items[index].snippet.topLevelComment.snippet.likeCount}
+												commentReplies={currentVideoComments.items[index].replies} />
+										})}
+									</div> : <img src={commentLoading} />}
 							</div>
 						</div>
 

@@ -32,11 +32,18 @@ const currentVideo = ( state = initialState, action ) => {
 			})
 			return newState;
 		case types.RECEIVE_VIDEO_COMMENTS:
+			console.log(state)
 			newState = Object.assign({}, state, {
 				isFetching: false,
 				comments: action.comments
 			})
 			return newState;
+		// case types.RECEIVE_MORE_COMMENTS:
+		// 	console.log(state)
+		// 	newState = Object.assign({}, state, state.comments, {
+		// 		items: state.comments.items.concat(action.newComments.items)
+		// 	})
+		// 	return newState;
 		default:
 			return state;
 	}
