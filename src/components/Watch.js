@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchSearchResult, fetchVideo, fetchChannelInfo, fetchChannelId, fetchVideoComments } from './../actions';
+import { fetchVideo, fetchChannelInfo, fetchChannelId, fetchVideoComments } from './../actions';
 import thumbsUp from '../assets/thumbsUp.svg';
 import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
