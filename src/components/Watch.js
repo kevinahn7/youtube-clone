@@ -16,18 +16,6 @@ class Watch extends React.Component {
 	constructor(props) {
 		super(props)
 	}
-	// width = this.props.currentVideo.player.embedWidth;
-	// height = this.props.currentVideo.player.embedHeight;
-	// ratio = this.height/this.width*100;
-
-	// likePercentage = (parseInt(this.props.currentVideo.statistics.likeCount)/(parseInt(this.props.currentVideo.statistics.dislikeCount) + parseInt(this.props.currentVideo.statistics.likeCount)))*100;
-
-	// aspectRatioStyle = {
-	// 	position: "relative",
-	// 	width: "100%",
-	// 	height: "0",
-	// 	paddingBottom: '' + this.ratio +'%'
-	// }
 
 	formatViews = (viewCount) => {
 		return viewCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -130,15 +118,6 @@ class Watch extends React.Component {
 		height: "2px",
 		marginTop: "27px"
 	}
-
-	// likeBarLikesStyle = {
-	// 	width: '' + this.likePercentage +'%',
-	// 	position: "absolute",
-	// 	backgroundColor: "black",
-	// 	height: "2px",
-	// 	marginTop: "27px",
-	// 	zIndex: "4"
-	// }
 
 	videoOptionsStyle = {
 		display: "flex",
@@ -342,6 +321,7 @@ class Watch extends React.Component {
 		let currentVideo = this.props.currentVideo;
 		let channelInfo = this.props.channelInfo;
 		let currentVideoComments = this.props.currentVideoComments;
+		let pathName = this.props.location.pathname;
 
 		{this.aspectRatioStyle = this.getAspectRatio()}
 		{this.likeBarLikesStyle = this.getLikePercentage()}
@@ -351,7 +331,7 @@ class Watch extends React.Component {
 					<div style={this.watchStyle}>
 						<div style={this.videoSideStyle}>
 							<div style={this.aspectRatioStyle}>
-								<iframe style={this.playerStyle} src={"//www.youtube.com/embed/" + currentVideo.id+ "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+								<iframe style={this.playerStyle} src={"//www.youtube.com/embed/" + pathName.slice(7, pathName.length) + "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 							</div>
 							<div style={this.videoInfoStyle}>
 								<h1 style={this.videoTitleStyle}>{currentVideo.snippet.title}</h1>
