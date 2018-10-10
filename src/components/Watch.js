@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchVideo, fetchChannelInfo, fetchChannelId, fetchVideoComments, fetchMoreVideoComments } from './../actions';
-import thumbsUp from '../assets/thumbsUp.svg';
-import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
 import loading from '../assets/loading.gif';
 import avatar from '../assets/avatar.png';
@@ -13,6 +11,8 @@ import _ from 'lodash';
 import MoreHoriz from "@material-ui/icons/MoreHoriz";
 import Sort from "@material-ui/icons/Sort";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
+import ThumbDown from "@material-ui/icons/ThumbDown";
+import ThumbUp from "@material-ui/icons/ThumbUp";
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -145,9 +145,10 @@ class Watch extends React.Component {
 	}
 
 	thumbsStyle = {
-		opacity: "0.4",
-		width: "23px",
-		paddingRight: "8px"
+		opacity: "0.8",
+		width: "20px",
+		height: "20px",
+		padding: "8px"
 	}
 
 	shareStyle = {
@@ -355,8 +356,8 @@ class Watch extends React.Component {
 								<div style={this.videoInfoStatsStyle}>
 									<span>{this.formatViews(currentVideo.statistics.viewCount)} views</span>
 									<span style={this.videoOptionsStyle}>
-										<span style={this.likeDislikeStyle}><img src={thumbsUp} style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.likeCount)}</span>
-										<span style={this.likeDislikeStyle}><img src={thumbsDown} style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.dislikeCount)}</span>
+										<span style={this.likeDislikeStyle}><ThumbUp style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.likeCount)}</span>
+										<span style={this.likeDislikeStyle}><ThumbDown style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.dislikeCount)}</span>
 										<div style={this.likeBarContainerStyle}>
 											<div style={this.likeBarBaseStyle}></div>
 											<div style={this.likeBarLikesStyle}></div>

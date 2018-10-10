@@ -1,9 +1,9 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchSearchResult, fetchVideo } from './../actions';
+import { fetchSearchResult } from './../actions';
 import youtubeLogo from '../assets/youtube-logo.png';
-import search from '../assets/search.png';
+import Search from "@material-ui/icons/Search";
 
 class TopNav extends React.Component {
     constructor(props) {
@@ -37,8 +37,8 @@ class TopNav extends React.Component {
     }
 
     searchIcon = {
-        height: "15px",
-        paddingTop: "2px",
+        height: "20px",
+        width: "20px",
         opacity: "0.5"
     }
 
@@ -91,7 +91,7 @@ class TopNav extends React.Component {
                 <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
                 <form style={this.searchForm} onSubmit={this.handleSearch}>
                     <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
-                    <button type="submit" style={this.buttonStyle}><img src={search} alt="Search logo" style={this.searchIcon} /></button>
+                    <button type="submit" style={this.buttonStyle}><Search alt="Search logo" style={this.searchIcon} /></button>
                 </form>
                 <a style={this.linkStyle}><p>Sign In</p></a>
             </div>
