@@ -318,6 +318,7 @@ class Watch extends React.Component {
 	}
 
 	componentDidMount() {
+		window.scrollTo(0, 0);
 		window.addEventListener('scroll', this.throttledFunction);
 		let pathName = this.props.location.pathname;
 		if (pathName.substring(1,6) === "watch") {
@@ -325,7 +326,6 @@ class Watch extends React.Component {
 			let getChannelByVideoId=fetchChannelId(pathName.slice(7, pathName.length));
 			getChannelByVideoId().then((json)=>{this.props.dispatch(fetchChannelInfo(json.items[0].snippet.channelId))});
 			this.props.dispatch(fetchVideoComments(pathName.slice(7, pathName.length)));
-			window.scrollTo(0, 0);
 		}
 	}
 
