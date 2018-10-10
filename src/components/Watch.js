@@ -13,6 +13,8 @@ import Sort from "@material-ui/icons/Sort";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import ThumbDown from "@material-ui/icons/ThumbDown";
 import ThumbUp from "@material-ui/icons/ThumbUp";
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -160,13 +162,24 @@ class Watch extends React.Component {
 	playlistAddStyle = {
 		height: "20px",
 		width: "20px",
-		padding: "8px"
+		opacity: "0.7"
+	}
+
+	smallIconButtonStyle = {
+		height: "36px",
+		width: "36px",
+		padding: "0"
+	}
+
+	largeIconButtonStyle = {
+		width: "40px",
+		height: "40px",
+		padding: "0"
 	}
 
 	dotsStyle = {
-		width: "27px",
-		padding: "8px",
-		height: "27px",
+		width: "24px",
+		height: "24px",
 		opacity: "0.7"
 	}
 
@@ -226,15 +239,12 @@ class Watch extends React.Component {
 	subscribeStyle = {
 		width: "100%",
 		height: "80%",
-		padding: "8px 5px",
+		padding: "10px",
 		color: "white",
 		backgroundColor: "#ff0000",
-		fontSize: "0.8rem",
-		letterSpacing: "0.4px"
-	}
-
-	subscribeTextStyle = {
-		height: "16px"
+		fontSize: "0.9rem",
+		letterSpacing: "0.4px",
+		borderRadius: "3%"
 	}
 
 	descriptionContainerStyle = {
@@ -356,15 +366,15 @@ class Watch extends React.Component {
 								<div style={this.videoInfoStatsStyle}>
 									<span>{this.formatViews(currentVideo.statistics.viewCount)} views</span>
 									<span style={this.videoOptionsStyle}>
-										<span style={this.likeDislikeStyle}><ThumbUp style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.likeCount)}</span>
-										<span style={this.likeDislikeStyle}><ThumbDown style={this.thumbsStyle} /> {this.formatNumber(currentVideo.statistics.dislikeCount)}</span>
+										<span style={this.likeDislikeStyle}><IconButton style={this.smallIconButtonStyle}><ThumbUp style={this.thumbsStyle} /></IconButton> {this.formatNumber(currentVideo.statistics.likeCount)}</span>
+										<span style={this.likeDislikeStyle}><IconButton style={this.smallIconButtonStyle}><ThumbDown style={this.thumbsStyle} /></IconButton> {this.formatNumber(currentVideo.statistics.dislikeCount)}</span>
 										<div style={this.likeBarContainerStyle}>
 											<div style={this.likeBarBaseStyle}></div>
 											<div style={this.likeBarLikesStyle}></div>
 										</div>
-										<span style={this.shareOptionStyle}><img src={share} style={this.shareStyle} />SHARE</span>
-										<PlaylistAdd style={this.playlistAddStyle}/>
-										<MoreHoriz style={this.dotsStyle} />
+										<span style={this.shareOptionStyle}><IconButton style={this.smallIconButtonStyle}><img src={share} style={this.shareStyle} /></IconButton>SHARE</span>
+										<IconButton style={this.smallIconButtonStyle}><PlaylistAdd style={this.playlistAddStyle}/></IconButton>
+										<IconButton style={this.largeIconButtonStyle}><MoreHoriz style={this.dotsStyle} /></IconButton>
 									</span>
 								</div>
 							</div>
@@ -376,7 +386,7 @@ class Watch extends React.Component {
 										<span style={this.dateStyle}>{this.convertDate()}</span>
 									</div>
 									<div style={this.subscribeContainerStyle}>
-										<button style={this.subscribeStyle}><span style={this.subscribeTextStyle}>SUBSCRIBE {this.formatSubscriptionNumber(channelInfo.statistics.subscriberCount)}</span></button>
+										<Button style={this.subscribeStyle}>SUBSCRIBE {this.formatSubscriptionNumber(channelInfo.statistics.subscriberCount)}</Button>
 									</div>
 								</div>
 								<div style={this.descriptionContainerStyle}>
