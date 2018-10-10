@@ -15,6 +15,8 @@ import ThumbDown from "@material-ui/icons/ThumbDown";
 import ThumbUp from "@material-ui/icons/ThumbUp";
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+import Fade from '@material-ui/core/Fade';
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -63,7 +65,7 @@ class Watch extends React.Component {
 			position: "absolute",
 			backgroundColor: "hsla(0, 0%, 56%, 1)",
 			height: "2px",
-			marginTop: "27px",
+			marginTop: "23px",
 			zIndex: "4"
 		}
 	}
@@ -102,7 +104,7 @@ class Watch extends React.Component {
 	}
 
 	videoInfoStyle = {
-		padding: "20px 0 8px 0",
+		padding: "20px 0 4px 0",
 		borderBottom: " 1px solid hsl(0, 0%, 93%)"
 	}
 
@@ -131,7 +133,7 @@ class Watch extends React.Component {
 		position: "absolute",
 		backgroundColor: "hsla(0, 0%, 80%, 1)",
 		height: "2px",
-		marginTop: "27px"
+		marginTop: "23px"
 	}
 
 	videoOptionsStyle = {
@@ -178,9 +180,11 @@ class Watch extends React.Component {
 	}
 
 	dotsStyle = {
-		width: "24px",
-		height: "24px",
-		opacity: "0.7"
+		width: "26px",
+		height: "26px",
+		opacity: "0.7",
+		marginLeft: "20px",
+		marginRight: "16px"
 	}
 
 	shareOptionStyle = {
@@ -190,7 +194,8 @@ class Watch extends React.Component {
 		display: "flex",
 		alignItems: "center",
 		fontWeight: "1000",
-		color: "hsla(0, 0%, 6.7%, 0.4)"
+		color: "hsla(0, 0%, 6.7%, 0.4)",
+		cursor: "pointer"
 	}
 
 	channelThumbnailStyle = {
@@ -366,14 +371,22 @@ class Watch extends React.Component {
 								<div style={this.videoInfoStatsStyle}>
 									<span>{this.formatViews(currentVideo.statistics.viewCount)} views</span>
 									<span style={this.videoOptionsStyle}>
-										<span style={this.likeDislikeStyle}><IconButton style={this.smallIconButtonStyle}><ThumbUp style={this.thumbsStyle} /></IconButton> {this.formatNumber(currentVideo.statistics.likeCount)}</span>
-										<span style={this.likeDislikeStyle}><IconButton style={this.smallIconButtonStyle}><ThumbDown style={this.thumbsStyle} /></IconButton> {this.formatNumber(currentVideo.statistics.dislikeCount)}</span>
+										<Tooltip title="I like this" enterDelay={500} TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
+											<span style={this.likeDislikeStyle}><IconButton style={this.smallIconButtonStyle}><ThumbUp style={this.thumbsStyle} /></IconButton> {this.formatNumber(currentVideo.statistics.likeCount)}</span>
+										</Tooltip>
+										<Tooltip title="I dislike this" enterDelay={500} TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
+											<span style={this.likeDislikeStyle}><IconButton style={this.smallIconButtonStyle}><ThumbDown style={this.thumbsStyle} /></IconButton> {this.formatNumber(currentVideo.statistics.dislikeCount)}</span>
+										</Tooltip>
 										<div style={this.likeBarContainerStyle}>
 											<div style={this.likeBarBaseStyle}></div>
 											<div style={this.likeBarLikesStyle}></div>
 										</div>
-										<span style={this.shareOptionStyle}><IconButton style={this.smallIconButtonStyle}><img src={share} style={this.shareStyle} /></IconButton>SHARE</span>
-										<IconButton style={this.smallIconButtonStyle}><PlaylistAdd style={this.playlistAddStyle}/></IconButton>
+										<Tooltip title="Share" enterDelay={500} TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
+											<span style={this.shareOptionStyle}><IconButton style={this.smallIconButtonStyle}><img src={share} style={this.shareStyle} /></IconButton>SHARE</span>
+										</Tooltip>
+										<Tooltip title="Save to" enterDelay={500} TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
+											<IconButton style={this.smallIconButtonStyle}><PlaylistAdd style={this.playlistAddStyle}/></IconButton>
+										</Tooltip>
 										<IconButton style={this.largeIconButtonStyle}><MoreHoriz style={this.dotsStyle} /></IconButton>
 									</span>
 								</div>
