@@ -125,20 +125,20 @@ export const receiveVideoComments = (comments) => ({
 	comments
 });
 
-// export function fetchMoreVideoComments(videoId, pageToken) {
-// 	return function(dispatch) {
-// 		return fetch('https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=' + videoId + '&pageToken=' + pageToken + '&key=' + process.env.REACT_APP_API_KEY)
-// 			.then(
-// 				response => response.json(),
-// 				error => console.log('An error occured.', error)
-// 			).then(function(json) {
-// 				let newComments = json;
-// 				dispatch(receiveMoreComments(newComments));
-// 			})
-// 	}
-// };
+export function fetchMoreVideoComments(videoId, pageToken) {
+	return function(dispatch) {
+		return fetch('https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=' + videoId + '&pageToken=' + pageToken + '&key=' + process.env.REACT_APP_API_KEY)
+			.then(
+				response => response.json(),
+				error => console.log('An error occured.', error)
+			).then(function(json) {
+				let newComments = json;
+				if (newComments.items) dispatch(receiveMoreComments(newComments));
+			})
+	}
+};
 
-// export const receiveMoreComments = (newComments) => ({
-// 	type: types.RECEIVE_MORE_COMMENTS,
-// 	newComments
-// });
+export const receiveMoreComments = (newComments) => ({
+	type: types.RECEIVE_MORE_COMMENTS,
+	newComments
+});

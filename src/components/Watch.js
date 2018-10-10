@@ -8,7 +8,6 @@ import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
 import dots from '../assets/dots.svg';
 import loading from '../assets/loading.gif';
-import commentLoading from '../assets/commentLoading.gif';
 import avatar from '../assets/avatar.png';
 import Comment from './Comment';
 import _ from 'lodash';
@@ -25,8 +24,7 @@ class Watch extends React.Component {
 	}
 	
 	loadMore = (videoId, pageToken) => {
-		// this.props.dispatch(fetchMoreVideoComments(videoId, pageToken))
-		console.log("placeholder")
+		this.props.dispatch(fetchMoreVideoComments(videoId, pageToken));
 	}
 
 	formatViews = (viewCount) => {
@@ -34,13 +32,13 @@ class Watch extends React.Component {
 	}
 
 	formatNumber = (number) => {
-		if (number > 999999) return (Math.trunc(number/100000)/10 + "M")
+		if (number > 999999) return (Math.trunc(number/100000)/10 + "M");
 		else if (number > 999) return (Math.trunc(number/100)/10 + "K");
 		else return number
 	}
 
 	formatSubscriptionNumber = (number) => {
-		if (number > 999999) return (Math.trunc(number/1000000) + "M")
+		if (number > 999999) return (Math.trunc(number/1000000) + "M");
 		else if (number > 999) return (Math.trunc(number/1000) + "K");
 		else return number
 	}
@@ -320,7 +318,6 @@ class Watch extends React.Component {
 	}
 
 	componentDidMount() {
-		window.scrollTo(0, 0);
 		window.addEventListener('scroll', this.throttledFunction);
 		let pathName = this.props.location.pathname;
 		if (pathName.substring(1,6) === "watch") {
@@ -328,6 +325,7 @@ class Watch extends React.Component {
 			let getChannelByVideoId=fetchChannelId(pathName.slice(7, pathName.length));
 			getChannelByVideoId().then((json)=>{this.props.dispatch(fetchChannelInfo(json.items[0].snippet.channelId))});
 			this.props.dispatch(fetchVideoComments(pathName.slice(7, pathName.length)));
+			window.scrollTo(0, 0);
 		}
 	}
 
@@ -407,7 +405,7 @@ class Watch extends React.Component {
 												commentLikes={currentVideoComments.items[index].snippet.topLevelComment.snippet.likeCount}
 												commentReplies={currentVideoComments.items[index].replies} />
 										})}
-									</div> : <img src={commentLoading} />}
+									</div> : <div></div>}
 							</div>
 						</div>
 

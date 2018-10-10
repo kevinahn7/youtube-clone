@@ -52,12 +52,18 @@ const videoDescriptionStyle = {
 
 const VideoThumbnail = (props) => {
 
+  const handleVideoClick = (videoId, channelId) => {
+    props.dispatch(fetchVideo(videoId));
+    props.dispatch(fetchChannelInfo(channelId));
+    props.dispatch(fetchVideoComments(videoId));
+  }
+
   return (
       <div style={videoThumbnailStyle}>
         <Link to={`/watch/${props.videoId}`}>
-          <img style={imageStyle} src={props.image} />
+          <img style={imageStyle} src={props.image} onClick={() => handleVideoClick(props.videoId, props.channelId)} />
         </Link>
-        <div style={infoStyle}>
+        <div style={infoStyle} onClick={() => handleVideoClick(props.videoId, props.channelId)}>
           <Link to={`/watch/${props.videoId}`}>
             <span style={videoTitleStyle}>{props.videoTitle}</span>
             <p style={videoInfoStyle}>{props.channelTitle} 10K views • {convertDate(props.publishedAt)}</p>
