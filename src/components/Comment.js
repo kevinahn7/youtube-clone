@@ -60,7 +60,8 @@ const likeStyle = {
 }
 
 const replyButtonStyle = {
-  padding: "8px 16px"
+  padding: "8px 16px",
+  fontSize: "0.8rem"
 }
 
 const viewReplyContainerStyle = {
@@ -70,10 +71,22 @@ const viewReplyContainerStyle = {
 const viewReplyStyle = {
   paddingLeft: "56px",
   fontSize: "0.85rem",
-  fontWeight: "1000"
+  fontWeight: "1000",
+  cursor: "pointer"
 }
 
 const Comment = (props) => {
+
+  const getReplyText = () => {
+    let replyLength = props.commentReplies.comments.length;
+    if (replyLength === 1) return "View 1 Reply";
+    else return "View " + replyLength + " Replies";
+  }
+
+  const hello = () => {
+    console.log("hello")
+  }
+
   return (
     <div style={commentStyle}>
       <div style={commentInfoStyle}>
@@ -96,9 +109,11 @@ const Comment = (props) => {
           </div>
         </div>
       </div>
-      <div style={viewReplyContainerStyle}>
-        <span style={viewReplyStyle}>View Reply</span>
-      </div>
+      {(props.commentReplies) ? 
+        <div style={viewReplyContainerStyle}>
+          <span style={viewReplyStyle} onClick={hello()}>{getReplyText()}</span>
+        </div> : <div></div>}
+
     </div>
   )
 }
