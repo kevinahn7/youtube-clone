@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import thumbsUp from '../assets/thumbsUp.svg';
-import thumbsDown from '../assets/thumbsDown.svg';
 import convertDate from '../methods/convertDate';
+import KeyboardArrowDown from "@material-ui/icons/KeyboardArrowDown";
+import ThumbDown from "@material-ui/icons/ThumbDown";
+import ThumbUp from "@material-ui/icons/ThumbUp";
 
 const commentStyle = {
   marginBottom: "25px"
@@ -49,9 +50,9 @@ const commentOptionsStyle = {
 }
 
 const thumbStyle = {
-  width: "20px",
-  paddingRight: "6px",
-  opacity: "0.4"
+  width: "16px",
+  height: "16px",
+  paddingRight: "6px"
 }
 
 const likeStyle = {
@@ -72,7 +73,14 @@ const viewReplyStyle = {
   paddingLeft: "56px",
   fontSize: "0.85rem",
   fontWeight: "1000",
-  cursor: "pointer"
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center"
+}
+
+const arrowStyle = {
+  height: "20px",
+  width: "20px"
 }
 
 const Comment = (props) => {
@@ -102,18 +110,17 @@ const Comment = (props) => {
             <span style={commentTextStyle}>{props.commentText}</span>
           </div>
           <div style={commentOptionsStyle}>
-            <img src={thumbsUp} style={thumbStyle} />
+            <ThumbUp style={thumbStyle} />
             <span style={likeStyle}>{props.commentLikes}</span>
-            <img src={thumbsDown} style={thumbStyle} />
+            <ThumbDown style={thumbStyle} />
             <span style={replyButtonStyle}>REPLY</span>
           </div>
         </div>
       </div>
       {(props.commentReplies) ? 
         <div style={viewReplyContainerStyle}>
-          <span style={viewReplyStyle} onClick={() => hello()}>{getReplyText()}</span>
+          <span style={viewReplyStyle} onClick={() => hello()}>{getReplyText()} <KeyboardArrowDown style={arrowStyle}/></span>
         </div> : <div></div>}
-
     </div>
   )
 }

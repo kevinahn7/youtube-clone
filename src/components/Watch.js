@@ -6,11 +6,13 @@ import { fetchVideo, fetchChannelInfo, fetchChannelId, fetchVideoComments, fetch
 import thumbsUp from '../assets/thumbsUp.svg';
 import thumbsDown from '../assets/thumbsDown.svg';
 import share from '../assets/share.svg';
-import dots from '../assets/dots.svg';
 import loading from '../assets/loading.gif';
 import avatar from '../assets/avatar.png';
 import Comment from './Comment';
 import _ from 'lodash';
+import MoreHoriz from "@material-ui/icons/MoreHoriz";
+import Sort from "@material-ui/icons/Sort";
+import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 
 class Watch extends React.Component {
 	constructor(props) {
@@ -154,15 +156,17 @@ class Watch extends React.Component {
 		padding: "8px"
 	}
 
-	dotsStyle = {
-		opacity: "0.4",
-		width: "24px",
-		padding: "8px",
-		height: "24px"
+	playlistAddStyle = {
+		height: "20px",
+		width: "20px",
+		padding: "8px"
 	}
 
-	dotsContainerStyle = {
-		height: "40px"
+	dotsStyle = {
+		width: "27px",
+		padding: "8px",
+		height: "27px",
+		opacity: "0.7"
 	}
 
 	shareOptionStyle = {
@@ -172,15 +176,6 @@ class Watch extends React.Component {
 		display: "flex",
 		alignItems: "center",
 		fontWeight: "1000",
-		color: "hsla(0, 0%, 6.7%, 0.4)"
-	}
-
-	saveOptionStyle = {
-		padding: "0 8px",
-		fontSize: "0.8rem",
-		height: "22px",
-		display: "flex",
-		alignItems: "center",
 		color: "hsla(0, 0%, 6.7%, 0.4)"
 	}
 
@@ -262,11 +257,18 @@ class Watch extends React.Component {
 	}
 
 	commentNumberAndSortStyle = {
-		marginBottom: "24px"
+		marginBottom: "24px",
+		display: "flex",
+		alignItems: "center"
 	}
 
 	commentNumberStyle = {
 		marginRight: "30px"
+	}
+
+	sortIconStyle = {
+		marginRight: "8px",
+		opacity: "0.5"
 	}
 
 	sortByStyle = {
@@ -360,8 +362,8 @@ class Watch extends React.Component {
 											<div style={this.likeBarLikesStyle}></div>
 										</div>
 										<span style={this.shareOptionStyle}><img src={share} style={this.shareStyle} />SHARE</span>
-										<span style={this.saveOptionStyle}>SAVE</span>
-										<span style={this.dotsContainerStyle} ><img src={dots} style={this.dotsStyle} /></span>
+										<PlaylistAdd style={this.playlistAddStyle}/>
+										<MoreHoriz style={this.dotsStyle} />
 									</span>
 								</div>
 							</div>
@@ -384,6 +386,7 @@ class Watch extends React.Component {
 								<div id="comentsAndSortAndAddForm" style={this.preCommentStyle}>
 									<div id="commentsAndSort" style={this.commentNumberAndSortStyle}>
 										<span style={this.commentNumberStyle}>{this.formatViews(currentVideo.statistics.commentCount)} Comments</span>
+										<Sort style={this.sortIconStyle}/>
 										<span style={this.sortByStyle}>SORT BY</span>
 									</div>
 									<div style={this.inputCommentFormStyle}>
