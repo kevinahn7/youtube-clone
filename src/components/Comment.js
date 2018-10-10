@@ -111,7 +111,7 @@ const Comment = (props) => {
       </div>
       {(props.commentReplies) ? 
         <div style={viewReplyContainerStyle}>
-          <span style={viewReplyStyle} onClick={hello()}>{getReplyText()}</span>
+          <span style={viewReplyStyle} onClick={() => hello()}>{getReplyText()}</span>
         </div> : <div></div>}
 
     </div>
