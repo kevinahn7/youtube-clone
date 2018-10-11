@@ -6,6 +6,8 @@ import { fetchMoreSearchResults } from './../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import loading from '../assets/loading.gif';
+import Tune from "@material-ui/icons/Tune";
+import Button from '@material-ui/core/Button';
 
 class Results extends React.Component {
 	constructor(props) {
@@ -42,14 +44,22 @@ class Results extends React.Component {
 		display: "flex",
 		alignItems: "center",
 		marginBottom: "17px",
-		marginTop: "1px"
+		marginTop: "1px",
+		opacity: "0.6"
+	}
+
+	filterButtonStyle = {
+		padding: "10px 17px",
+		position: "relative",
+		left: "-17px"
 	}
 
 	filterStyle = {
 		margin: "0",
-		padding: "10px 16px",
-		fontSize: ".9rem",
-		color: "black"
+		marginLeft: "8px",
+		fontSize: ".86rem",
+		color: "black",
+		fontWeight: "500"
 	}
 
 	resultItemsStyle = {
@@ -77,7 +87,10 @@ class Results extends React.Component {
 			<div style={this.resultsContainerStyle}>
 				<div style={this.resultsStyle}>
 					<div style={this.filterContainerStyle}>
-						<p style={this.filterStyle}>FILTER</p>
+						<Button style={this.filterButtonStyle}>
+							<Tune />
+							<span style={this.filterStyle}>FILTER</span>
+						</Button>
 					</div>
 					{(searchResults) ?
 						<div style={this.resultItemsStyle}>
