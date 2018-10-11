@@ -80,7 +80,7 @@ class TopNav extends React.Component {
 
     signInStyle = {
         fontSize: "0.87rem",
-        fontWeight: "600",
+        fontWeight: "500",
         color: "#2793e6",
         marginLeft: "4px"
     }
