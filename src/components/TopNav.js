@@ -69,6 +69,11 @@ class TopNav extends React.Component {
         boxSizing: "border-box"
     }
 
+    iconButtonStyle = {
+      padding: "8px",
+      margin: "4px"
+    }
+
     iconStyle = {
         opacity: "0.7"
     }
@@ -107,9 +112,9 @@ class TopNav extends React.Component {
                     <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
                     <button type="submit" style={this.buttonStyle}><Search alt="Search logo" style={this.searchIcon} /></button>
                 </form>
-                <IconButton ><VideoCall style={this.iconStyle}/></IconButton>
-                <IconButton ><Apps style={this.iconStyle}/></IconButton>
-                <IconButton ><MoreVert style={this.iconStyle}/></IconButton>
+                <IconButton style={this.iconButtonStyle}><VideoCall style={this.iconStyle}/></IconButton>
+                <IconButton style={this.iconButtonStyle}><Apps style={this.iconStyle}/></IconButton>
+                <IconButton style={this.iconButtonStyle}><MoreVert style={this.iconStyle}/></IconButton>
                 <Button><span style={this.signInStyle}>SIGN IN</span></Button>
             </div>
         )
