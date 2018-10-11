@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchVideo, fetchChannelInfo, fetchChannelId, fetchVideoComments, fetchMoreVideoComments } from './../actions';
-import share from '../assets/share.svg';
 import loading from '../assets/loading.gif';
 import avatar from '../assets/avatar.png';
 import Comment from './Comment';
@@ -13,6 +12,7 @@ import Sort from "@material-ui/icons/Sort";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import ThumbDown from "@material-ui/icons/ThumbDown";
 import ThumbUp from "@material-ui/icons/ThumbUp";
+import Reply from "@material-ui/icons/Reply";
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -28,7 +28,7 @@ class Watch extends React.Component {
 		let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
 		if (distanceFromBottom < 300) this.loadMore(this.props.currentVideo.id, this.props.currentVideoComments.nextPageToken);
 	}
-	
+
 	loadMore = (videoId, pageToken) => {
 		this.props.dispatch(fetchMoreVideoComments(videoId, pageToken));
 	}
@@ -156,9 +156,10 @@ class Watch extends React.Component {
 	}
 
 	shareStyle = {
-		opacity: "0.4",
+		opacity: "0.7",
 		width: "20px",
-		padding: "8px"
+		height: "20px",
+		transform: "scaleX(-1)"
 	}
 
 	playlistAddStyle = {
@@ -382,7 +383,7 @@ class Watch extends React.Component {
 											<div style={this.likeBarLikesStyle}></div>
 										</div>
 										<Tooltip title="Share" enterDelay={500} TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
-											<span style={this.shareOptionStyle}><IconButton style={this.smallIconButtonStyle}><img src={share} style={this.shareStyle} /></IconButton>SHARE</span>
+											<span style={this.shareOptionStyle}><IconButton style={this.smallIconButtonStyle}><Reply style={this.shareStyle} /></IconButton>SHARE</span>
 										</Tooltip>
 										<Tooltip title="Save to" enterDelay={500} TransitionComponent={Fade} TransitionProps={{ timeout: 600 }}>
 											<IconButton style={this.smallIconButtonStyle}><PlaylistAdd style={this.playlistAddStyle}/></IconButton>
@@ -418,7 +419,7 @@ class Watch extends React.Component {
 										<span style={this.inputCommentStyle}><input style={this.inputStyle} type="text" placeholder="Add a public comment..."/></span>
 									</div>
 								</div>
-								{(currentVideoComments.items) ? 
+								{(currentVideoComments.items) ?
 									<div id="comments">
 										{Object.keys(currentVideoComments.items).map(function(index) {
 											return<Comment
