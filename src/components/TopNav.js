@@ -17,7 +17,7 @@ class TopNav extends React.Component {
         super(props)
     }
     state = {
-      left: false
+      tempLeft: false
     }
 
     TopNavStyle = {
@@ -33,10 +33,16 @@ class TopNav extends React.Component {
         zIndex: "4"
     }
 
+    sideListButtonStyle = {
+      padding: "8px",
+      marginRight: "16px",
+      opacity: "0.7"
+    }
+
     imageStyle = {
-        height: "40px",
-        marginTop: "7px",
-        marginLeft: "10px"
+        height: "38px",
+        marginTop: "5px",
+        paddingRight: "51px"
     }
 
     searchForm = {
@@ -49,7 +55,9 @@ class TopNav extends React.Component {
     searchIcon = {
         height: "20px",
         width: "20px",
-        opacity: "0.5"
+        opacity: "0.5",
+        paddingTop: "3px",
+        paddingLeft: "2px"
     }
 
     inputStyle = {
@@ -59,15 +67,18 @@ class TopNav extends React.Component {
         padding: "0",
         border: "lightgray 1px solid",
         borderRight: "none",
-        fontSize: "16px",
-        paddingLeft: "9px",
-        boxSizing: "border-box"
+        fontSize: "15.5px",
+        paddingLeft: "11px",
+        boxSizing: "border-box",
+        fontWeight: "400",
+        paddingBottom: "3px",
+        letterSpacing: "0.5px"
     }
 
     buttonStyle = {
         boxSizing: "content-box",
         height: "32px",
-        width: "70px",
+        width: "65px",
         backgroundColor: "#f8f8f8",
         border: "lightgray 1px solid",
         cursor: "pointer",
@@ -124,14 +135,13 @@ class TopNav extends React.Component {
 
         return (
             <div style={this.TopNavStyle}>
-                <IconButton onClick={this.toggleDrawer('left', true)}><Menu /></IconButton>
-                <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+                <IconButton onClick={this.toggleDrawer('tempLeft', true)} style={this.sideListButtonStyle}><Menu /></IconButton>
+                <Drawer open={this.state.tempLeft} onClose={this.toggleDrawer('tempLeft', false)}>
                   <div
                     tabIndex={0}
                     role="button"
-                    onClick={this.toggleDrawer('left', false)}
-                    onKeyDown={this.toggleDrawer('left', false)}
-                  >
+                    onClick={this.toggleDrawer('tempLeft', false)}
+                    onKeyDown={this.toggleDrawer('tempLeft', false)}>
                     {sideList}
                   </div>
                 </Drawer>
