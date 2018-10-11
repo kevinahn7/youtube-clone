@@ -7,12 +7,17 @@ import Search from "@material-ui/icons/Search";
 import VideoCall from "@material-ui/icons/VideoCall";
 import MoreVert from "@material-ui/icons/MoreVert";
 import Apps from "@material-ui/icons/Apps";
+import Menu from "@material-ui/icons/Menu";
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Drawer from '@material-ui/core/Drawer';
 
 class TopNav extends React.Component {
     constructor(props) {
         super(props)
+    }
+    state = {
+      left: false
     }
 
     TopNavStyle = {
@@ -85,6 +90,12 @@ class TopNav extends React.Component {
         marginLeft: "4px"
     }
 
+    toggleDrawer = (side, open) => () => {
+      this.setState({
+        [side]: open,
+      });
+    };
+
     handleSearch = (event) => {
         event.preventDefault();
         window.scrollTo(0, 0);
@@ -105,8 +116,25 @@ class TopNav extends React.Component {
     }
 
     render() {
+        const sideList = (
+          <div>
+            hello
+          </div>
+        );
+
         return (
             <div style={this.TopNavStyle}>
+                <IconButton onClick={this.toggleDrawer('left', true)}><Menu /></IconButton>
+                <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    onClick={this.toggleDrawer('left', false)}
+                    onKeyDown={this.toggleDrawer('left', false)}
+                  >
+                    {sideList}
+                  </div>
+                </Drawer>
                 <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
                 <form style={this.searchForm} onSubmit={this.handleSearch}>
                     <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
