@@ -43,27 +43,35 @@ class TopNav extends React.Component {
     }
 
     inputStyle = {
-        height: "30px",
+        height: "32px",
         width: "100%",
         maxWidth: "575px",
         padding: "0",
         border: "lightgray 1px solid",
         borderRight: "none",
         fontSize: "16px",
-        paddingLeft: "9px"
+        paddingLeft: "9px",
+        boxSizing: "border-box"
     }
 
     buttonStyle = {
         boxSizing: "content-box",
-        height: "28px",
-        width: "51px",
+        height: "32px",
+        width: "70px",
         backgroundColor: "#f8f8f8",
         border: "lightgray 1px solid",
-        cursor: "pointer"
+        cursor: "pointer",
+        boxSizing: "border-box"
     }
 
     linkStyle = {
         color: "#2793e6"
+    }
+
+    signInStyle = {
+      fontSize: "0.84rem",
+      fontWeight: "1000",
+      letterSpacing: "0.5px"
     }
 
     handleSearch = (event) => {
@@ -93,7 +101,7 @@ class TopNav extends React.Component {
                     <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
                     <button type="submit" style={this.buttonStyle}><Search alt="Search logo" style={this.searchIcon} /></button>
                 </form>
-                <a style={this.linkStyle}><p>Sign In</p></a>
+                <a style={this.linkStyle}><p style={this.signInStyle}>SIGN IN</p></a>
             </div>
         )
     }
