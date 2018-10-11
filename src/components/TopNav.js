@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { fetchSearchResult } from './../actions';
 import youtubeLogo from '../assets/youtube-logo.png';
 import Search from "@material-ui/icons/Search";
+import VideoCall from "@material-ui/icons/VideoCall";
+import MoreVert from "@material-ui/icons/MoreVert";
+import Apps from "@material-ui/icons/Apps";
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
 class TopNav extends React.Component {
     constructor(props) {
@@ -64,14 +69,15 @@ class TopNav extends React.Component {
         boxSizing: "border-box"
     }
 
-    linkStyle = {
-        color: "#2793e6"
+    iconStyle = {
+        opacity: "0.7"
     }
 
     signInStyle = {
-      fontSize: "0.84rem",
-      fontWeight: "1000",
-      letterSpacing: "0.5px"
+        fontSize: "0.87rem",
+        fontWeight: "600",
+        color: "#2793e6",
+        marginLeft: "4px"
     }
 
     handleSearch = (event) => {
@@ -101,7 +107,10 @@ class TopNav extends React.Component {
                     <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
                     <button type="submit" style={this.buttonStyle}><Search alt="Search logo" style={this.searchIcon} /></button>
                 </form>
-                <a style={this.linkStyle}><p style={this.signInStyle}>SIGN IN</p></a>
+                <IconButton ><VideoCall style={this.iconStyle}/></IconButton>
+                <IconButton ><Apps style={this.iconStyle}/></IconButton>
+                <IconButton ><MoreVert style={this.iconStyle}/></IconButton>
+                <Button><span style={this.signInStyle}>SIGN IN</span></Button>
             </div>
         )
     }

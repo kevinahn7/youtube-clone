@@ -13,8 +13,8 @@ import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import ThumbDown from "@material-ui/icons/ThumbDown";
 import ThumbUp from "@material-ui/icons/ThumbUp";
 import Reply from "@material-ui/icons/Reply";
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 
@@ -194,7 +194,7 @@ class Watch extends React.Component {
 		height: "22px",
 		display: "flex",
 		alignItems: "center",
-		fontWeight: "1000",
+		fontWeight: "500",
 		color: "hsla(0, 0%, 6.7%, 0.4)",
 		cursor: "pointer"
 	}
@@ -213,7 +213,7 @@ class Watch extends React.Component {
 
 	channelTitleStyle = {
 		fontSize: "0.88rem",
-		fontWeight: "1000",
+		fontWeight: "500",
 		marginBottom: "2px"
 	}
 
@@ -291,7 +291,7 @@ class Watch extends React.Component {
 	sortByStyle = {
 		color: "hsla(0, 0%, 7%, 0.6)",
 		fontSize: "0.88rem",
-		fontWeight: "1000"
+		fontWeight: "500"
 	}
 
 	inputCommentFormStyle = {
