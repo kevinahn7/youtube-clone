@@ -8,7 +8,7 @@ const channelThumbnailStyle = {
     gridTemplateRows: "152px",
     cursor: "pointer",
     minWidth: "100%"
-    // overflow: "hidden" to fix sizing issue when srhunk, just limit the words in the description
+    // overflow: "hidden" to fix sizing issue when shrunk, just limit the words in the description
 }
 
 const imageContainerStyle = {

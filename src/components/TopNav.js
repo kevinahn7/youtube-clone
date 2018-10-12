@@ -97,8 +97,12 @@ class TopNav extends React.Component {
     signInStyle = {
         fontSize: "0.87rem",
         fontWeight: "500",
-        color: "#2793e6",
+        color: "rgba(39, 147, 230, 1)",
         marginLeft: "4px"
+    }
+
+    sideListStyle = {
+        width: "240px"
     }
 
     toggleDrawer = (side, open) => () => {
@@ -128,7 +132,7 @@ class TopNav extends React.Component {
 
     render() {
         const sideList = (
-          <div>
+          <div style={this.sideListStyle}>
             hello
           </div>
         );
