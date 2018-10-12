@@ -330,11 +330,10 @@ class Watch extends React.Component {
 		const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		let theDate = this.props.currentVideo.snippet.publishedAt;
 		let monthInt = parseInt(theDate.substring(5, 7));
-		let monthString = monthNames[monthInt-1]
+		let monthString = monthNames[monthInt-1];
 		let day = parseInt(theDate.substring(8, 10));
-		let year = theDate.substring(0, 4)
-		return (`Published on ${monthString} ${day}, ${year}`)
-		
+		let year = theDate.substring(0, 4);
+		return (`Published on ${monthString} ${day}, ${year}`);
 	}
 
 	componentDidMount() {

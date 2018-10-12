@@ -137,15 +137,19 @@ class TopNav extends React.Component {
           </div>
         );
 
+        let tempOrPerm;
+        if (this.props.location.pathname.substring(1,6) === "watch" || window.innerWidth < 1294) tempOrPerm = "tempLeft";
+        else tempOrPerm = "permLeft";
+
         return (
             <div style={this.TopNavStyle}>
-                <IconButton onClick={this.toggleDrawer('tempLeft', true)} style={this.sideListButtonStyle}><Menu /></IconButton>
-                <Drawer open={this.state.tempLeft} onClose={this.toggleDrawer('tempLeft', false)}>
+                <IconButton onClick={this.toggleDrawer(tempOrPerm, true)} style={this.sideListButtonStyle}><Menu /></IconButton>
+                <Drawer open={this.state.tempLeft} onClose={this.toggleDrawer(tempOrPerm, false)}>
                   <div
                     tabIndex={0}
                     role="button"
-                    onClick={this.toggleDrawer('tempLeft', false)}
-                    onKeyDown={this.toggleDrawer('tempLeft', false)}>
+                    onClick={this.toggleDrawer(tempOrPerm, false)}
+                    onKeyDown={this.toggleDrawer(tempOrPerm, false)}>
                     {sideList}
                   </div>
                 </Drawer>
