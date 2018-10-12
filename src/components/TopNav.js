@@ -117,7 +117,7 @@ class TopNav extends React.Component {
         const searchQuery = event.target.elements.searchBar.value.trim();
         if (searchQuery) {
             this.props.dispatch(fetchSearchResult(searchQuery));
-            this.props.history.push('/results/' + searchQuery);
+            this.props.history.push(`/results/${searchQuery}`);
         }
     }
 

@@ -38,14 +38,14 @@ class Watch extends React.Component {
 	}
 
 	formatNumber = (number) => {
-		if (number > 999999) return (Math.trunc(number/100000)/10 + "M");
-		else if (number > 999) return (Math.trunc(number/100)/10 + "K");
+		if (number > 999999) return (`${Math.trunc(number/100000)/10}M`);
+		else if (number > 999) return (`${Math.trunc(number/100)/10}K`);
 		else return number
 	}
 
 	formatSubscriptionNumber = (number) => {
-		if (number > 999999) return (Math.trunc(number/1000000) + "M");
-		else if (number > 999) return (Math.trunc(number/1000) + "K");
+		if (number > 999999) return (`${Math.trunc(number/1000000)}M`);
+		else if (number > 999) return (`${Math.trunc(number/1000)}K`);
 		else return number
 	}
 
@@ -54,14 +54,14 @@ class Watch extends React.Component {
 			position: "relative",
 			width: "100%",
 			height: "0",
-			paddingBottom: '' + this.props.currentVideo.player.embedHeight/this.props.currentVideo.player.embedWidth*100 +'%'
+			paddingBottom: `${this.props.currentVideo.player.embedHeight/this.props.currentVideo.player.embedWidth*100}%`
 			//maxWidth is dependant on the aspect ratio on YouTube
 		}
 	}
 
 	getLikePercentage = () => {
 		return {
-			width: '' + (parseInt(this.props.currentVideo.statistics.likeCount)/(parseInt(this.props.currentVideo.statistics.dislikeCount) + parseInt(this.props.currentVideo.statistics.likeCount)))*100 +'%',
+			width: `${(parseInt(this.props.currentVideo.statistics.likeCount)/(parseInt(this.props.currentVideo.statistics.dislikeCount) + parseInt(this.props.currentVideo.statistics.likeCount)))*100}%`,
 			position: "absolute",
 			backgroundColor: "hsla(0, 0%, 56%, 1)",
 			height: "2px",
@@ -333,7 +333,8 @@ class Watch extends React.Component {
 		let monthString = monthNames[monthInt-1]
 		let day = parseInt(theDate.substring(8, 10));
 		let year = theDate.substring(0, 4)
-		return ("Published on " + monthString + " " + day + ", " + year)
+		return (`Published on ${monthString} ${day}, ${year}`)
+		
 	}
 
 	componentDidMount() {
@@ -365,7 +366,7 @@ class Watch extends React.Component {
 					<div style={this.watchStyle}>
 						<div style={this.videoSideStyle}>
 							<div style={this.aspectRatioStyle}>
-								<iframe style={this.playerStyle} src={"//www.youtube.com/embed/" + pathName.slice(7, pathName.length) + "?autoplay=1&mute=1"} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+								<iframe style={this.playerStyle} src={`//www.youtube.com/embed/${pathName.slice(7, pathName.length)}?autoplay=1&mute=1`} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 							</div>
 							<div style={this.videoInfoStyle}>
 								<h1 style={this.videoTitleStyle}>{currentVideo.snippet.title}</h1>

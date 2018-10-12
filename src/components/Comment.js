@@ -88,7 +88,7 @@ const Comment = (props) => {
   const getReplyText = () => {
     let replyLength = props.commentReplies.comments.length;
     if (replyLength === 1) return "View 1 Reply";
-    else return "View " + replyLength + " Replies";
+    else return `View ${replyLength} Replies`;
   }
 
   const hello = () => {

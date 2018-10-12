@@ -55,7 +55,7 @@ const ChannelThumbnail = (props) => {
     const getDescription = () => {
         let description = props.channelDescription;
         if (description.length < 130) return description
-        else return (description.substring(0, 130) + "...")
+        else return (`${description.substring(0, 130)}...`)
     }
 
     const logChannelId = (channelId) => {
