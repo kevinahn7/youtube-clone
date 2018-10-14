@@ -131,7 +131,7 @@ class TopNav extends React.Component {
     }
 
     render() {
-        const sideList = (
+        const tempSideList = (
           <div style={this.sideListStyle}>
             hello
           </div>
@@ -150,7 +150,7 @@ class TopNav extends React.Component {
                     role="button"
                     onClick={this.toggleDrawer(tempOrPerm, false)}
                     onKeyDown={this.toggleDrawer(tempOrPerm, false)}>
-                    {sideList}
+                    {tempSideList}
                   </div>
                 </Drawer>
                 <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
