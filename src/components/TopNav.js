@@ -17,7 +17,8 @@ class TopNav extends React.Component {
         super(props)
     }
     state = {
-      tempLeft: false
+      tempLeft: false,
+      permLeft: false
     }
 
     TopNavStyle = {
@@ -124,34 +125,51 @@ class TopNav extends React.Component {
     componentDidUpdate() {
         window.onpopstate  = (e) => {
             let pathName = this.props.location.pathname;
-            if (pathName.substring(1,8) === "results") {
-              this.props.dispatch(fetchSearchResult(pathName.slice(9, pathName.length)));
-            }
+            if (pathName.substring(1,8) === "results") this.props.dispatch(fetchSearchResult(pathName.slice(9, pathName.length)));
         }
     }
 
+    handleDrawerClose = () => {
+        this.setState({
+            permLeft: false,
+            tempLeft: false
+        });
+    };
+
     render() {
         const tempSideList = (
-          <div style={this.sideListStyle}>
-            hello
-          </div>
+            <div style={this.sideListStyle}>
+                hello
+            </div>
         );
 
-        let tempOrPerm;
-        if (this.props.location.pathname.substring(1,6) === "watch" || window.innerWidth < 1294) tempOrPerm = "tempLeft";
-        else tempOrPerm = "permLeft";
+        const permSideList = (
+            <div style={this.sideListStyle}>
+                <IconButton onClick={this.handleDrawerClose}>
+                    hello
+                </IconButton>
+            </div>
+        );
+
+        const getPermOrTemp = () => {
+            if (this.props.location.pathname.substring(1,6) === "watch" || window.innerWidth < 1294) return "tempLeft";
+            else return "permLeft"
+        }
 
         return (
             <div style={this.TopNavStyle}>
-                <IconButton onClick={this.toggleDrawer(tempOrPerm, true)} style={this.sideListButtonStyle}><Menu /></IconButton>
-                <Drawer open={this.state.tempLeft} onClose={this.toggleDrawer(tempOrPerm, false)}>
-                  <div
-                    tabIndex={0}
-                    role="button"
-                    onClick={this.toggleDrawer(tempOrPerm, false)}
-                    onKeyDown={this.toggleDrawer(tempOrPerm, false)}>
-                    {tempSideList}
-                  </div>
+                <IconButton onClick={this.toggleDrawer(getPermOrTemp(), !this.state[getPermOrTemp()])} style={this.sideListButtonStyle}><Menu /></IconButton>
+                <Drawer open={this.state.tempLeft} onClose={this.toggleDrawer("tempLeft", false)}>
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        onClick={this.toggleDrawer("tempLeft", false)}
+                        onKeyDown={this.toggleDrawer("tempLeft", false)}>
+                        {tempSideList}
+                    </div>
+                </Drawer>
+                <Drawer variant="persistent" anchor="left" open={this.state.permLeft}>
+                    {permSideList}
                 </Drawer>
                 <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
                 <form style={this.searchForm} onSubmit={this.handleSearch}>
