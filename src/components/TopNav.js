@@ -11,14 +11,14 @@ import Menu from "@material-ui/icons/Menu";
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
 
 class TopNav extends React.Component {
     constructor(props) {
         super(props)
     }
     state = {
-      tempLeft: false,
-      permLeft: false
+      sideListOpen: false
     }
 
     TopNavStyle = {
@@ -106,10 +106,10 @@ class TopNav extends React.Component {
         width: "240px"
     }
 
-    toggleDrawer = (side, open) => () => {
-      this.setState({
-        [side]: open,
-      });
+    toggleDrawer = () => {
+      this.setState(state => ({
+        sideListOpen: !state.sideListOpen
+      }));
     };
 
     handleSearch = (event) => {
@@ -129,48 +129,34 @@ class TopNav extends React.Component {
         }
     }
 
-    handleDrawerClose = () => {
-        this.setState({
-            permLeft: false,
-            tempLeft: false
-        });
-    };
-
     render() {
-        const tempSideList = (
+        const sideList = (
             <div style={this.sideListStyle}>
-                hello
-            </div>
-        );
-
-        const permSideList = (
-            <div style={this.sideListStyle}>
-                <IconButton onClick={this.handleDrawerClose}>
+                <IconButton onClick={this.toggleDrawer}>
                     hello
                 </IconButton>
             </div>
         );
 
-        const getPermOrTemp = () => {
-            if (this.props.location.pathname.substring(1,6) === "watch" || window.innerWidth < 1294) return "tempLeft";
-            else return "permLeft"
-        }
-
         return (
             <div style={this.TopNavStyle}>
-                <IconButton onClick={this.toggleDrawer(getPermOrTemp(), !this.state[getPermOrTemp()])} style={this.sideListButtonStyle}><Menu /></IconButton>
-                <Drawer open={this.state.tempLeft} onClose={this.toggleDrawer("tempLeft", false)}>
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={this.toggleDrawer("tempLeft", false)}
-                        onKeyDown={this.toggleDrawer("tempLeft", false)}>
-                        {tempSideList}
-                    </div>
-                </Drawer>
-                <Drawer variant="persistent" anchor="left" open={this.state.permLeft}>
-                    {permSideList}
-                </Drawer>
+                <IconButton onClick={this.toggleDrawer} style={this.sideListButtonStyle}><Menu /></IconButton>
+                <Hidden lgUp>
+                    <Drawer open={this.state.sideListOpen} onClose={this.toggleDrawer}>
+                        <div
+                            tabIndex={0}
+                            role="button"
+                            onClick={this.toggleDrawer}
+                            onKeyDown={this.toggleDrawer}>
+                            {sideList}
+                        </div>
+                    </Drawer>
+                </Hidden>
+                <Hidden mdDown>
+                    <Drawer variant="persistent" anchor="left" open={this.state.sideListOpen}>
+                        {sideList}
+                    </Drawer>
+                </Hidden>
                 <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
                 <form style={this.searchForm} onSubmit={this.handleSearch}>
                     <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
@@ -183,7 +169,6 @@ class TopNav extends React.Component {
             </div>
         )
     }
-
 }
 
 export default withRouter(connect()(TopNav));
