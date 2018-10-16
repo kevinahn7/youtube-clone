@@ -18,7 +18,8 @@ class TopNav extends React.Component {
         super(props)
     }
     state = {
-      sideListOpen: false
+      sideListOpen: false,
+      watchSideList: false
     }
 
     TopNavStyle = {
@@ -107,10 +108,22 @@ class TopNav extends React.Component {
     }
 
     toggleDrawer = () => {
-      this.setState(state => ({
-        sideListOpen: !state.sideListOpen
-      }));
+        if (this.props.location.pathname.substring(1,6) === "watch") {
+            this.setState({
+                watchSideList: true
+            })
+        } else {
+            this.setState(state => ({
+                sideListOpen: !state.sideListOpen
+            }));
+        }
     };
+
+    closeWatchSideList = () => {
+        this.setState({
+            watchSideList: false
+        });
+    }
 
     handleSearch = (event) => {
         event.preventDefault();
@@ -157,6 +170,15 @@ class TopNav extends React.Component {
                         {sideList}
                     </Drawer>
                 </Hidden>
+                <Drawer open={this.state.watchSideList} onClose={this.closeWatchSideList}>
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        onClick={this.closeWatchSideList}
+                        onKeyDown={this.closeWatchSideList}>
+                        {sideList}
+                    </div>
+                </Drawer>
                 <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
                 <form style={this.searchForm} onSubmit={this.handleSearch}>
                     <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
