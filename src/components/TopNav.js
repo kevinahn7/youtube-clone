@@ -33,7 +33,7 @@ class TopNav extends React.Component {
         width: "100%",
         boxSizing: "border-box",
         position: "fixed",
-        zIndex: "4"
+        zIndex: "9001"
     }
 
     sideListButtonStyle = {
@@ -164,8 +164,20 @@ class TopNav extends React.Component {
         );
 
         return (
-            <div style={this.TopNavStyle}>
-                <IconButton onClick={this.toggleDrawer} style={this.sideListButtonStyle}><Menu /></IconButton>
+            <div>
+                <div style={this.TopNavStyle}>
+                    <IconButton onClick={this.toggleDrawer} style={this.sideListButtonStyle}><Menu /></IconButton>
+                    
+                    <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
+                    <form style={this.searchForm} onSubmit={this.handleSearch}>
+                        <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
+                        <button type="submit" style={this.buttonStyle}><Search alt="Search logo" style={this.searchIcon} /></button>
+                    </form>
+                    <IconButton style={this.iconButtonStyle}><VideoCall style={this.iconStyle}/></IconButton>
+                    <IconButton style={this.iconButtonStyle}><Apps style={this.iconStyle}/></IconButton>
+                    <IconButton style={this.iconButtonStyle}><MoreVert style={this.iconStyle}/></IconButton>
+                    <Button><span style={this.signInStyle}>SIGN IN</span></Button>
+                </div>
                 <Hidden lgUp>
                     <Drawer open={this.state.sideListOpen} onClose={this.toggleDrawer}>
                         <div
@@ -179,7 +191,7 @@ class TopNav extends React.Component {
                 </Hidden>
                 <Hidden mdDown>
                     <Drawer variant="persistent" anchor="left" open={this.state.sideListOpen} transitionDuration={0}>
-                        {sideList}
+                        {sideList} {/* Maybe have separate sidelist navs for permamnent and temporary */}
                     </Drawer>
                 </Hidden>
                 <Drawer open={this.state.watchSideList} onClose={this.closeWatchSideList}>
@@ -191,15 +203,6 @@ class TopNav extends React.Component {
                         {sideList}
                     </div>
                 </Drawer>
-                <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
-                <form style={this.searchForm} onSubmit={this.handleSearch}>
-                    <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
-                    <button type="submit" style={this.buttonStyle}><Search alt="Search logo" style={this.searchIcon} /></button>
-                </form>
-                <IconButton style={this.iconButtonStyle}><VideoCall style={this.iconStyle}/></IconButton>
-                <IconButton style={this.iconButtonStyle}><Apps style={this.iconStyle}/></IconButton>
-                <IconButton style={this.iconButtonStyle}><MoreVert style={this.iconStyle}/></IconButton>
-                <Button><span style={this.signInStyle}>SIGN IN</span></Button>
             </div>
         )
     }
