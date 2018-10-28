@@ -178,7 +178,7 @@ class TopNav extends React.Component {
                     </Drawer>
                 </Hidden>
                 <Hidden mdDown>
-                    <Drawer variant="persistent" anchor="left" open={this.state.sideListOpen}>
+                    <Drawer variant="persistent" anchor="left" open={this.state.sideListOpen} transitionDuration={0}>
                         {sideList}
                     </Drawer>
                 </Hidden>
