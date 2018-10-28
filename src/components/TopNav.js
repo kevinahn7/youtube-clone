@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSearchResult } from './../actions';
@@ -36,9 +37,9 @@ class TopNav extends React.Component {
     }
 
     sideListButtonStyle = {
-      padding: "8px",
-      marginRight: "16px",
-      opacity: "0.7"
+        padding: "8px",
+        marginRight: "16px",
+        opacity: "0.7"
     }
 
     imageStyle = {
@@ -88,8 +89,8 @@ class TopNav extends React.Component {
     }
 
     iconButtonStyle = {
-      padding: "8px",
-      margin: "4px"
+        padding: "8px",
+        margin: "4px"
     }
 
     iconStyle = {
@@ -108,6 +109,7 @@ class TopNav extends React.Component {
     }
 
     toggleDrawer = () => {
+        let padding = "0";
         if (this.props.location.pathname.substring(1,6) === "watch") {
             this.setState({
                 watchSideList: true
@@ -116,7 +118,11 @@ class TopNav extends React.Component {
             this.setState(state => ({
                 sideListOpen: !state.sideListOpen
             }));
+            padding = this.props.sideListPadding === "240px" ? "0" : "240px";
+            //padding = (screen width is larger than the breakpoint) ? "240px" : "0"  to fix the issue of the margin movign even when it is the temp sidelist
+            // also an issue where the screen is small and they press the toggledrawer button when the sidelist is open, it still sends out the perm sidelist out
         }
+        this.props.getPadding(padding);
     };
 
     closeWatchSideList = () => {
@@ -143,6 +149,12 @@ class TopNav extends React.Component {
     }
 
     render() {
+        let pathName = this.props.location.pathname;
+        if (pathName.substring(1,6) === "watch" && this.state.sideListOpen) {
+            this.setState({
+                sideListOpen: false
+            })
+        }
         const sideList = (
             <div style={this.sideListStyle}>
                 <IconButton onClick={this.toggleDrawer}>
@@ -192,5 +204,10 @@ class TopNav extends React.Component {
         )
     }
 }
+
+TopNav.propTypes = {
+    getPadding: PropTypes.func,
+    sideListPadding: PropTypes.string
+};
 
 export default withRouter(connect()(TopNav));

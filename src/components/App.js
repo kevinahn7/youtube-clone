@@ -7,26 +7,44 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class App extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			sideListPadding: ''
+		}
+		this.getPadding = this.getPadding.bind(this);
+	}
+
+	getPadding(amount) {
+		this.setState({sideListPadding: amount})
+	}
 
 	render() {
 		const topMargin = {
 			height: "55px"
 		}
-		
+
+		const content = {
+			paddingLeft: this.state.sideListPadding
+		}
+
 		return (
 			<BrowserRouter>
 				<div>
-					<TopNav />
-					<div style={topMargin}></div>
-					<Switch>
-						<Route exact path='/' component={Home} />
-						{ this.props.currentVideo &&
-							<Route exact path='/watch/:videoId' render={()=><Watch currentVideo={this.props.currentVideo} channelInfo={this.props.channelInfo} currentVideoComments={this.props.currentVideoComments}/>} />
-						}
-						{ this.props.currentSearch &&
-							<Route exact path='/results/:searchQuery' render={()=><Results currentSearch={this.props.currentSearch} />}  rel="stylesheet" href="/style.css"/>
-						}
-					</Switch>
+					<TopNav getPadding={this.getPadding} sideListPadding={this.state.sideListPadding}/>
+					<div style={topMargin}></div> 
+					<div style={content}>
+						<Switch>
+							<Route exact path='/' component={Home} />
+							{ this.props.currentVideo &&
+								<Route exact path='/watch/:videoId' render={()=><Watch currentVideo={this.props.currentVideo} channelInfo={this.props.channelInfo} currentVideoComments={this.props.currentVideoComments}/>} />
+							}
+							{ this.props.currentSearch &&
+								<Route exact path='/results/:searchQuery' render={()=><Results currentSearch={this.props.currentSearch} />}  rel="stylesheet" href="/style.css"/>
+							}
+						</Switch>
+					</div>
+					
 				</div>
 			</BrowserRouter>
 
