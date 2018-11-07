@@ -357,8 +357,8 @@ class Watch extends React.Component {
 		let channelInfo = this.props.channelInfo;
 		let currentVideoComments = this.props.currentVideoComments;
 		let pathName = this.props.location.pathname;
-		{this.aspectRatioStyle = this.getAspectRatio()}
-		{this.likeBarLikesStyle = this.getLikePercentage()}
+		this.aspectRatioStyle = this.getAspectRatio()
+		this.likeBarLikesStyle = this.getLikePercentage()
 		return (
 			<div style={this.watchContainerStyle}>
 				{(channelInfo && currentVideo && currentVideoComments) ?

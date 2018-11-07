@@ -15,9 +15,6 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 
 class TopNav extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     state = {
       sideListOpen: false,
       watchSideList: false
@@ -115,11 +112,23 @@ class TopNav extends React.Component {
                 watchSideList: true
             })
         } else {
-            this.setState(state => ({
-                sideListOpen: !state.sideListOpen
-            }));
-            padding = this.props.sideListPadding === "240px" ? "0" : "240px";
-            //padding = (screen width is larger than the breakpoint) ? "240px" : "0"  to fix the issue of the margin movign even when it is the temp sidelist
+            if (window.innerWidth > 1280) {
+                this.setState(state => ({
+                    sideListOpen: !state.sideListOpen
+                }));
+                padding = this.props.sideListPadding === "240px" ? "0" : "240px";
+            } else {
+                this.setState(state => ({
+                    watchSideList: !state.watchSideList
+                }));
+            }
+
+            // this.setState(state => ({
+            //     sideListOpen: !state.sideListOpen
+            // }));
+            // padding = this.props.sideListPadding === "240px" ? "0" : "240px";
+
+            // padding = (screen width is larger than the breakpoint) ? "240px" : "0"  to fix the issue of the margin movign even when it is the temp sidelist
             // also an issue where the screen is small and they press the toggledrawer button when the sidelist is open, it still sends out the perm sidelist out
         }
         this.props.getPadding(padding);
@@ -141,11 +150,33 @@ class TopNav extends React.Component {
         }
     }
 
+    checkSizeChange = () => {
+        if (window.innerWidth < 1280) {
+            this.setState(({
+                sideListOpen: false
+            }))
+            this.props.getPadding("0");
+        } else {
+            this.setState(({
+                watchSideList: false
+            }))
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener("resize", this.checkSizeChange.bind(this))
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.checkSizeChange.bind(this))
+    }
+
     componentDidUpdate() {
+        let pathName = this.props.location.pathname;
         window.onpopstate  = (e) => {
-            let pathName = this.props.location.pathname;
             if (pathName.substring(1,8) === "results") this.props.dispatch(fetchSearchResult(pathName.slice(9, pathName.length)));
         }
+        if (pathName.substring(1,6) === "watch") this.props.getPadding("0")
     }
 
     render() {
@@ -178,7 +209,7 @@ class TopNav extends React.Component {
                     </Drawer>
                 </Hidden>
                 <Hidden mdDown>
-                    <Drawer variant="persistent" anchor="left" open={this.state.sideListOpen}>
+                    <Drawer variant="persistent" transitionDuration={0} anchor="left" open={this.state.sideListOpen}>
                         {sideList}
                     </Drawer>
                 </Hidden>
