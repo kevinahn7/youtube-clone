@@ -20,7 +20,7 @@ class TopNav extends React.Component {
       watchSideList: false
     }
 
-    TopNavStyle = {
+    topNavStyle = {
         height: "56px",
         padding:"0 16px",
         display: "flex",
@@ -29,8 +29,7 @@ class TopNav extends React.Component {
         boxShadow: "0 1px #eee",
         width: "100%",
         boxSizing: "border-box",
-        position: "fixed",
-        zIndex: "9001"
+        position: "fixed"
     }
 
     sideListButtonStyle = {
@@ -108,36 +107,20 @@ class TopNav extends React.Component {
     toggleDrawer = () => {
         let padding = "0";
         if (this.props.location.pathname.substring(1,6) === "watch") {
-            this.setState({
-                watchSideList: true
-            })
+            this.setState({ watchSideList: true })
         } else {
             if (window.innerWidth > 1280) {
-                this.setState(state => ({
-                    sideListOpen: !state.sideListOpen
-                }));
+                this.setState(state => ({ sideListOpen: !state.sideListOpen }));
                 padding = this.props.sideListPadding === "240px" ? "0" : "240px";
             } else {
-                this.setState(state => ({
-                    watchSideList: !state.watchSideList
-                }));
+                this.setState(state => ({ watchSideList: !state.watchSideList }));
             }
-
-            // this.setState(state => ({
-            //     sideListOpen: !state.sideListOpen
-            // }));
-            // padding = this.props.sideListPadding === "240px" ? "0" : "240px";
-
-            // padding = (screen width is larger than the breakpoint) ? "240px" : "0"  to fix the issue of the margin movign even when it is the temp sidelist
-            // also an issue where the screen is small and they press the toggledrawer button when the sidelist is open, it still sends out the perm sidelist out
         }
         this.props.getPadding(padding);
     };
 
     closeWatchSideList = () => {
-        this.setState({
-            watchSideList: false
-        });
+        this.setState({ watchSideList: false });
     }
 
     handleSearch = (event) => {
@@ -152,14 +135,10 @@ class TopNav extends React.Component {
 
     checkSizeChange = () => {
         if (window.innerWidth < 1280) {
-            this.setState(({
-                sideListOpen: false
-            }))
+            this.setState(({ sideListOpen: false }))
             this.props.getPadding("0");
         } else {
-            this.setState(({
-                watchSideList: false
-            }))
+            this.setState(({ watchSideList: false }))
         }
     }
 
@@ -173,20 +152,16 @@ class TopNav extends React.Component {
 
     componentDidUpdate() {
         let pathName = this.props.location.pathname;
+        if (pathName.substring(1,6) === "watch" && this.state.sideListOpen) this.setState({ sideListOpen: false })
         window.onpopstate  = (e) => {
+            this.setState(({ watchSideList: false }))
             if (pathName.substring(1,8) === "results") this.props.dispatch(fetchSearchResult(pathName.slice(9, pathName.length)));
         }
         if (pathName.substring(1,6) === "watch") this.props.getPadding("0")
     }
 
     render() {
-        let pathName = this.props.location.pathname;
-        if (pathName.substring(1,6) === "watch" && this.state.sideListOpen) {
-            this.setState({
-                sideListOpen: false
-            })
-        }
-        const sideList = (
+        const sideList = ( // Use another component for this
             <div style={this.sideListStyle}>
                 <IconButton onClick={this.toggleDrawer}>
                     hello
@@ -194,9 +169,13 @@ class TopNav extends React.Component {
             </div>
         );
 
+        let pathName = this.props.location.pathname;
+        if (pathName.substring(1,6) === "watch" || window.innerWidth < 1280) this.topNavZIndex = { zIndex: "100" }
+        else this.topNavZIndex = { zIndex: "9001" }
+
         return (
             <div>
-                <div style={this.TopNavStyle}>
+                <div style={{...this.topNavStyle, ...this.topNavZIndex}}>
                     <IconButton onClick={this.toggleDrawer} style={this.sideListButtonStyle}><Menu /></IconButton>
                     
                     <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
@@ -222,7 +201,7 @@ class TopNav extends React.Component {
                 </Hidden>
                 <Hidden mdDown>
                     <Drawer variant="persistent" anchor="left" open={this.state.sideListOpen} transitionDuration={0}>
-                        {sideList} {/* Maybe have separate sidelist navs for permamnent and temporary */}
+                        {sideList}
                     </Drawer>
                 </Hidden>
                 <Drawer open={this.state.watchSideList} onClose={this.closeWatchSideList}>
