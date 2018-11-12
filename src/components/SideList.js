@@ -70,6 +70,17 @@ const SideList = () => {
         opacity: "0.5"
     }
 
+    const bestOfYoutubeContainerStyle = {
+        padding: "8px 0",
+        height: "398px"
+    }
+
+    const bestOfYoutubeHeaderStyle = {
+        padding: "8px 24px",
+        fontSize: "0.87rem",
+        opacity: "0.7"
+    }
+
 	return (
         <div style={sideListStyle}>
             <div style={headerStyle}>
@@ -88,6 +99,9 @@ const SideList = () => {
                 <div style={mainCategoriesStyle}>
                     <History style={mainCategoryOtherIconStyle}/> History
                 </div>
+            </div>
+            <div style={bestOfYoutubeContainerStyle}>
+                <div style={bestOfYoutubeHeaderStyle}>BEST OF YOUTUBE</div>
             </div>
         </div>
 	);
