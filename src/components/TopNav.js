@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import SideList from './SideList';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSearchResult } from './../actions';
@@ -38,7 +39,7 @@ class TopNav extends React.Component {
         opacity: "0.7"
     }
 
-    imageStyle = {
+    youtubeLogoStyle = {
         height: "38px",
         marginTop: "5px",
         paddingRight: "51px"
@@ -100,10 +101,6 @@ class TopNav extends React.Component {
         marginLeft: "4px"
     }
 
-    sideListStyle = {
-        width: "240px"
-    }
-
     toggleDrawer = () => {
         let padding = "0";
         if (this.props.location.pathname.substring(1,6) === "watch") {
@@ -161,12 +158,8 @@ class TopNav extends React.Component {
     }
 
     render() {
-        const sideList = ( // Use another component for this
-            <div style={this.sideListStyle}>
-                <IconButton onClick={this.toggleDrawer}>
-                    hello
-                </IconButton>
-            </div>
+        const sideList = (
+            <SideList />
         );
 
         let pathName = this.props.location.pathname;
@@ -178,7 +171,7 @@ class TopNav extends React.Component {
                 <div style={{...this.topNavStyle, ...this.topNavZIndex}}>
                     <IconButton onClick={this.toggleDrawer} style={this.sideListButtonStyle}><Menu /></IconButton>
                     
-                    <Link to="/"><img style={this.imageStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
+                    <Link to="/"><img style={this.youtubeLogoStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
                     <form style={this.searchForm} onSubmit={this.handleSearch}>
                         <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>
                         <button type="submit" style={this.buttonStyle}><Search alt="Search logo" style={this.searchIcon} /></button>
@@ -189,7 +182,7 @@ class TopNav extends React.Component {
                     <Button><span style={this.signInStyle}>SIGN IN</span></Button>
                 </div>
                 <Hidden lgUp>
-                    <Drawer open={this.state.sideListOpen} onClose={this.toggleDrawer}>
+                    <Drawer open={this.state.sideListOpen} onClose={this.toggleDrawer} transitionDuration={200}>
                         <div
                             tabIndex={0}
                             role="button"
@@ -204,7 +197,7 @@ class TopNav extends React.Component {
                         {sideList}
                     </Drawer>
                 </Hidden>
-                <Drawer open={this.state.watchSideList} onClose={this.closeWatchSideList}>
+                <Drawer open={this.state.watchSideList} onClose={this.closeWatchSideList} transitionDuration={200}>
                     <div
                         tabIndex={0}
                         role="button"
