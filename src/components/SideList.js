@@ -6,6 +6,7 @@ import Whatshot from "@material-ui/icons/Whatshot";
 import History from "@material-ui/icons/History";
 import { Link } from 'react-router-dom';
 import youtubeLogo from '../assets/youtube-logo.png';
+import '../styles/SideListStyles.css';
 
 const SideList = () => {
     const sideListStyle = {
@@ -90,13 +91,13 @@ const SideList = () => {
                 <Link to="/"><img style={youTubeLogoStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
             </div>
             <div style={mainCategoriesContainerStyle}>
-                <div style={mainCategoriesStyle}>
+                <div style={mainCategoriesStyle} className="hovered">
                     <Home style={mainCategoryHomeIconStyle}/> Home
                 </div>
-                <div style={mainCategoriesStyle}>
+                <div style={mainCategoriesStyle} className="hovered">
                     <Whatshot style={mainCategoryOtherIconStyle} /> Trending
                 </div>
-                <div style={mainCategoriesStyle}>
+                <div style={mainCategoriesStyle} className="hovered">
                     <History style={mainCategoryOtherIconStyle}/> History
                 </div>
             </div>
