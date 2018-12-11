@@ -10,6 +10,7 @@ import VideoCall from "@material-ui/icons/VideoCall";
 import MoreVert from "@material-ui/icons/MoreVert";
 import Apps from "@material-ui/icons/Apps";
 import Menu from "@material-ui/icons/Menu";
+import Sms from '@material-ui/icons/Sms';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
@@ -166,6 +167,9 @@ class TopNav extends React.Component {
         if (pathName.substring(1,6) === "watch" || window.innerWidth < 1280) this.topNavZIndex = { zIndex: "100" }
         else this.topNavZIndex = { zIndex: "9001" }
 
+        let messageIcon;
+        if (pathName.substring(1,7) !== "result") messageIcon = <IconButton style={this.iconButtonStyle}><Sms style={this.iconStyle}/></IconButton>
+
         return (
             <div>
                 <div style={{...this.topNavStyle, ...this.topNavZIndex}}>
@@ -178,6 +182,7 @@ class TopNav extends React.Component {
                     </form>
                     <IconButton style={this.iconButtonStyle}><VideoCall style={this.iconStyle}/></IconButton>
                     <IconButton style={this.iconButtonStyle}><Apps style={this.iconStyle}/></IconButton>
+                    {messageIcon}
                     <IconButton style={this.iconButtonStyle}><MoreVert style={this.iconStyle}/></IconButton>
                     <Button><span style={this.signInStyle}>SIGN IN</span></Button>
                 </div>
