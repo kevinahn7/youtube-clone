@@ -46,7 +46,7 @@ const SideList = () => {
 
     const mainCategoriesContainerStyle = {
         padding: "12px 0",
-        borderBottom: "hsla(0, 0%, 93%, 1) 1px solid"
+        borderBottom: "rgba(220, 220, 220, 1) 1px solid"
     }
 
     const mainCategoriesStyle = {
