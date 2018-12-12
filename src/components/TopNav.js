@@ -174,7 +174,6 @@ class TopNav extends React.Component {
             <div>
                 <div style={{...this.topNavStyle, ...this.topNavZIndex}}>
                     <IconButton onClick={this.toggleDrawer} style={this.sideListButtonStyle}><Menu /></IconButton>
-                    
                     <Link to="/"><img style={this.youtubeLogoStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
                     <form style={this.searchForm} onSubmit={this.handleSearch}>
                         <input name="searchBar" type="text" style={this.inputStyle} placeholder="Search"/>

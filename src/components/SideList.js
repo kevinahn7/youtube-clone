@@ -4,11 +4,11 @@ import Menu from "@material-ui/icons/Menu";
 import Home from "@material-ui/icons/Home";
 import Whatshot from "@material-ui/icons/Whatshot";
 import History from "@material-ui/icons/History";
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import youtubeLogo from '../assets/youtube-logo.png';
 import '../styles/SideListStyles.css';
 
-const SideList = () => {
+const SideList = (props) => {
     const sideListStyle = {
         width: "240px",
         height: "100vh",
@@ -57,11 +57,28 @@ const SideList = () => {
         fontSize: "0.87rem"
     }
 
+    const currentPageHomeContainerStyle = {
+        padding: "0 24px",
+        height: "40px",
+        display: "flex",
+        alignItems: "center",
+        fontSize: "0.87rem",
+        backgroundColor: "hsla(0, 0%, 86%, 1)",
+        fontWeight: "500"
+    }
+
     const mainCategoryHomeIconStyle = {
         marginRight: "24px",
         height: "24px",
         width: "24px",
         opacity: "0.5"
+    }
+
+    const currentPageHomeIconStyle = {
+        marginRight: "24px",
+        height: "24px",
+        width: "24px",
+        color: "red"
     }
 
     const mainCategoryOtherIconStyle = {
@@ -91,8 +108,8 @@ const SideList = () => {
                 <Link to="/"><img style={youTubeLogoStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
             </div>
             <div style={mainCategoriesContainerStyle}>
-                <div style={mainCategoriesStyle} className="hovered">
-                    <Home style={mainCategoryHomeIconStyle}/> Home
+                <div style={props.location.pathname === '/' ? currentPageHomeContainerStyle: mainCategoriesStyle} className="hovered">
+                    <Home style={props.location.pathname === '/' ? currentPageHomeIconStyle: mainCategoryHomeIconStyle}/> Home
                 </div>
                 <div style={mainCategoriesStyle} className="hovered">
                     <Whatshot style={mainCategoryOtherIconStyle} /> Trending
@@ -108,4 +125,4 @@ const SideList = () => {
 	);
 }
 
-export default SideList;
+export default withRouter(SideList);
