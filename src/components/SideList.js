@@ -7,6 +7,14 @@ import History from "@material-ui/icons/History";
 import { withRouter, Link } from 'react-router-dom';
 import youtubeLogo from '../assets/youtube-logo.png';
 import '../styles/SideListStyles.css';
+import musicIcon from '../assets/music-icon.png';
+import soccerIcon from '../assets/soccer-icon.png';
+import gamingIcon from '../assets/gaming-icon.png';
+import filmIcon from '../assets/film-icon.png';
+import newsIcon from '../assets/news-icon.png';
+import liveIcon from '../assets/live-icon.png';
+import spotlightIcon from '../assets/spotlight-icon.png';
+import videoIcon from '../assets/360-icon.png';
 
 const SideList = (props) => {
     const sideListStyle = {
