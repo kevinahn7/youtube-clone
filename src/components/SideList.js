@@ -15,6 +15,7 @@ import newsIcon from '../assets/news-icon.png';
 import liveIcon from '../assets/live-icon.png';
 import spotlightIcon from '../assets/spotlight-icon.png';
 import videoIcon from '../assets/360-icon.png';
+import plusIcon from '../assets/plus-icon.png';
 
 const SideList = (props) => {
     const sideListStyle = {
@@ -104,7 +105,8 @@ const SideList = (props) => {
     const bestOfYoutubeHeaderStyle = {
         padding: "8px 24px",
         fontSize: "0.87rem",
-        opacity: "0.7"
+        opacity: "0.7",
+        fontWeight: "500"
     }
 
     const bestOfYoutubeIconContainerStyle = {
@@ -125,6 +127,29 @@ const SideList = (props) => {
         fontSize: "0.9rem"
     }
 
+    const browseChannelContainerStyle = {
+        padding: "8px 0",
+        borderBottom: "rgba(220, 220, 220, 1) 1px solid"
+    }
+
+    const browseChannelStyle = {
+        height: "40px",
+        display: "flex",
+        alignItems: "center",
+        padding: "0 24px"
+    }
+
+    const browsePlusStyle = {
+        width: "24px",
+        height: "24px",
+        borderRadius: "50%",
+        marginRight: "24px"
+    }
+
+    const browseChannelTitleStyle = {
+        fontSize: "0.9rem"
+    }
+
 	return (
         <div style={sideListStyle}>
             <div style={headerStyle}>
@@ -134,15 +159,9 @@ const SideList = (props) => {
                 <Link to="/"><img style={youTubeLogoStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
             </div>
             <div style={mainCategoriesContainerStyle}>
-                <div style={props.location.pathname === '/' ? currentPageHomeContainerStyle: mainCategoriesStyle} className="hovered">
-                    <Home style={props.location.pathname === '/' ? currentPageHomeIconStyle: mainCategoryHomeIconStyle}/> Home
-                </div>
-                <div style={mainCategoriesStyle} className="hovered">
-                    <Whatshot style={mainCategoryOtherIconStyle} /> Trending
-                </div>
-                <div style={mainCategoriesStyle} className="hovered">
-                    <History style={mainCategoryOtherIconStyle}/> History
-                </div>
+                <div style={props.location.pathname === '/' ? currentPageHomeContainerStyle: mainCategoriesStyle} className="hovered"><Home style={props.location.pathname === '/' ? currentPageHomeIconStyle: mainCategoryHomeIconStyle}/> Home</div>
+                <div style={mainCategoriesStyle} className="hovered"><Whatshot style={mainCategoryOtherIconStyle} /> Trending</div>
+                <div style={mainCategoriesStyle} className="hovered"><History style={mainCategoryOtherIconStyle}/> History </div>
             </div>
             <div style={bestOfYoutubeContainerStyle}>
                 <div style={bestOfYoutubeHeaderStyle}>BEST OF YOUTUBE</div>
@@ -155,6 +174,9 @@ const SideList = (props) => {
                 <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={liveIcon} /> <span style={bestOfYoutubeTitleStyle}>Live</span></div>
                 <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={spotlightIcon} /> <span style={bestOfYoutubeTitleStyle}>Spotlight</span></div>
                 <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={videoIcon} /> <span style={bestOfYoutubeTitleStyle}>360° Video</span></div>
+            </div>
+            <div style={browseChannelContainerStyle}>
+                <div style={browseChannelStyle} className="hovered"><img style={browsePlusStyle} src={plusIcon} /><span style={browseChannelTitleStyle}>Browse channels</span></div>
             </div>
         </div>
 	);

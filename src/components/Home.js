@@ -9,7 +9,7 @@ const Home = () => {
 	
 	return (
 		<div style={homeStyle}>
-			<h1>Home page with video recommendations</h1>
+			<h1>Home page</h1>
 			<h2>Try searching for videos and watching them!</h2>
 		</div>
 	);
