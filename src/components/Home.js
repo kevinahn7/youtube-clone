@@ -1,11 +1,16 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
+const homeStyle = {
+	textAlign: "center"
+}
+
 const Home = () => {
 	
 	return (
-		<div>
+		<div style={homeStyle}>
 			<h1>Home page with video recommendations</h1>
+			<h2>Try searching for videos and watching them!</h2>
 		</div>
 	);
 
