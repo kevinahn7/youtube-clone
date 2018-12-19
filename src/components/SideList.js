@@ -98,13 +98,31 @@ const SideList = (props) => {
 
     const bestOfYoutubeContainerStyle = {
         padding: "8px 0",
-        height: "398px"
+        borderBottom: "rgba(220, 220, 220, 1) 1px solid"
     }
 
     const bestOfYoutubeHeaderStyle = {
         padding: "8px 24px",
         fontSize: "0.87rem",
         opacity: "0.7"
+    }
+
+    const bestOfYoutubeIconContainerStyle = {
+        height: "40px",
+        display: "flex",
+        alignItems: "center",
+        padding: "0 24px"
+    }
+
+    const bestOfYoutubeIconStyle = {
+        width: "24px",
+        height: "24px",
+        borderRadius: "50%",
+        marginRight: "24px"
+    }
+
+    const bestOfYoutubeTitleStyle = {
+        fontSize: "0.9rem"
     }
 
 	return (
@@ -128,6 +146,15 @@ const SideList = (props) => {
             </div>
             <div style={bestOfYoutubeContainerStyle}>
                 <div style={bestOfYoutubeHeaderStyle}>BEST OF YOUTUBE</div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={musicIcon} /> <span style={bestOfYoutubeTitleStyle}>Music</span></div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={soccerIcon} /> <span style={bestOfYoutubeTitleStyle}>Sports</span></div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={gamingIcon} /> <span style={bestOfYoutubeTitleStyle}>Gaming</span></div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={filmIcon} /> <span style={bestOfYoutubeTitleStyle}>Movies</span></div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={filmIcon} /> <span style={bestOfYoutubeTitleStyle}>TV Shows</span></div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={newsIcon} /> <span style={bestOfYoutubeTitleStyle}>News</span></div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={liveIcon} /> <span style={bestOfYoutubeTitleStyle}>Live</span></div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={spotlightIcon} /> <span style={bestOfYoutubeTitleStyle}>Spotlight</span></div>
+                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={videoIcon} /> <span style={bestOfYoutubeTitleStyle}>360° Video</span></div>
             </div>
         </div>
 	);

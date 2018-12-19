@@ -1,3 +1,4 @@
 .hovered:hover {
     background-color: hsla(0, 0%, 92%, 1);
+    cursor: pointer;
 }
