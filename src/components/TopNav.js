@@ -95,6 +95,10 @@ class TopNav extends React.Component {
         opacity: "0.7"
     }
 
+    signInButtonStyle = {
+        padding: "8px 16px"
+    }
+
     signInStyle = {
         fontSize: "0.87rem",
         fontWeight: "500",
@@ -183,7 +187,7 @@ class TopNav extends React.Component {
                     <IconButton style={this.iconButtonStyle}><Apps style={this.iconStyle}/></IconButton>
                     {messageIcon}
                     <IconButton style={this.iconButtonStyle}><MoreVert style={this.iconStyle}/></IconButton>
-                    <Button><span style={this.signInStyle}>SIGN IN</span></Button>
+                    <Button style={this.signInButtonStyle}><span style={this.signInStyle}>SIGN IN</span></Button>
                 </div>
                 <Hidden lgUp>
                     <Drawer open={this.state.sideListOpen} onClose={this.toggleDrawer} transitionDuration={200}>
