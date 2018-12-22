@@ -150,6 +150,31 @@ const SideList = (props) => {
         fontSize: "0.9rem"
     }
 
+    const signInContainerStyle = {
+        padding: "16px 32px 12px 32px",
+        borderBottom: "rgba(220, 220, 220, 1) 1px solid"
+    }
+
+    const signInWordsStyle = {
+        fontSize: "0.9rem",
+        lineHeight: "21px"
+    }
+
+    const signInButtonStyle = {
+        borderRadius: "0%",
+        marginLeft: "-11px",
+        padding: "12px",
+        width: "49.297px",
+        height: "17px",
+        boxSizing: "content-box"
+    }
+
+    const signInButtonWordsStyle = {
+        fontSize: "0.8rem",
+        fontWeight: "600",
+        color: "hsla(214, 95%, 43%, 1)"
+    }
+
 	return (
         <div style={sideListStyle} className="scrollbar">
             <div style={headerStyle}>
@@ -177,6 +202,10 @@ const SideList = (props) => {
             </div>
             <div style={browseChannelContainerStyle}>
                 <div style={browseChannelStyle} className="hovered"><img style={browsePlusStyle} src={plusIcon} /><span style={browseChannelTitleStyle}>Browse channels</span></div>
+            </div>
+            <div style={signInContainerStyle}>
+                <span style={signInWordsStyle}>Sign in now to see your channels and recommendations!</span>
+                <IconButton style={signInButtonStyle}><span style={signInButtonWordsStyle}>SIGN IN</span></IconButton>
             </div>
         </div>
 	);
