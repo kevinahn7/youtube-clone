@@ -151,7 +151,7 @@ const SideList = (props) => {
     }
 
 	return (
-        <div style={sideListStyle}>
+        <div style={sideListStyle} className="scrollbar">
             <div style={headerStyle}>
                 <IconButton style={menuButtonStyle}>
                     <Menu style={menuIconStyle}/>
