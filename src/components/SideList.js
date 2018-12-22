@@ -191,8 +191,8 @@ const SideList = (props) => {
             </div>
             <div style={mainCategoriesContainerStyle}>
                 <div style={props.location.pathname === '/' ? currentPageHomeContainerStyle: mainCategoriesStyle} className="hovered"><Home style={props.location.pathname === '/' ? currentPageHomeIconStyle: mainCategoryHomeIconStyle}/> Home</div>
-                <div style={mainCategoriesStyle} className="hovered"><Whatshot style={mainCategoryOtherIconStyle} /> Trending</div>
-                <div style={mainCategoriesStyle} className="hovered"><History style={mainCategoryOtherIconStyle}/> History </div>
+                <div style={mainCategoriesStyle} className="hovered"><Whatshot style={mainCategoryOtherIconStyle} />Trending</div>
+                <div style={mainCategoriesStyle} className="hovered"><History style={mainCategoryOtherIconStyle}/>History</div>
             </div>
             <div style={bestOfYoutubeContainerStyle}>
                 <div style={bestOfYoutubeHeaderStyle}>BEST OF YOUTUBE</div>
@@ -212,6 +212,17 @@ const SideList = (props) => {
             <div style={signInContainerStyle}>
                 <span style={signInWordsStyle}>Sign in now to see your channels and recommendations!</span>
                 <IconButton style={signInButtonStyle}><span style={signInButtonWordsStyle}>SIGN IN</span></IconButton>
+            </div>
+            <div style={bestOfYoutubeContainerStyle}>
+                <div style={bestOfYoutubeHeaderStyle}>MORE FROM YOUTUBE</div>
+                <div style={mainCategoriesStyle} className="hovered"><PlayArrow style={mainCategoryOtherIconStyle} />YouTube Premium</div>
+                <div style={mainCategoriesStyle} className="hovered"><Cast style={mainCategoryOtherIconStyle}/>Live</div>
+            </div>
+            <div style={bestOfYoutubeContainerStyle}>
+                <div style={mainCategoriesStyle} className="hovered"><Brightness style={mainCategoryOtherIconStyle} />Settings</div>
+                <div style={mainCategoriesStyle} className="hovered"><Flag style={mainCategoryOtherIconStyle} />Report history</div>
+                <div style={mainCategoriesStyle} className="hovered"><Help style={mainCategoryOtherIconStyle}/>Help</div>
+                <div style={mainCategoriesStyle} className="hovered"><Announcement style={mainCategoryOtherIconStyle} />Send feedback</div>
             </div>
         </div>
 	);
