@@ -26,8 +26,11 @@ import plusIcon from '../assets/plus-icon.png';
 const SideList = (props) => {
     const sideListStyle = {
         width: "240px",
-        height: "100vh",
         backgroundColor: "#f5f5f5"
+    }
+
+    const sideListContentContainerStyle = {
+        height: "calc(100vh - 57px)"
     }
 
     const headerStyle = {
@@ -182,47 +185,49 @@ const SideList = (props) => {
     }
 
 	return (
-        <div style={sideListStyle} className="scrollbar">
+        <div style={sideListStyle}>
             <div style={headerStyle}>
                 <IconButton style={menuButtonStyle}>
                     <Menu style={menuIconStyle}/>
                 </IconButton>
                 <Link to="/"><img style={youTubeLogoStyle} src={youtubeLogo} alt="The YoutTube logo"/></Link>
             </div>
-            <div style={mainCategoriesContainerStyle}>
-                <div style={props.location.pathname === '/' ? currentPageHomeContainerStyle: mainCategoriesStyle} className="hovered"><Home style={props.location.pathname === '/' ? currentPageHomeIconStyle: mainCategoryHomeIconStyle}/> Home</div>
-                <div style={mainCategoriesStyle} className="hovered"><Whatshot style={mainCategoryOtherIconStyle} />Trending</div>
-                <div style={mainCategoriesStyle} className="hovered"><History style={mainCategoryOtherIconStyle}/>History</div>
-            </div>
-            <div style={bestOfYoutubeContainerStyle}>
-                <div style={bestOfYoutubeHeaderStyle}>BEST OF YOUTUBE</div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={musicIcon} /> <span style={bestOfYoutubeTitleStyle}>Music</span></div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={soccerIcon} /> <span style={bestOfYoutubeTitleStyle}>Sports</span></div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={gamingIcon} /> <span style={bestOfYoutubeTitleStyle}>Gaming</span></div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={filmIcon} /> <span style={bestOfYoutubeTitleStyle}>Movies</span></div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={filmIcon} /> <span style={bestOfYoutubeTitleStyle}>TV Shows</span></div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={newsIcon} /> <span style={bestOfYoutubeTitleStyle}>News</span></div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={liveIcon} /> <span style={bestOfYoutubeTitleStyle}>Live</span></div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={spotlightIcon} /> <span style={bestOfYoutubeTitleStyle}>Spotlight</span></div>
-                <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={videoIcon} /> <span style={bestOfYoutubeTitleStyle}>360° Video</span></div>
-            </div>
-            <div style={browseChannelContainerStyle}>
-                <div style={browseChannelStyle} className="hovered"><img style={browsePlusStyle} src={plusIcon} /><span style={browseChannelTitleStyle}>Browse channels</span></div>
-            </div>
-            <div style={signInContainerStyle}>
-                <span style={signInWordsStyle}>Sign in now to see your channels and recommendations!</span>
-                <IconButton style={signInButtonStyle}><span style={signInButtonWordsStyle}>SIGN IN</span></IconButton>
-            </div>
-            <div style={bestOfYoutubeContainerStyle}>
-                <div style={bestOfYoutubeHeaderStyle}>MORE FROM YOUTUBE</div>
-                <div style={mainCategoriesStyle} className="hovered"><PlayArrow style={mainCategoryOtherIconStyle} />YouTube Premium</div>
-                <div style={mainCategoriesStyle} className="hovered"><Cast style={mainCategoryOtherIconStyle}/>Live</div>
-            </div>
-            <div style={bestOfYoutubeContainerStyle}>
-                <div style={mainCategoriesStyle} className="hovered"><Brightness style={mainCategoryOtherIconStyle} />Settings</div>
-                <div style={mainCategoriesStyle} className="hovered"><Flag style={mainCategoryOtherIconStyle} />Report history</div>
-                <div style={mainCategoriesStyle} className="hovered"><Help style={mainCategoryOtherIconStyle}/>Help</div>
-                <div style={mainCategoriesStyle} className="hovered"><Announcement style={mainCategoryOtherIconStyle} />Send feedback</div>
+            <div style={sideListContentContainerStyle} className="scrollbar">
+                <div style={mainCategoriesContainerStyle}>
+                    <div style={props.location.pathname === '/' ? currentPageHomeContainerStyle: mainCategoriesStyle} className="hovered"><Home style={props.location.pathname === '/' ? currentPageHomeIconStyle: mainCategoryHomeIconStyle}/> Home</div>
+                    <div style={mainCategoriesStyle} className="hovered"><Whatshot style={mainCategoryOtherIconStyle} />Trending</div>
+                    <div style={mainCategoriesStyle} className="hovered"><History style={mainCategoryOtherIconStyle}/>History</div>
+                </div>
+                <div style={bestOfYoutubeContainerStyle}>
+                    <div style={bestOfYoutubeHeaderStyle}>BEST OF YOUTUBE</div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={musicIcon} /> <span style={bestOfYoutubeTitleStyle}>Music</span></div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={soccerIcon} /> <span style={bestOfYoutubeTitleStyle}>Sports</span></div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={gamingIcon} /> <span style={bestOfYoutubeTitleStyle}>Gaming</span></div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={filmIcon} /> <span style={bestOfYoutubeTitleStyle}>Movies</span></div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={filmIcon} /> <span style={bestOfYoutubeTitleStyle}>TV Shows</span></div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={newsIcon} /> <span style={bestOfYoutubeTitleStyle}>News</span></div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={liveIcon} /> <span style={bestOfYoutubeTitleStyle}>Live</span></div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={spotlightIcon} /> <span style={bestOfYoutubeTitleStyle}>Spotlight</span></div>
+                    <div style={bestOfYoutubeIconContainerStyle} className="hovered"><img style={bestOfYoutubeIconStyle} src={videoIcon} /> <span style={bestOfYoutubeTitleStyle}>360° Video</span></div>
+                </div>
+                <div style={browseChannelContainerStyle}>
+                    <div style={browseChannelStyle} className="hovered"><img style={browsePlusStyle} src={plusIcon} /><span style={browseChannelTitleStyle}>Browse channels</span></div>
+                </div>
+                <div style={signInContainerStyle}>
+                    <span style={signInWordsStyle}>Sign in now to see your channels and recommendations!</span>
+                    <IconButton style={signInButtonStyle}><span style={signInButtonWordsStyle}>SIGN IN</span></IconButton>
+                </div>
+                <div style={bestOfYoutubeContainerStyle}>
+                    <div style={bestOfYoutubeHeaderStyle}>MORE FROM YOUTUBE</div>
+                    <div style={mainCategoriesStyle} className="hovered"><PlayArrow style={mainCategoryOtherIconStyle} />YouTube Premium</div>
+                    <div style={mainCategoriesStyle} className="hovered"><Cast style={mainCategoryOtherIconStyle}/>Live</div>
+                </div>
+                <div style={bestOfYoutubeContainerStyle}>
+                    <div style={mainCategoriesStyle} className="hovered"><Brightness style={mainCategoryOtherIconStyle} />Settings</div>
+                    <div style={mainCategoriesStyle} className="hovered"><Flag style={mainCategoryOtherIconStyle} />Report history</div>
+                    <div style={mainCategoriesStyle} className="hovered"><Help style={mainCategoryOtherIconStyle}/>Help</div>
+                    <div style={mainCategoriesStyle} className="hovered"><Announcement style={mainCategoryOtherIconStyle} />Send feedback</div>
+                </div>
             </div>
         </div>
 	);
