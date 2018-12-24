@@ -184,6 +184,30 @@ const SideList = (props) => {
         color: "hsla(214, 95%, 43%, 1)"
     }
 
+    const aboutStyle = {
+        padding: "16px 24px 0 24px"
+    }
+
+    const aboutLabelStyle = {
+        marginRight: "8px",
+        fontSize: "0.8rem",
+        color: "hsla(0, 0%, 30%, 1)",
+        fontWeight: "500"
+    }
+
+    const termStyle = {
+        padding: "12px 24px 16px 24px"
+    }
+
+    const youTubeLLCStyle = {
+        padding: "16px 24px"
+    }
+
+    const youTubeLLCLabelStyle = {
+        fontSize: "0.8rem",
+        color: "hsla(0, 0%, 60%, 1)"
+    }
+
 	return (
         <div style={sideListStyle}>
             <div style={headerStyle}>
@@ -227,6 +251,34 @@ const SideList = (props) => {
                     <div style={mainCategoriesStyle} className="hovered"><Flag style={mainCategoryOtherIconStyle} />Report history</div>
                     <div style={mainCategoriesStyle} className="hovered"><Help style={mainCategoryOtherIconStyle}/>Help</div>
                     <div style={mainCategoriesStyle} className="hovered"><Announcement style={mainCategoryOtherIconStyle} />Send feedback</div>
+                </div>
+                <div>
+                    <div style={aboutStyle}>
+                        <div>
+                            <span style={aboutLabelStyle} className="link">About</span>
+                            <span style={aboutLabelStyle} className="link">Press</span>
+                            <span style={aboutLabelStyle} className="link">Copyright</span>
+                        </div>
+                        <div>
+                            <span style={aboutLabelStyle} className="link">Contact us</span>
+                            <span style={aboutLabelStyle} className="link">Creators</span>
+                        </div>
+                        <div>
+                            <span style={aboutLabelStyle} className="link">Advertise</span>
+                            <span style={aboutLabelStyle} className="link">Developers</span>
+                        </div>
+                    </div>
+                    <div style={termStyle}>
+                        <div>
+                            <span style={aboutLabelStyle} className="link">Terms</span>
+                            <span style={aboutLabelStyle} className="link">Privacy</span>
+                            <span style={aboutLabelStyle} className="link">Policy & Safety</span>
+                        </div>
+                        <div>
+                            <span style={aboutLabelStyle} className="link">Test new features</span>
+                        </div>
+                    </div>
+                    <div style={youTubeLLCStyle}><span style={youTubeLLCLabelStyle}>© 2018 YouTube, LLC</span></div>
                 </div>
             </div>
         </div>

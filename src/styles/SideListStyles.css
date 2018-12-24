@@ -3,6 +3,10 @@
     cursor: pointer;
 }
 
+.link:hover {
+    cursor: pointer;
+}
+
 .scrollbar {
     overflow-y: hidden;
 }
@@ -18,7 +22,7 @@
 
 .scrollbar::-webkit-scrollbar
 {
-	width: 8px;
+	width: 7px;
 	background-color: #F5F5F5;
 }
 
