@@ -39,7 +39,7 @@ class Results extends React.Component {
 	}
 
 	filterContainerStyle = {
-		boxShadow: "0 1px #eee",
+		boxShadow: "0 1px rgba(200, 200, 200, 1",
 		height: "44px",
 		display: "flex",
 		alignItems: "center",
