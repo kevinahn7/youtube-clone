@@ -3,6 +3,10 @@
     cursor: pointer;
 }
 
+.scrollbar {
+    overflow-y: hidden;
+}
+
 .scrollbar:hover {
     overflow-y: scroll;
 }
