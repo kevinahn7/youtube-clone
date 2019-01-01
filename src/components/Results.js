@@ -104,14 +104,19 @@ class Results extends React.Component {
 										channelId={searchResults[index].snippet.channelId}
 										channelTitle={searchResults[index].snippet.channelTitle}
 										image={searchResults[index].snippet.thumbnails.medium.url}
-										publishedAt={searchResults[index].snippet.publishedAt} />
+										publishedAt={searchResults[index].snippet.publishedAt}
+										// viewCount={searchResults[index].statistics.viewCount}
+										/>
 								} else if (searchResults[index].id.kind === "youtube#channel"){
 									return <ChannelThumbnail
 										key={index}
 										channelTitle={searchResults[index].snippet.title}
 										channelDescription={searchResults[index].snippet.description}
 										channelId={searchResults[index].snippet.channelId}
-										image={searchResults[index].snippet.thumbnails.high.url} />
+										image={searchResults[index].snippet.thumbnails.high.url}
+										// subscriberCount={searchResults[index].statistics.subscriberCount}
+										// videoCount={searchResults[index].statistics.videoCount}
+										/>
 								} //Add youtube playlist conditional
 							})}
 						</div> : <img src={loading} style={this.loadingStyle} />}

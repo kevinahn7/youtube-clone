@@ -80,7 +80,9 @@ ChannelThumbnail.propTypes = {
     channelTitle: PropTypes.string,
     channelDescription: PropTypes.string,
     channelId: PropTypes.string,
-    image: PropTypes.string
+    image: PropTypes.string,
+    // subscriberCount: PropTypes.string,
+    // videoCount: PropTypes.string
 };
 
 export default connect()(ChannelThumbnail);

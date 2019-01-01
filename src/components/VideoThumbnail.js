@@ -66,7 +66,7 @@ const VideoThumbnail = (props) => {
         <div style={infoStyle} onClick={() => handleVideoClick(props.videoId, props.channelId)}>
           <Link to={`/watch/${props.videoId}`}>
             <span style={videoTitleStyle}>{props.videoTitle}</span>
-            <p style={videoInfoStyle}>{props.channelTitle} 10K views • {convertDate(props.publishedAt)}</p>
+            <p style={videoInfoStyle}>{props.channelTitle} {props.viewCount} • {convertDate(props.publishedAt)}</p>
             <p style={videoDescriptionStyle}>{props.videoDescription}</p>
           </Link>
         </div>
@@ -81,7 +81,8 @@ VideoThumbnail.propTypes = {
   channelId: PropTypes.string,
   channelTitle: PropTypes.string,
   image: PropTypes.string,
-  publishedAt: PropTypes.string
+  publishedAt: PropTypes.string,
+  // viewCount: PropTypes.string
 };
 
 export default connect()(VideoThumbnail);

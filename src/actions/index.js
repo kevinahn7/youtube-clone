@@ -3,6 +3,8 @@ import * as types from './../constants/ActionTypes';
 export function fetchSearchResult(searchQuery) {
 	return function(dispatch) {
 		dispatch(requestSearch(searchQuery));
+		// let searchResults;
+		// let pageToken;
 		return fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchQuery + '&maxResults=20&key=' + process.env.REACT_APP_API_KEY)
 			.then(
 				response => response.json(),
@@ -10,7 +12,6 @@ export function fetchSearchResult(searchQuery) {
 			).then(function(json) {
 				let searchResults = json.items;
 				let pageToken = json.nextPageToken;
-				console.log(searchResults)
 				for (let i = 0; i < searchResults.length; i++) {
 					if (searchResults[i].id.kind === "youtube#video") {
 						fetch('https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + searchResults[i].id.videoId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
@@ -19,7 +20,6 @@ export function fetchSearchResult(searchQuery) {
 								error => console.log('An error occured.', error)
 							).then(function(json) {
 								searchResults[i].statistics = json.items[0].statistics
-								console.log(searchResults)
 							})
 					} else if (searchResults[i].id.kind === "youtube#channel") {
 						fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + searchResults[i].id.channelId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
@@ -30,7 +30,9 @@ export function fetchSearchResult(searchQuery) {
 								searchResults[i].statistics = json.items[0].statistics
 							})
 					}
+					console.log(searchResults)
 				}
+			// }).then(function() {
 				dispatch(receiveSearch(searchResults, pageToken));
 			})
 	}
