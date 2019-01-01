@@ -11,24 +11,25 @@ export function fetchSearchResult(searchQuery) {
 				let searchResults = json.items;
 				let pageToken = json.nextPageToken;
 				console.log(searchResults)
-				// for (let i = 0; i < json.items.length; i++) {
-				// 	if it is a video then do this
-				// 	return fetch('https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
-				// 	.then(
-				// 		response => response.json(),
-				// 		error => console.log('An error occured.', error)
-				// 	).then(function(json) {
-				//      take the views from the json and then add that to the data in search results
-				// 	})
-				//
-				// 	else if it is a channel, do this
-				// 	return fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + channelId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
-				// 	.then(
-				// 		response => response.json(),
-				// 		error => console.log('An error occured.', error)
-				// 	).then(function(json) {
-				//      take the videocount and the subscriber count from the json and then add that to the data in search results
-				// 	})
+				// for (let i = 0; i < searchResults.length; i++) {
+				// 	if (searchResults[i].id.kind === "youtube#video") {
+				// 		return fetch('https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + searchResults[i].id.videoId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
+				// 			.then(
+				// 				response => response.json(),
+				// 				error => console.log('An error occured.', error)
+				// 			).then(function(json) {
+				// 				searchResults[i].statistics = json.items[0].statistics
+				// 				console.log(searchResults)
+				// 			})
+				// 	} else if (searchResults[i].id.kind === "youtube#channel") {
+				// 		return fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + searchResults[i].id.channelId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
+				// 			.then(
+				// 				response => response.json(),
+				// 				error => console.log('An error occured.', error)
+				// 			).then(function(json) {
+				// 				searchResults[i].statistics = json.items[0].statistics
+				// 			})
+				// 	}
 				// }
 				dispatch(receiveSearch(searchResults, pageToken));
 			})
