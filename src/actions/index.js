@@ -12,26 +12,26 @@ export function fetchSearchResult(searchQuery) {
 			).then(function(json) {
 				let searchResults = json.items;
 				let pageToken = json.nextPageToken;
-				for (let i = 0; i < searchResults.length; i++) {
-					if (searchResults[i].id.kind === "youtube#video") {
-						fetch('https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + searchResults[i].id.videoId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
-							.then(
-								response => response.json(),
-								error => console.log('An error occured.', error)
-							).then(function(json) {
-								searchResults[i].statistics = json.items[0].statistics
-							})
-					} else if (searchResults[i].id.kind === "youtube#channel") {
-						fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + searchResults[i].id.channelId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
-							.then(
-								response => response.json(),
-								error => console.log('An error occured.', error)
-							).then(function(json) {
-								searchResults[i].statistics = json.items[0].statistics
-							})
-					}
-					console.log(searchResults)
-				}
+				// for (let i = 0; i < searchResults.length; i++) {
+				// 	if (searchResults[i].id.kind === "youtube#video") {
+				// 		fetch('https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + searchResults[i].id.videoId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
+				// 			.then(
+				// 				response => response.json(),
+				// 				error => console.log('An error occured.', error)
+				// 			).then(function(json) {
+				// 				searchResults[i].statistics = json.items[0].statistics
+				// 			})
+				// 	} else if (searchResults[i].id.kind === "youtube#channel") {
+				// 		fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + searchResults[i].id.channelId + '&maxHeight=8192&maxWidth=8192&key=' + process.env.REACT_APP_API_KEY)
+				// 			.then(
+				// 				response => response.json(),
+				// 				error => console.log('An error occured.', error)
+				// 			).then(function(json) {
+				// 				searchResults[i].statistics = json.items[0].statistics
+				// 			})
+				// 	}
+				// 	console.log(searchResults)
+				// }
 			// }).then(function() {
 				dispatch(receiveSearch(searchResults, pageToken));
 			})
